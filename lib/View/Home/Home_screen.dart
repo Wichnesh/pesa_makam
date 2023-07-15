@@ -92,31 +92,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         child: Column(
                                           children: [
                                             Expanded(
-                                              child: Container(
-                                                child: Image.network(
-                                                  controller
-                                                      .Detail[index].image,
-                                                  fit: BoxFit.cover,
-                                                  loadingBuilder: (context,
-                                                      child, loadingProgress) {
-                                                    if (loadingProgress ==
-                                                        null) {
-                                                      return child;
-                                                    }
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  },
-                                                ),
+                                              child: Image.network(
+                                                controller.Detail[index].image,
+                                                fit: BoxFit.cover,
+                                                loadingBuilder: (context, child,
+                                                    loadingProgress) {
+                                                  if (loadingProgress == null) {
+                                                    return child;
+                                                  }
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                },
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                                 height:
                                                     10), // Adjust the spacing between image and text
                                             Text(
                                               controller.Detail[index].name,
-                                              style: TextStyle(fontSize: 24),
+                                              style:
+                                                  const TextStyle(fontSize: 24),
                                               textAlign: TextAlign.center,
                                             ),
                                           ],
