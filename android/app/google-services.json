@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "824088985472",
+    "project_id": "pesamakanam-adfd9",
+    "storage_bucket": "pesamakanam-adfd9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824088985472:android:55b63209b19c4b7027cb65",
+        "android_client_info": {
+          "package_name": "com.example.pesa_makanam_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824088985472-t1dj70guktik4jabi2kn8l889b2jmv35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7TQ2FUlQ24U3qdt4eaPfS7h2oAKJK-ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824088985472-t1dj70guktik4jabi2kn8l889b2jmv35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824088985472:android:27a77c2280cdc48e27cb65",
+        "android_client_info": {
+          "package_name": "com.example.pesa_makanam_app01"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824088985472-jjj71ljvf9k6isfc7uj8p778tourn3tv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pesa_makanam_app01",
+            "certificate_hash": "dda35201987fea6af152f72f755d6ae2d511d9eb"
+          }
+        },
+        {
+          "client_id": "824088985472-t1dj70guktik4jabi2kn8l889b2jmv35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7TQ2FUlQ24U3qdt4eaPfS7h2oAKJK-ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824088985472-t1dj70guktik4jabi2kn8l889b2jmv35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
