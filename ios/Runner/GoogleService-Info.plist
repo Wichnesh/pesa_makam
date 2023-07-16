@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>824088985472-g7va07ikvtlune3t6h35kl3ol3l68a1i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.824088985472-g7va07ikvtlune3t6h35kl3ol3l68a1i</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>824088985472-jjj71ljvf9k6isfc7uj8p778tourn3tv.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD9T4FNwwI5BunfM2DmSM1aHOvpE1TirPQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>824088985472</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.pesaMakanamApp</string>
+	<key>PROJECT_ID</key>
+	<string>pesamakanam-adfd9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pesamakanam-adfd9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:824088985472:ios:2a2c2a1a1b1d3c1327cb65</string>
+</dict>
+</plist>
