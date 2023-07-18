@@ -5,6 +5,7 @@ import '../View/Home/drawer/Attendance.dart';
 import '../View/Home/Home_screen.dart';
 import '../View/Home/drawer/AddItems.dart';
 import '../View/Home/drawer/Employee.dart';
+import '../View/Home/drawer/Payment.dart';
 import '../View/Home/drawer/Purchase/AddPurchase.dart';
 import '../View/Home/drawer/Categories.dart';
 import '../View/Home/drawer/Purchase/purchase.dart';
@@ -15,6 +16,7 @@ import '../binding/AddPurchasescreeninding.dart';
 import '../binding/AttendanceScreenbinding.dart';
 import '../binding/EmployeeScreenbinding.dart';
 import '../binding/Homescreenbinding.dart';
+import '../binding/Paymentbinding.dart';
 import '../binding/Purchasebinding.dart';
 import '../binding/categoriesscreenbinding.dart';
 import '../utils/constant.dart';
@@ -53,5 +55,9 @@ class AppPages {
         name: ROUTE_ATTENDANCE,
         page: () => const Attendance(),
         binding: AttendanceScreenBinding()),
+    GetPage(
+        name: ROUTE_PAYMENT,
+        page: () => const PaymentScreen(),
+        binding: PaymentBinding())
   ];
 }

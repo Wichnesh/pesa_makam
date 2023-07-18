@@ -75,6 +75,9 @@ class _AttendanceState extends State<Attendance> {
                       ).toList(),
                       onChanged: (val) {
                         controller.updateEmployeename(val);
+                        controller.showinout.value = false;
+                        controller.checkinbool.value = true;
+                        print(controller.showinout.value);
                         controller.fetchEmployeeByName();
                         print("val:    ${controller.selectemployeename.value}");
                       },

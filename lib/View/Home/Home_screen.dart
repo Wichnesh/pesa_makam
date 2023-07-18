@@ -336,7 +336,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ListTile(
                               leading: const Icon(Icons.payment),
                               title: const Text("Payment"),
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(ROUTE_PAYMENT);
+                              },
                             ),
                             ListTile(
                               leading: const Icon(Icons.logout),
