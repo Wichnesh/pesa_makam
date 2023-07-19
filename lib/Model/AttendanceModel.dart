@@ -3,14 +3,14 @@ class Employeelist {
   Employeelist({this.name});
 }
 
-class EmployeeRecord {
+class EmployeeRecordA {
   String currentDate;
   String checkIn;
   bool checkInBool;
   String checkOut;
   bool checkOutBool;
 
-  EmployeeRecord({
+  EmployeeRecordA({
     required this.currentDate,
     required this.checkIn,
     required this.checkInBool,
@@ -18,8 +18,8 @@ class EmployeeRecord {
     required this.checkOutBool,
   });
 
-  factory EmployeeRecord.fromMap(Map<String, dynamic> map) {
-    return EmployeeRecord(
+  factory EmployeeRecordA.fromMap(Map<String, dynamic> map) {
+    return EmployeeRecordA(
       currentDate: map['current date'],
       checkIn: map['check in'],
       checkInBool: map['check in bool'],
@@ -28,3 +28,4 @@ class EmployeeRecord {
     );
   }
 }
+

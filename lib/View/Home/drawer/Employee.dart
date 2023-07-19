@@ -648,7 +648,7 @@ class _EmployeeState extends State<Employee> {
                         child: Container(
                           height: Screenheight * 0.068,
                           child: TextField(
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.text,
                             style: const TextStyle(fontSize: 18),
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),

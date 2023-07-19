@@ -102,7 +102,10 @@ class _AddItemsState extends State<AddItems> {
                             child: TextField(
                               keyboardType: TextInputType.number,
                               style: TextStyle(fontSize: 18),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
+                                suffixText: 'RM',
+                                suffixStyle: TextStyle(
+                                    fontSize: 18, color: primarycolor),
                                 border: OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(

@@ -9,7 +9,7 @@ import '../utils/common_methods.dart';
 
 class AttendanceController extends GetxController {
   var employeenamelist = <Employeelist>[].obs;
-  var currentattendancedetails = <EmployeeRecord>[].obs;
+  var currentattendancedetails = <EmployeeRecordA>[].obs;
   var selectemployeename = "Select".obs;
   var isloading = false.obs;
   RxList<String> employeeNames = RxList<String>();

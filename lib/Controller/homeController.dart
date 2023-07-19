@@ -92,6 +92,10 @@ class HomeController extends GetxController {
 
         isloading.value = false;
       }
+      isloading.value = false;
+      update();
+    } else {
+      isloading.value = false;
       update();
     }
   }
