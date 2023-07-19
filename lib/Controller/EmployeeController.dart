@@ -296,6 +296,7 @@ class EmployeeController extends GetxController {
           'government id image': governmentidproof,
           'role': roles.value,
           'per day wages': perdaywages.value,
+          'Advance amount': "",
         };
 
         await newEmployeeDoc.set(employeeData);

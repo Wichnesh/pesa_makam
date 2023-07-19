@@ -9,7 +9,7 @@ import '../utils/common_methods.dart';
 
 class AttendanceController extends GetxController {
   var employeenamelist = <Employeelist>[].obs;
-  var currentattendancedetails = <EmployeeRecord>[].obs;
+  var currentattendancedetails = <EmployeeRecordA>[].obs;
   var selectemployeename = "Select".obs;
   var isloading = false.obs;
   RxList<String> employeeNames = RxList<String>();
@@ -139,8 +139,10 @@ class AttendanceController extends GetxController {
               if (checkIn.isNotEmpty && checkOut.isEmpty) {
                 // Check-in done, but check-out not done
                 checkintime.value = checkIn;
+                checkouttime.value = "";
                 checkinbool.value = true;
                 showinout.value = false;
+                displayslider.value = true;
                 update();
               } else if (checkIn.isNotEmpty && checkOut.isNotEmpty) {
                 checkintime.value = checkIn;
@@ -152,6 +154,7 @@ class AttendanceController extends GetxController {
                 checkintime.value = "";
                 checkouttime.value = "";
                 checkinbool.value = false;
+                displayslider.value = true;
                 showinout.value = false;
               }
               printCurrentAttendanceDetails();
@@ -162,6 +165,7 @@ class AttendanceController extends GetxController {
                 'current date': currentDate,
                 'check in': '',
                 'check out': '',
+                'total working hr': '',
                 // Add any other fields you want to save
               };
               await newCategoryDetailDoc.set(itemData);
@@ -270,8 +274,24 @@ class AttendanceController extends GetxController {
         String checkOutTime = DateFormat('HH:mm').format(currentTime);
         await recordDocRef.update({'check out': checkOutTime});
 
-        // Update the local check-in time variable
+        // Calculate total working hours
+        DocumentSnapshot recordDoc = await recordDocRef.get();
+        Map<String, dynamic> recordData =
+            recordDoc.data() as Map<String, dynamic>? ?? {};
 
+        String checkInTime = recordData['check in'] as String? ?? '';
+        if (checkInTime.isNotEmpty) {
+          DateTime checkInDateTime = DateFormat('HH:mm').parse(checkInTime);
+          DateTime checkOutDateTime = DateFormat('HH:mm').parse(checkOutTime);
+          Duration workingDuration =
+              checkOutDateTime.difference(checkInDateTime);
+          String totalWorkingHours = workingDuration.inHours.toString();
+
+          // Update the 'total working hr' field with the calculated value
+          await recordDocRef.update({'total working hr': totalWorkingHours});
+        }
+
+        // Update the local check-in and check-out time variables
         checkouttime.value = checkOutTime;
         showinout.value = false;
         checkinbool.value = true;
