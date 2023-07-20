@@ -314,6 +314,7 @@ class EmployeeController extends GetxController {
                   child: const Text('OK'),
                   onPressed: () {
                     Navigator.of(context).pop();
+                    Get.back();
                   },
                 ),
               ],

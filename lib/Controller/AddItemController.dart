@@ -184,6 +184,7 @@ class AddItemsController extends GetxController {
               isloading.value = false; // Hide loading indicator
               showToast('Item added successfully');
               print('Item added to Firestore successfully!');
+              Get.back();
             } else {
               isloading.value = false; // Hide loading indicator
               showToast('Failed to upload image');

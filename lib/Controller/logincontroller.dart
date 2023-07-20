@@ -74,4 +74,26 @@ class LoginController extends GetxController {
     isloading.value = false;
     update();
   }
+
+  Future<void> sendPasswordResetLink() async {
+    String email = emailController.text.trim();
+
+    if (!validateEmail(email)) {
+      // Show error or display a message for invalid email
+      print('object');
+      Get.snackbar("Error", "Invalid format",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          snackPosition: SnackPosition.TOP);
+      return;
+    }
+
+    try {
+      print('send');
+      await _auth.sendPasswordResetEmail(email: email);
+      showToast("Password reset link sent to your email.");
+    } catch (error) {
+      showToast("Failed to send password reset link: $error");
+    }
+  }
 }

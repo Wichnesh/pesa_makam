@@ -147,24 +147,55 @@ class _loginscreenState extends State<loginscreen>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
-                                'Don\'t Have an account ? ',
+                                'Forgotten Password ? ',
                                 style: TextStyle(fontSize: 15),
                               ),
                               RichText(
                                 text: TextSpan(
-                                  text: 'Register',
+                                  text: 'Reset',
                                   style: const TextStyle(
                                     color: Colors.blueAccent,
                                     fontSize: 15,
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      Get.toNamed(ROUTE_REGISTER);
+                                      if (_logincontroller
+                                          .emailController.text.isEmpty) {
+                                        Get.snackbar(
+                                            "Error", "Please enter email",
+                                            colorText: Colors.white,
+                                            backgroundColor: Colors.red,
+                                            snackPosition: SnackPosition.TOP);
+                                      } else {
+                                        _onForgotPasswordTapped();
+                                      }
                                     },
                                 ),
                               ),
                             ],
                           ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     const Text(
+                          //       'Don\'t Have an account ? ',
+                          //       style: TextStyle(fontSize: 15),
+                          //     ),
+                          //     RichText(
+                          //       text: TextSpan(
+                          //         text: 'Register',
+                          //         style: const TextStyle(
+                          //           color: Colors.blueAccent,
+                          //           fontSize: 15,
+                          //         ),
+                          //         recognizer: TapGestureRecognizer()
+                          //           ..onTap = () {
+                          //             Get.toNamed(ROUTE_REGISTER);
+                          //           },
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),//Register page
                         ],
                       ),
                     ),
@@ -176,6 +207,11 @@ class _loginscreenState extends State<loginscreen>
         ),
       ),
     );
+  }
+
+  // Function to handle "Forgotten Password" tap
+  void _onForgotPasswordTapped() {
+    _logincontroller.sendPasswordResetLink();
   }
 
   Widget component1(IconData icon, String hintText, bool isPassword,

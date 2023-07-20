@@ -296,7 +296,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               decoration:
                                   const BoxDecoration(color: primarycolor),
                               accountEmail: Text(user.email.toString()),
-                              accountName: null,
+                              accountName: Text(
+                                user.displayName.toString(),
+                                style: TextStyle(fontSize: 24),
+                              ),
                             ),
                             ListTile(
                               leading: const Icon(Icons.category),
