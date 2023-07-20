@@ -35,7 +35,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           } else {
             return SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -136,7 +136,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           },
                           child: Container(
                               width: Screenwidth * 0.13,
-                              child: Icon(Icons.search)),
+                              child: const Icon(Icons.search)),
                         ),
                       ],
                     ),
@@ -433,7 +433,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         setState(() {});
                                       },
                                     ),
-                                    Text('Advance'),
+                                    const Text('Advance'),
                                     Radio<PaymentType>(
                                       activeColor: primarycolor,
                                       value: PaymentType.Salary,
@@ -443,7 +443,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         setState(() {});
                                       },
                                     ),
-                                    Text('Salary'),
+                                    const Text('Salary'),
                                   ],
                                 ),
                               ),
@@ -511,7 +511,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                                         controller.EmpId.value,
                                                         int.parse(controller
                                                             .AdvanceavailableText
-                                                            .text));
+                                                            .text),
+                                                        controller
+                                                            .selectmonth.value);
                                                   },
                                                   child: Container(
                                                     height: 50,

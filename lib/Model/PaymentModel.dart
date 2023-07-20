@@ -30,3 +30,19 @@ class Employee {
 
   Employee(this.name, this.employeeId);
 }
+
+class Advance {
+  final String advance;
+  final String currentdate;
+
+  Advance({required this.advance, required this.currentdate});
+
+  // Create a factory method to parse the data from Firestore's document snapshot
+  factory Advance.fromFirestore(Map<String, dynamic>? data) {
+    final Map<String, dynamic> parsedData = data as Map<String, dynamic>? ?? {};
+    return Advance(
+      advance: parsedData['Advance amount'] ?? '',
+      currentdate: parsedData['current date'] ?? '',
+    );
+  }
+}

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pesa_makanam_app/utils/constant.dart';
 
 import '../Model/PaymentModel.dart';
@@ -183,13 +184,38 @@ class PaymentController extends GetxController {
             // Get the per-day wages from the employee document
             perdaywages = RxInt(int.parse(employeeDoc.get('per day wages')));
 
-            // Get the Advance amount from the employee record
-            String advanceAmountString = employeeDoc.get('Advance amount');
+            // Check if the 'AdvanceRecord' collection exists for the employee
+            CollectionReference advanceRecordCollection =
+                employeeDoc.reference.collection('AdvanceRecord');
+            String month = getNumericMonth(selectedMonth);
+            // Get the current month and year
+            DateTime now = DateTime.now();
+            String currentMonthAndYear = '$month-${now.year}';
 
-            if (advanceAmountString.isEmpty) {
-              Advance.value = 0;
+            // Fetch the Advance amount for the current month and year
+            DocumentSnapshot advanceDoc =
+                await advanceRecordCollection.doc(currentMonthAndYear).get();
+
+            if (advanceDoc.exists) {
+              // AdvanceRecord exists for the current month and year
+              String advanceAmount =
+                  advanceDoc.get('Advance amount').toString();
+              Advance = RxInt(int.parse(advanceAmount));
+              print('Advance amount for $currentMonthAndYear: $advanceAmount');
             } else {
-              Advance = RxInt(int.parse(advanceAmountString));
+              // AdvanceRecord does not exist for the current month and year
+              print('No Advance data available for $currentMonthAndYear');
+
+              // Create the 'AdvanceRecord' collection and add an initial record
+              String currentDate = DateFormat('dd-MM-yyyy').format(now);
+              await advanceRecordCollection.doc(currentMonthAndYear).set({
+                'Advance amount':
+                    '0', // You can set the initial Advance amount to 0 or any other value
+                'Current date': currentDate,
+              });
+              Advance.value = 0;
+              print(
+                  'AdvanceRecord collection created for $currentMonthAndYear');
             }
           } catch (e) {
             print('Error fetching employee records: $e');
@@ -282,7 +308,8 @@ class PaymentController extends GetxController {
   }
 
   // Method to update the Advance amount inside the employee collection
-  void updateAdvanceAmount(String employeeId, int advanceAvailable) async {
+  void updateAdvanceAmount(
+      String employeeId, int advanceAvailable, String selectedMonth) async {
     isloading.value = true;
     String? userEmail = FirebaseAuth.instance.currentUser?.email;
 
@@ -310,10 +337,27 @@ class PaymentController extends GetxController {
         return;
       }
 
-      // Update the Advance amount for the selected employee
+      // Get the first employee document reference
       DocumentReference employeeDocRef = employeeSnapshot.docs.first.reference;
-      await employeeDocRef
-          .update({'Advance amount': AdvanceavailableText.text.toString()});
+
+      // Create the AdvanceRecord collection if it does not exist
+      CollectionReference advanceRecordCollection =
+          employeeDocRef.collection('AdvanceRecord');
+
+      // Get the current month and year
+      DateTime now = DateTime.now();
+      String month = getNumericMonth(selectedMonth);
+      String currentMonthAndYear = '$month-${now.year}';
+      String currentDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+      // Update the Advance amount for the selected employee in AdvanceRecord
+      String advanceFinal =
+          (advanceAvailable + int.parse(AdvanceamtText.text)).toString();
+      DocumentReference advanceDocRef =
+          advanceRecordCollection.doc(currentMonthAndYear);
+      await advanceDocRef.update({
+        'Advance amount': advanceFinal,
+        'Current date': currentDate,
+      });
 
       showToast('Advance amount updated successfully');
     } catch (error) {
