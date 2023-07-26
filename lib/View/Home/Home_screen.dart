@@ -265,12 +265,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             .printCategoryDetails(controller.categories[val]);
                         setState(() {});
                       },
-                      isScrollable: true,
+                      isScrollable: controller.categories.length > 4,
                       tabs:
                           List.generate(controller.categories.length, (index) {
-                        return Tab(
-                          text: controller.categories[index].toUpperCase(),
-                        );
+                        return controller.categories.isEmpty
+                            ? Container()
+                            : Tab(
+                                text:
+                                    controller.categories[index].toUpperCase(),
+                              );
                       }),
                     ),
                   ),
@@ -296,10 +299,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               decoration:
                                   const BoxDecoration(color: primarycolor),
                               accountEmail: Text(user.email.toString()),
-                              accountName: Text(
-                                user.displayName.toString(),
-                                style: TextStyle(fontSize: 24),
-                              ),
+                              accountName: user.displayName == null
+                                  ? Container()
+                                  : Text(
+                                      user.displayName.toString(),
+                                      style: TextStyle(fontSize: 24),
+                                    ),
                             ),
                             ListTile(
                               leading: const Icon(Icons.category),

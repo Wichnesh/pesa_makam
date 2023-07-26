@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../utils/common_methods.dart';
+import 'homeController.dart';
 
 class AddItemsController extends GetxController {
   File? _image;
@@ -184,6 +185,8 @@ class AddItemsController extends GetxController {
               isloading.value = false; // Hide loading indicator
               showToast('Item added successfully');
               print('Item added to Firestore successfully!');
+              // HomeController homeController = Get.find<HomeController>();
+              // homeController.fetchCategoriesFromFirestore();
               Get.back();
             } else {
               isloading.value = false; // Hide loading indicator
