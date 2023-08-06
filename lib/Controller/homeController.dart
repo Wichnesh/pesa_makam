@@ -8,8 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../Eventcapture/event_logger_controller.dart';
 import '../Model/Homemodel.dart';
-import '../utils/common_methods.dart';
-import 'logincontroller.dart';
+import 'PosController.dart';
 
 class HomeController extends GetxController {
   final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
@@ -18,10 +17,12 @@ class HomeController extends GetxController {
   var isloading = false.obs;
   List<String> categories = <String>[].obs;
   List<CategoryDetail> Detail = [];
+  List<forPosTicketDetail> detailList = [];
+  double totalAmount = 0;
   var istabscreenloading = false.obs;
   final EventLoggerController eventLoggerController =
       Get.find<EventLoggerController>();
-
+  final PosController posController = Get.put(PosController());
   @override
   void onInit() {
     // Register EventLoggerController in the GetX service locator
@@ -32,6 +33,46 @@ class HomeController extends GetxController {
     getCurrentUser();
     fetchCategoriesFromFirestore();
     super.onInit();
+  }
+
+  void addItem(forPosTicketDetail item) {
+    int nameCount = detailList.where((e) => e.name == item.name).length;
+
+    if (nameCount > 0) {
+      // Check for duplicate names
+      int index = detailList.indexWhere((e) => e.name == item.name);
+      if (index != -1) {
+        // Increment itemcount and update the name
+        detailList[index].itemcount = detailList[index].itemcount! + 1;
+        detailList[index].name =
+            '${item.name} - ${detailList[index].itemcount}';
+      }
+    } else {
+      // No duplicate name, add the item with itemcount 1
+      detailList.add(item);
+    }
+
+    try {
+      totalAmount += double.parse(item.price!);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+
+    posController.detailList.value = detailList;
+
+    // Print the current state (for debugging)
+    if (kDebugMode) {
+      printDetailList();
+    }
+  }
+
+  void printDetailList() {
+    detailList.forEach((item) {
+      print('${item.name} -${item.itemcount} -${item.price}');
+    });
+    print('Total Amount: $totalAmount');
   }
 
   Future<void> getCurrentUser() async {

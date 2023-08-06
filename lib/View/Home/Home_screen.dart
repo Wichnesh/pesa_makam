@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:pesa_makanam_app/Controller/homeController.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../Controller/PosController.dart';
+import '../../Model/Homemodel.dart';
 import '../../utils/colorUtils.dart';
 import '../../utils/common_methods.dart';
 import '../../utils/constant.dart';
@@ -120,60 +122,86 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             curve:
                                                 Curves.fastLinearToSlowEaseIn,
                                             child: FadeInAnimation(
-                                              child: Container(
-                                                margin: EdgeInsets.only(
-                                                    bottom: itemMargin,
-                                                    left: itemMargin,
-                                                    right: itemMargin),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(20)),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Colors.black
-                                                          .withOpacity(0.1),
-                                                      blurRadius: 40,
-                                                      spreadRadius: 10,
-                                                    ),
-                                                  ],
-                                                ),
-                                                child: Column(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Image.network(
-                                                        controller.Detail[index]
-                                                            .image,
-                                                        width: imageSize,
-                                                        height: imageSize,
-                                                        fit: BoxFit.cover,
-                                                        loadingBuilder: (context,
-                                                            child,
-                                                            loadingProgress) {
-                                                          if (loadingProgress ==
-                                                              null) {
-                                                            return child;
-                                                          }
-                                                          return const Center(
-                                                            child:
-                                                                CircularProgressIndicator(),
-                                                          );
-                                                        },
+                                              child: InkWell(
+                                                onTap: () {
+                                                  controller.addItem(
+                                                      forPosTicketDetail(
+                                                          description:
+                                                              controller
+                                                                  .Detail[index]
+                                                                  .description,
+                                                          price:
+                                                              controller
+                                                                  .Detail[index]
+                                                                  .price,
+                                                          image: controller
+                                                              .Detail[index]
+                                                              .image,
+                                                          name: controller
+                                                              .Detail[index]
+                                                              .name));
+                                                  if (kDebugMode) {
+                                                    print(
+                                                        '${controller.Detail[index].name} - ${controller.Detail[index].price}');
+                                                  }
+                                                },
+                                                child: Container(
+                                                  margin: EdgeInsets.only(
+                                                      bottom: itemMargin,
+                                                      left: itemMargin,
+                                                      right: itemMargin),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                20)),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black
+                                                            .withOpacity(0.1),
+                                                        blurRadius: 40,
+                                                        spreadRadius: 10,
                                                       ),
-                                                    ),
-                                                    const SizedBox(
-                                                        height:
-                                                            10), // Adjust the spacing between image and text
-                                                    Text(
-                                                      controller
-                                                          .Detail[index].name,
-                                                      style: TextStyle(
-                                                          fontSize: fontSize),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Image.network(
+                                                          controller
+                                                              .Detail[index]
+                                                              .image,
+                                                          width: imageSize,
+                                                          height: imageSize,
+                                                          fit: BoxFit.cover,
+                                                          loadingBuilder: (context,
+                                                              child,
+                                                              loadingProgress) {
+                                                            if (loadingProgress ==
+                                                                null) {
+                                                              return child;
+                                                            }
+                                                            return const Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height:
+                                                              10), // Adjust the spacing between image and text
+                                                      Text(
+                                                        controller
+                                                            .Detail[index].name,
+                                                        style: TextStyle(
+                                                            fontSize: fontSize),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -318,6 +346,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               title: const Text("Add Items"),
                               onTap: () {
                                 Get.toNamed(ROUTE_ADDITEMS);
+                              },
+                            ),
+                            ListTile(
+                              leading: const Icon(Icons.point_of_sale_sharp),
+                              title: const Text('POS'),
+                              onTap: () {
+                                Get.toNamed(ROUTE_POS);
                               },
                             ),
                             ListTile(

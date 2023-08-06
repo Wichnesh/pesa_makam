@@ -10,6 +10,7 @@ const ROUTE_PURCHASE = slash + "Purchase";
 const ROUTE_EMPLOYEE = slash + "Employee";
 const ROUTE_ATTENDANCE = slash + "Attendance";
 const ROUTE_PAYMENT = slash + "Payment";
+const ROUTE_POS = slash + "pos";
 
 //pref data
 const String AUTH_CODE = 'AUTH_CODE';
