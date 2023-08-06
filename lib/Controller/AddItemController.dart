@@ -2,12 +2,15 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../Eventcapture/event_logger_controller.dart';
 import '../utils/common_methods.dart';
 import 'homeController.dart';
 
@@ -24,9 +27,15 @@ class AddItemsController extends GetxController {
   RxString price = ''.obs;
   var isloading = false.obs;
   File? get image => _image;
+  final EventLoggerController eventLoggerController =
+      Get.find<EventLoggerController>();
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
+  @override
   void onInit() {
     // TODO: implement onInit
+    // Register EventLoggerController in the GetX service locator
+    Get.put<EventLoggerController>(EventLoggerController());
     fetchCategoriesFromFirestore();
     super.onInit();
   }
@@ -44,10 +53,12 @@ class AddItemsController extends GetxController {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
         fileName.value = pickedFile.path.split('/').last;
-        print(".........................//////// ${fileName.value}");
+        if (kDebugMode) {
+          print(".........................//////// ${fileName.value}");
+        }
         update();
         // apiGetList(result);
-        Future.delayed(Duration(seconds: 1), () {
+        Future.delayed(const Duration(seconds: 1), () {
           // print(isRun);
           // print(resp);
         });
@@ -56,8 +67,11 @@ class AddItemsController extends GetxController {
         isError.value = true;
       }
     } catch (e) {
-      print(' Image Error ${e}.');
+      if (kDebugMode) {
+        print(' Image Error $e.');
+      }
       isError.value = true;
+      throw Exception('Add Item ---- Error occurred $e');
     }
     update();
   }
@@ -90,15 +104,19 @@ class AddItemsController extends GetxController {
 
         isloading.value = false; // Set loading flag to false
         showToast('category list available');
-        print('Category list fetched from Firestore successfully!');
+        if (kDebugMode) {
+          print('Category list fetched from Firestore successfully!');
+        }
       } catch (error) {
         Get.snackbar("Error", "Error Occurred....!",
             colorText: Colors.white,
             backgroundColor: Colors.red,
             snackPosition: SnackPosition.TOP);
-        print('Error fetching category list from Firestore: $error');
-
+        if (kDebugMode) {
+          print('Error fetching category list from Firestore: $error');
+        }
         isloading.value = false;
+        throw Exception('Add Item ---- Error occurred $error');
       }
       update();
     }
@@ -110,11 +128,11 @@ class AddItemsController extends GetxController {
         // Display error dialog if category is not selected
         Get.dialog(
           AlertDialog(
-            title: Text('Incorrect'),
-            content: Text('Please fill in all fields.'),
+            title: const Text('Incorrect'),
+            content: const Text('Please fill in all fields.'),
             actions: [
               TextButton(
-                child: Text('OK'),
+                child: const Text('OK'),
                 onPressed: () {
                   Get.back();
                 },
@@ -140,7 +158,6 @@ class AddItemsController extends GetxController {
           QuerySnapshot categorySnapshot = await categoryCollection
               .where('name', isEqualTo: selectedcategory.value)
               .get();
-
           if (categorySnapshot.docs.isNotEmpty) {
             DocumentSnapshot categoryDoc = categorySnapshot.docs.first;
 
@@ -162,41 +179,53 @@ class AddItemsController extends GetxController {
               'price': price.value,
               // Add any other fields you want to save
             };
-
             // Upload the image file to Firebase Storage
             String imageFileName =
-                newCategoryDetailDoc.id + '.jpg'; // Use a unique file name
+                '${newCategoryDetailDoc.id}.jpg'; // Use a unique file name
+
             Reference storageRef = FirebaseStorage.instance
                 .ref()
                 .child('productimages/$imageFileName');
+
             UploadTask uploadTask = storageRef.putFile(image!);
+
             TaskSnapshot uploadSnapshot = await uploadTask;
 
             if (uploadSnapshot.state == TaskState.success) {
               // Get the download URL of the uploaded image
               String imageUrl = await storageRef.getDownloadURL();
-
               // Add the image URL to the item data
               itemData['image'] = imageUrl;
-
               // Save the item data to Firestore
               await newCategoryDetailDoc.set(itemData);
-
               isloading.value = false; // Hide loading indicator
               showToast('Item added successfully');
-              print('Item added to Firestore successfully!');
-              // HomeController homeController = Get.find<HomeController>();
-              // homeController.fetchCategoriesFromFirestore();
+              if (kDebugMode) {
+                print('Item added to Firestore successfully!');
+              }
+              eventLoggerController.addLog(
+                  'Add Item Controller : Item added to Firestore successfully');
+              HomeController homeController = Get.find<HomeController>();
+              homeController.Detail.clear();
+              homeController.fetchCategoriesFromFirestore();
               Get.back();
             } else {
               isloading.value = false; // Hide loading indicator
               showToast('Failed to upload image');
-              print('Failed to upload image to Firebase Storage');
+              eventLoggerController
+                  .addLog('Add Item Controller : Failed to upload image');
+              if (kDebugMode) {
+                print('Failed to upload image to Firebase Storage');
+              }
             }
           } else {
             isloading.value = false; // Hide loading indicator
             showToast('Selected category does not exist');
-            print('Selected category does not exist in Firestore');
+            eventLoggerController.addLog(
+                'Add Item Controller : Selected category does not exist');
+            if (kDebugMode) {
+              print('Selected category does not exist in Firestore');
+            }
           }
         }
       }
@@ -209,7 +238,11 @@ class AddItemsController extends GetxController {
         backgroundColor: Colors.red,
         snackPosition: SnackPosition.TOP,
       );
-      print('Error adding item to Firestore: $error');
+      eventLoggerController.addLog('Error adding item to Firestore: $error');
+      if (kDebugMode) {
+        print('Error adding item to Firestore: $error');
+      }
+      throw Exception('Add Item ---- Error occurred $error');
     }
     update();
   }

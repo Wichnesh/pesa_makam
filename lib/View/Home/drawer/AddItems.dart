@@ -33,8 +33,8 @@ class _AddItemsState extends State<AddItems> {
               body: SingleChildScrollView(
                 child: Center(
                   child: Container(
-                    height: Screenheight * 0.8,
-                    padding: EdgeInsets.all(10),
+                    height: Screenheight * 0.95,
+                    padding: const EdgeInsets.all(10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -101,7 +101,7 @@ class _AddItemsState extends State<AddItems> {
                             width: double.infinity,
                             child: TextField(
                               keyboardType: TextInputType.number,
-                              style: TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 18),
                               decoration: const InputDecoration(
                                 suffixText: 'RM',
                                 suffixStyle: TextStyle(

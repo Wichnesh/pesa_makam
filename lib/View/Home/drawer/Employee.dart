@@ -32,7 +32,7 @@ class _EmployeeState extends State<Employee> {
             return SafeArea(
               child: SingleChildScrollView(
                 child: Container(
-                  height: Screenheight * 1.92,
+                  height: Screenheight * 2.2,
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -136,7 +136,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: 55,
                                 width: double.infinity,
                                 child: DropdownButtonFormField(
@@ -186,7 +186,7 @@ class _EmployeeState extends State<Employee> {
                                   readOnly: true,
                                   onTap: () async {
                                     FocusScope.of(context)
-                                        .requestFocus(new FocusNode());
+                                        .requestFocus(FocusNode());
                                     DateTime? date = DateTime.now();
 
                                     date = await showDatePicker(
@@ -219,7 +219,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.number,

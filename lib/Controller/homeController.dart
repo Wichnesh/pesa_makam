@@ -1,23 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
+import '../Eventcapture/event_logger_controller.dart';
 import '../Model/Homemodel.dart';
 import '../utils/common_methods.dart';
 import 'logincontroller.dart';
 
 class HomeController extends GetxController {
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
   Rx<User?> currentUser = Rx<User?>(null);
   var isloading = false.obs;
   List<String> categories = <String>[].obs;
   List<CategoryDetail> Detail = [];
   var istabscreenloading = false.obs;
+  final EventLoggerController eventLoggerController =
+      Get.find<EventLoggerController>();
 
   @override
   void onInit() {
+    // Register EventLoggerController in the GetX service locator
+    Get.put<EventLoggerController>(EventLoggerController());
+    requestLocationPermission();
+    eventLoggerController;
     // TODO: implement onInit
     getCurrentUser();
     fetchCategoriesFromFirestore();
@@ -25,13 +35,15 @@ class HomeController extends GetxController {
   }
 
   Future<void> getCurrentUser() async {
-    print('fetching user data');
+    if (kDebugMode) {
+      print('fetching user data');
+    }
     currentUser.value = await auth.currentUser;
     User? user = currentUser.value;
 
     while (user == null) {
       // User data not available yet, wait for a short duration
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
 
       // Check again for user data
       currentUser.value = await auth.currentUser;
@@ -83,14 +95,18 @@ class HomeController extends GetxController {
         if (kDebugMode) {
           print('Category list fetched from Firestore successfully!');
         }
+        eventLoggerController.addLog(
+            'Home Controller : Category list fetched from Firestore successfully');
       } catch (error) {
         Get.snackbar("Error", "Error Occurred....!",
             colorText: Colors.white,
             backgroundColor: Colors.red,
             snackPosition: SnackPosition.TOP);
-        print('Error fetching category list from Firestore: $error');
-
+        if (kDebugMode) {
+          print('Error fetching category list from Firestore: $error');
+        }
         isloading.value = false;
+        throw Exception('Add Item ---- Error occurred $error');
       }
       isloading.value = false;
       update();
@@ -155,19 +171,53 @@ class HomeController extends GetxController {
             );
             Detail.add(categoryDetail);
           }
-
+          eventLoggerController.addLog(
+              'Home Controller : printCategoryDetails : Category Detail available $categoryName');
           istabscreenloading.value = false;
+
           update();
         } else {
-          print('Category $categoryName does not exist in Firestore');
+          eventLoggerController.addLog(
+              'Home Controller : printCategoryDetails : Category $categoryName does not exist in Firestore');
+          if (kDebugMode) {
+            print('Category $categoryName does not exist in Firestore');
+          }
           istabscreenloading.value = false;
         }
       }
     } catch (error) {
-      print('Error fetching category details from Firestore: $error');
+      eventLoggerController.addLog(
+          'Home Controller : printCategoryDetails : Error fetching category details from Firestore: $error');
+      if (kDebugMode) {
+        print('Error fetching category details from Firestore: $error');
+      }
       istabscreenloading.value = false;
+      throw Exception('Add Item ---- Error occurred $error');
     }
     update();
     return Detail;
+  }
+
+  Future<void> requestLocationPermission() async {
+    var status = await Permission.location.request();
+    if (status.isGranted) {
+      // Permission granted
+      print('Location permission granted.');
+    } else if (status.isDenied) {
+      // Permission denied
+      print('Location permission denied.');
+    } else if (status.isPermanentlyDenied) {
+      // Permission permanently denied
+      if (kDebugMode) {
+        print('Location permission permanently denied.');
+      }
+      // You can show a dialog here to guide the user to enable the permission manually
+    } else if (status.isRestricted) {
+      // Permission is restricted on the device (only available on iOS)
+      if (kDebugMode) {
+        print('Location permission is restricted on this device.');
+      }
+    }
+    // You can handle other permission statuses as needed
   }
 }

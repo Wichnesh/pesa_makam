@@ -29,6 +29,13 @@
             {
               "client_id": "824088985472-t1dj70guktik4jabi2kn8l889b2jmv35.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "824088985472-g7va07ikvtlune3t6h35kl3ol3l68a1i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pesaMakanamApp"
+              }
             }
           ]
         }
@@ -66,6 +73,13 @@
             {
               "client_id": "824088985472-t1dj70guktik4jabi2kn8l889b2jmv35.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "824088985472-g7va07ikvtlune3t6h35kl3ol3l68a1i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pesaMakanamApp"
+              }
             }
           ]
         }
