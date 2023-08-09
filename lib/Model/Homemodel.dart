@@ -23,6 +23,18 @@ class forPosTicketDetail {
     this.description,
     this.price,
     this.image,
-    this.itemcount = 1,
+    this.itemcount,
+  });
+}
+
+class Bill {
+  final String date;
+  final String totalAmount;
+  final List<forPosTicketDetail> items;
+
+  Bill({
+    required this.date,
+    required this.totalAmount,
+    required this.items,
   });
 }

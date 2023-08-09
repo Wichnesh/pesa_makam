@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:pesa_makanam_app/View/Login/loginscreen.dart';
 
+import '../View/Home/POS/TicketList.dart';
 import '../View/Home/POS/pos.dart';
 import '../View/Home/drawer/Attendance.dart';
 import '../View/Home/Home_screen.dart';
@@ -62,6 +64,7 @@ class AppPages {
         page: () => const PaymentScreen(),
         binding: PaymentBinding()),
     GetPage(
-        name: ROUTE_POS, page: () => const Pos_screen(), binding: PosBinding())
+        name: ROUTE_POS, page: () => const Pos_screen(), binding: PosBinding()),
+    GetPage(name: ROUTE_TICKETLIST, page: () => const TicketList()),
   ];
 }

@@ -44,12 +44,16 @@ class HomeController extends GetxController {
       if (index != -1) {
         // Increment itemcount and update the name
         detailList[index].itemcount = detailList[index].itemcount! + 1;
-        detailList[index].name =
-            '${item.name} - ${detailList[index].itemcount}';
+        detailList[index].name = '${item.name}';
       }
     } else {
       // No duplicate name, add the item with itemcount 1
-      detailList.add(item);
+      forPosTicketDetail newItem = forPosTicketDetail(
+        name: item.name,
+        price: item.price,
+        itemcount: 1, // Set the default itemcount to 1
+      );
+      detailList.add(newItem);
     }
 
     try {
