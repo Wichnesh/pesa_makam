@@ -3,18 +3,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pesa_makanam_app/utils/constant.dart';
-
 import '../Model/Homemodel.dart';
 import '../utils/common_methods.dart';
 import 'homeController.dart';
 
 class PosController extends GetxController {
   var isloading = false.obs;
+  var showdata = false.obs;
   TextEditingController quantitytext = TextEditingController();
+  TextEditingController fromdatetext = TextEditingController();
+  TextEditingController todatetext = TextEditingController();
   RxList<forPosTicketDetail> detailList = RxList<forPosTicketDetail>();
   var totalamount = "".obs;
   final List<Bill> savedBills = [];
+  final List<Bill> filterBills = [];
+  DateTime? fromdate;
+  DateTime? todate;
+
   double calculateTotalValue(forPosTicketDetail item) {
     return double.parse(item.price!) * item.itemcount!;
   }
@@ -46,6 +53,13 @@ class PosController extends GetxController {
   void updateTotalValue(forPosTicketDetail item) {
     final totalValue = double.parse(item.price!) * item.itemcount!;
     // item.totalValue = totalValue;
+  }
+
+  void clear() {
+    detailList.clear();
+    var homeController = Get.find<HomeController>();
+    homeController.detailList.clear();
+    update();
   }
 
   void Submit() async {
@@ -268,6 +282,91 @@ class PosController extends GetxController {
           } catch (e) {
             print(e);
           }
+        } else {
+          print('No saved bill data found.');
+        }
+      }
+    } catch (e) {
+      print('Error fetching saved bill data: $e');
+    }
+  }
+
+  Future<void> fetchSavedBillDatabydate() async {
+    filterBills.clear();
+    showdata.value = false;
+    update();
+    String fromDateStr =
+        fromdatetext.text.toString(); // Change this to your fromDate string
+    String toDateStr =
+        todatetext.text.toString(); // Change this to your toDate string
+
+    // Convert fromDateStr and toDateStr to DateTime objects
+    DateTime fromDate = DateFormat('dd-MM-yyyy').parse(fromDateStr);
+    DateTime toDate = DateFormat('dd-MM-yyyy').parse(toDateStr);
+
+    try {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        final userEmail = currentUser.email;
+
+        final billCollectionRef = FirebaseFirestore.instance
+            .collection('Users')
+            .doc(userEmail)
+            .collection('Bills');
+
+        final billSnapshot = await billCollectionRef.get();
+
+        if (billSnapshot.docs.isNotEmpty) {
+          for (var doc in billSnapshot.docs) {
+            final billData = doc.data() as Map<String, dynamic>;
+            final dateString = billData['date'];
+            final dateParts = dateString.split('-');
+
+            final year = int.parse(dateParts[2]);
+            final month = int.parse(dateParts[1]);
+            final day = int.parse(dateParts[0]);
+
+            final date = DateTime(year, month, day);
+            final formattedDate = DateFormat('dd-MM-yyyy')
+                .format(date); // Convert DateTime to formatted string
+
+            if (date.isAfter(fromDate) && date.isBefore(toDate)) {
+              final totalAmount = billData['totalAmount'];
+              final items = (billData['items'] as List<dynamic>)
+                  .map((item) => forPosTicketDetail(
+                        name: item['name'],
+                        itemcount: item['itemcount'],
+                        price: item['price'],
+                      ))
+                  .toList();
+
+              final bill = Bill(
+                date: formattedDate, // Use the formatted date string
+                totalAmount: totalAmount,
+                items: items,
+              );
+
+              filterBills.add(bill);
+              showdata.value = true;
+              update();
+            }
+          }
+
+          // Print the retrieved data
+          for (var bill in filterBills) {
+            print('Date: ${bill.date}, Total Amount: ${bill.totalAmount}');
+            for (var item in bill.items) {
+              print(
+                  'Item: ${item.name}, Count: ${item.itemcount}, Price: ${item.price}');
+            }
+          }
+          //
+          // try {
+          //   print('Value of ROUTE_TICKETLIST: $ROUTE_TICKETLIST');
+          //   Get.toNamed(ROUTE_TICKETLIST);
+          // } catch (e) {
+          //   print(e);
+          // }
         } else {
           print('No saved bill data found.');
         }

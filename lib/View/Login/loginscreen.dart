@@ -53,6 +53,8 @@ class _loginscreenState extends State<loginscreen>
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -61,150 +63,310 @@ class _loginscreenState extends State<loginscreen>
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
-      body: ScrollConfiguration(
-        behavior: MyBehavior(),
-        child: SingleChildScrollView(
-          child: SizedBox(
-            height: size.height,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xffD5F069),
-                    Color(0xff6FE055),
-                  ],
-                ),
-              ),
-              child: Obx(
-                () => Opacity(
-                  opacity: _logincontroller.isPasswordEmpty.value ? 0.8 : 1.0,
-                  child: Transform.scale(
-                    scale: _logincontroller.isPasswordEmpty.value ? 0.98 : 1.0,
-                    child: Container(
-                      width: size.width * .9,
-                      height: size.width * 1.2,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(.1),
-                            blurRadius: 90,
-                          ),
+      body: LayoutBuilder(
+        builder: (context, constraint) {
+          if (isLandscape) {
+            return ScrollConfiguration(
+              behavior: MyBehavior(),
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: size.height,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xffD5F069),
+                          Color(0xff6FE055),
                         ],
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(),
-                          Container(
-                            height: size.height * .15,
-                            width: size.width * .4,
-                            child: Image.asset(
-                              logo,
-                              fit: BoxFit.fill,
+                    ),
+                    child: Obx(
+                      () => Opacity(
+                        opacity:
+                            _logincontroller.isPasswordEmpty.value ? 0.8 : 1.0,
+                        child: Transform.scale(
+                          scale: _logincontroller.isPasswordEmpty.value
+                              ? 0.98
+                              : 1.0,
+                          child: Container(
+                            width: size.width * .9,
+                            height: size.height * .9,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.1),
+                                  blurRadius: 90,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(),
+                                Container(
+                                  height: size.height * .2,
+                                  width: size.width * .3,
+                                  child: Image.asset(
+                                    logo,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                const SizedBox(),
+                                component1(
+                                  Icons.email_outlined,
+                                  'Email...',
+                                  false,
+                                  true,
+                                  _logincontroller.emailController,
+                                ),
+                                _logincontroller.isPasswordEmpty.value
+                                    ? component1(
+                                        Icons.lock_outline,
+                                        'Password...',
+                                        true,
+                                        false,
+                                        _logincontroller.passwordController,
+                                        Colors.red,
+                                      )
+                                    : component1(
+                                        Icons.lock_outline,
+                                        'Password...',
+                                        true,
+                                        false,
+                                        _logincontroller.passwordController,
+                                      ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    component2(
+                                      'Sign in',
+                                      2.6,
+                                      _logincontroller.loginWithEmail,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Forgotten Password ? ',
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Reset',
+                                        style: const TextStyle(
+                                          color: Colors.blueAccent,
+                                          fontSize: 15,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            if (_logincontroller
+                                                .emailController.text.isEmpty) {
+                                              Get.snackbar(
+                                                  "Error", "Please enter email",
+                                                  colorText: Colors.white,
+                                                  backgroundColor: Colors.red,
+                                                  snackPosition:
+                                                      SnackPosition.TOP);
+                                            } else {
+                                              _onForgotPasswordTapped();
+                                            }
+                                          },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                // Row(
+                                //   mainAxisAlignment: MainAxisAlignment.center,
+                                //   children: [
+                                //     const Text(
+                                //       'Don\'t Have an account ? ',
+                                //       style: TextStyle(fontSize: 15),
+                                //     ),
+                                //     RichText(
+                                //       text: TextSpan(
+                                //         text: 'Register',
+                                //         style: const TextStyle(
+                                //           color: Colors.blueAccent,
+                                //           fontSize: 15,
+                                //         ),
+                                //         recognizer: TapGestureRecognizer()
+                                //           ..onTap = () {
+                                //             Get.toNamed(ROUTE_REGISTER);
+                                //           },
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),//Register page
+                              ],
                             ),
                           ),
-                          const SizedBox(),
-                          component1(
-                            Icons.email_outlined,
-                            'Email...',
-                            false,
-                            true,
-                            _logincontroller.emailController,
-                          ),
-                          _logincontroller.isPasswordEmpty.value
-                              ? component1(
-                                  Icons.lock_outline,
-                                  'Password...',
-                                  true,
-                                  false,
-                                  _logincontroller.passwordController,
-                                  Colors.red,
-                                )
-                              : component1(
-                                  Icons.lock_outline,
-                                  'Password...',
-                                  true,
-                                  false,
-                                  _logincontroller.passwordController,
-                                ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              component2(
-                                'Sign in',
-                                2.6,
-                                _logincontroller.loginWithEmail,
-                              ),
-                            ],
-                          ),
-                          SizedBox(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Forgotten Password ? ',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                  text: 'Reset',
-                                  style: const TextStyle(
-                                    color: Colors.blueAccent,
-                                    fontSize: 15,
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      if (_logincontroller
-                                          .emailController.text.isEmpty) {
-                                        Get.snackbar(
-                                            "Error", "Please enter email",
-                                            colorText: Colors.white,
-                                            backgroundColor: Colors.red,
-                                            snackPosition: SnackPosition.TOP);
-                                      } else {
-                                        _onForgotPasswordTapped();
-                                      }
-                                    },
-                                ),
-                              ),
-                            ],
-                          ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: [
-                          //     const Text(
-                          //       'Don\'t Have an account ? ',
-                          //       style: TextStyle(fontSize: 15),
-                          //     ),
-                          //     RichText(
-                          //       text: TextSpan(
-                          //         text: 'Register',
-                          //         style: const TextStyle(
-                          //           color: Colors.blueAccent,
-                          //           fontSize: 15,
-                          //         ),
-                          //         recognizer: TapGestureRecognizer()
-                          //           ..onTap = () {
-                          //             Get.toNamed(ROUTE_REGISTER);
-                          //           },
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),//Register page
-                        ],
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-        ),
+            );
+          } else {
+            return ScrollConfiguration(
+              behavior: MyBehavior(),
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: size.height,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xffD5F069),
+                          Color(0xff6FE055),
+                        ],
+                      ),
+                    ),
+                    child: Obx(
+                      () => Opacity(
+                        opacity:
+                            _logincontroller.isPasswordEmpty.value ? 0.8 : 1.0,
+                        child: Transform.scale(
+                          scale: _logincontroller.isPasswordEmpty.value
+                              ? 0.98
+                              : 1.0,
+                          child: Container(
+                            width: size.width * .9,
+                            height: size.width * 1.2,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.1),
+                                  blurRadius: 90,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(),
+                                Container(
+                                  height: size.height * .15,
+                                  width: size.width * .4,
+                                  child: Image.asset(
+                                    logo,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                const SizedBox(),
+                                component1(
+                                  Icons.email_outlined,
+                                  'Email...',
+                                  false,
+                                  true,
+                                  _logincontroller.emailController,
+                                ),
+                                _logincontroller.isPasswordEmpty.value
+                                    ? component1(
+                                        Icons.lock_outline,
+                                        'Password...',
+                                        true,
+                                        false,
+                                        _logincontroller.passwordController,
+                                        Colors.red,
+                                      )
+                                    : component1(
+                                        Icons.lock_outline,
+                                        'Password...',
+                                        true,
+                                        false,
+                                        _logincontroller.passwordController,
+                                      ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    component2(
+                                      'Sign in',
+                                      2.6,
+                                      _logincontroller.loginWithEmail,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Forgotten Password ? ',
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Reset',
+                                        style: const TextStyle(
+                                          color: Colors.blueAccent,
+                                          fontSize: 15,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            if (_logincontroller
+                                                .emailController.text.isEmpty) {
+                                              Get.snackbar(
+                                                  "Error", "Please enter email",
+                                                  colorText: Colors.white,
+                                                  backgroundColor: Colors.red,
+                                                  snackPosition:
+                                                      SnackPosition.TOP);
+                                            } else {
+                                              _onForgotPasswordTapped();
+                                            }
+                                          },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                // Row(
+                                //   mainAxisAlignment: MainAxisAlignment.center,
+                                //   children: [
+                                //     const Text(
+                                //       'Don\'t Have an account ? ',
+                                //       style: TextStyle(fontSize: 15),
+                                //     ),
+                                //     RichText(
+                                //       text: TextSpan(
+                                //         text: 'Register',
+                                //         style: const TextStyle(
+                                //           color: Colors.blueAccent,
+                                //           fontSize: 15,
+                                //         ),
+                                //         recognizer: TapGestureRecognizer()
+                                //           ..onTap = () {
+                                //             Get.toNamed(ROUTE_REGISTER);
+                                //           },
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),//Register page
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }
+        },
       ),
     );
   }
@@ -256,8 +418,8 @@ class _loginscreenState extends State<loginscreen>
       splashColor: Colors.transparent,
       onTap: voidCallback,
       child: Container(
-        height: size.width / 8,
-        width: size.width / width,
+        height: size.width / 10,
+        width: size.width / 3.5,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Color(0xff8abe53),

@@ -1,13 +1,12 @@
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:pesa_makanam_app/View/Login/loginscreen.dart';
-
-import '../View/Home/POS/TicketList.dart';
-import '../View/Home/POS/pos.dart';
 import '../View/Home/drawer/Attendance.dart';
 import '../View/Home/Home_screen.dart';
 import '../View/Home/drawer/AddItems.dart';
 import '../View/Home/drawer/Employee.dart';
+import '../View/Home/drawer/POS/TicketList.dart';
+import '../View/Home/drawer/POS/pos.dart';
 import '../View/Home/drawer/Payment.dart';
 import '../View/Home/drawer/Purchase/AddPurchase.dart';
 import '../View/Home/drawer/Categories.dart';
@@ -30,8 +29,7 @@ class AppPages {
     GetPage(name: ROUTE_SPLASH, page: () => const SplashScreen()),
     GetPage(name: ROUTE_LOGIN, page: () => const loginscreen()),
     GetPage(name: ROUTE_REGISTER, page: () => const Registerscreen()),
-    GetPage(
-        name: ROUTE_HOME,
+    GetPage(name: ROUTE_HOME,
         page: () => const HomeScreen(),
         binding: HomeScreenBinding()),
     GetPage(

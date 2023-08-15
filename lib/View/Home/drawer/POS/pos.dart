@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pesa_makanam_app/Model/Homemodel.dart';
 import 'package:pesa_makanam_app/utils/colorUtils.dart';
-
-import '../../../Controller/PosController.dart';
+import '../../../../Controller/PosController.dart';
+import '../../../../utils/constant.dart';
 
 class Pos_screen extends StatefulWidget {
   const Pos_screen({Key? key}) : super(key: key);
@@ -71,7 +71,7 @@ class _Pos_screenState extends State<Pos_screen> {
         actions: [
           IconButton(
               onPressed: () {
-                posController.fetchSavedBillData();
+                Get.toNamed(ROUTE_TICKETLIST);
               },
               icon: const Icon(
                 Icons.list,
@@ -275,82 +275,137 @@ class _Pos_screenState extends State<Pos_screen> {
                           GetBuilder<PosController>(
                               init: PosController(),
                               builder: ((controller) {
-                                return Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          height: 55,
-                                          width: 175,
-                                          color: primarycolor,
-                                          child: ElevatedButton(
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty
-                                                      .resolveWith<Color>(
-                                                (Set<MaterialState> states) {
-                                                  if (states.contains(
-                                                      MaterialState.pressed)) {
-                                                    // Change the button color when pressed
-                                                    return Colors.green;
-                                                  }
-                                                  // Return the default button color
-                                                  return primarycolor;
-                                                },
-                                              ),
-                                            ),
-                                            onPressed: () {
-                                              controller.Submit();
-                                            },
+                                return Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
                                             child: Container(
-                                              height: 50,
-                                              width: 165,
-                                              child: Center(
-                                                child: Text(
-                                                  "Submit",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
+                                              height: 55,
+                                              width: 175,
+                                              color: primarycolor,
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith<Color>(
+                                                    (Set<MaterialState>
+                                                        states) {
+                                                      if (states.contains(
+                                                          MaterialState
+                                                              .pressed)) {
+                                                        // Change the button color when pressed
+                                                        return Colors.green;
+                                                      }
+                                                      // Return the default button color
+                                                      return primarycolor;
+                                                    },
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  controller.clear();
+                                                },
+                                                child: Container(
+                                                  height: 50,
+                                                  width: 165,
+                                                  child: const Center(
+                                                    child: Text(
+                                                      "Clear",
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 15,
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          height: 55,
-                                          width: 175,
-                                          child: ElevatedButton(
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty
-                                                      .resolveWith<Color>(
-                                                (Set<MaterialState> states) {
-                                                  if (states.contains(
-                                                      MaterialState.pressed)) {
-                                                    // Change the button color when pressed
-                                                    return Colors.green;
-                                                  }
-                                                  // Return the default button color
-                                                  return Colors
-                                                      .red; // or any other color you want
+                                          SizedBox(
+                                            width: 15,
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              height: 55,
+                                              width: 175,
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith<Color>(
+                                                    (Set<MaterialState>
+                                                        states) {
+                                                      if (states.contains(
+                                                          MaterialState
+                                                              .pressed)) {
+                                                        // Change the button color when pressed
+                                                        return Colors.green;
+                                                      }
+                                                      // Return the default button color
+                                                      return Colors
+                                                          .red; // or any other color you want
+                                                    },
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  // Handle the button click event
+                                                  Get.back();
                                                 },
+                                                child: Text('Close'),
                                               ),
                                             ),
-                                            onPressed: () {
-                                              // Handle the button click event
-                                              Get.back();
-                                            },
-                                            child: Text('Close'),
                                           ),
-                                        ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              height: 55,
+                                              width: 175,
+                                              color: primarycolor,
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith<Color>(
+                                                    (Set<MaterialState>
+                                                        states) {
+                                                      if (states.contains(
+                                                          MaterialState
+                                                              .pressed)) {
+                                                        // Change the button color when pressed
+                                                        return Colors.green;
+                                                      }
+                                                      // Return the default button color
+                                                      return primarycolor;
+                                                    },
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  controller.Submit();
+                                                },
+                                                child: Container(
+                                                  height: 50,
+                                                  width: 165,
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Submit",
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 );
                               }))
                         ],
