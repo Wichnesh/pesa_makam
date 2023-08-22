@@ -1,3 +1,5 @@
+import 'package:bluetooth_print/bluetooth_print.dart';
+import 'package:bluetooth_print/bluetooth_print_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +10,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../Eventcapture/event_logger_controller.dart';
 import '../Model/Homemodel.dart';
+import '../View/Home/drawer/Purchase/RecieptScreen.dart';
 import 'PosController.dart';
 
 class HomeController extends GetxController {
@@ -23,6 +26,7 @@ class HomeController extends GetxController {
   final EventLoggerController eventLoggerController =
       Get.find<EventLoggerController>();
   final PosController posController = Get.put(PosController());
+
   @override
   void onInit() {
     // Register EventLoggerController in the GetX service locator
@@ -34,6 +38,318 @@ class HomeController extends GetxController {
     fetchCategoriesFromFirestore();
     super.onInit();
   }
+
+  Future<void> printSampleReceipt(String paperSize) async {
+    BluetoothPrint bluetoothPrint = BluetoothPrint.instance;
+
+    List<LineText> list = [];
+
+    // Add restaurant information
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '--------------RESTOREN AL-ASMI (24 JAM) ---------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content:
+            'Address: LOT 5 (DBKK NO.5-0) GROUND FLOOR,\nLORONG BUNGA RAJA 5,\nTAMAN BUNGA RAJAPHASE 2 \nJALAN LINTAS 88450 KOTA KINABALU',
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+    // Add more restaurant information lines...
+
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '-------------------------------------------------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    // Add TAX INVOICE / BILL section
+    // You can use the current date using DateTime.now() or replace it with your own date logic
+    DateTime currentDate = DateTime.now();
+    String formattedDate = currentDate.toString();
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: 'TAX INVOICE / BILL\nDate: $formattedDate',
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+    // Add Table and Server information...
+
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '-------------------------------------------------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    // Add Item table header
+    int columnWidth = 20; // Adjust this width as needed
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: _formatColumn('Item', columnWidth, LineText.ALIGN_LEFT) +
+            _formatColumn('Quantity', 10, LineText.ALIGN_RIGHT) +
+            _formatColumn('Unit Price', 12, LineText.ALIGN_RIGHT) +
+            _formatColumn('Total', 9, LineText.ALIGN_RIGHT),
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+
+    // Add item details dynamically
+    for (var detail in detailList) {
+      list.add(LineText(
+          type: LineText.TYPE_TEXT,
+          content: _formatColumn(
+                  detail.name!, columnWidth, LineText.ALIGN_LEFT) +
+              _formatColumn(
+                  detail.itemcount.toString(), 8, LineText.ALIGN_RIGHT) +
+              _formatColumn(detail.price!, 10, LineText.ALIGN_RIGHT) +
+              _formatColumn(
+                  '${(double.parse(detail.price!) * detail.itemcount!).toString()} Rm',
+                  14,
+                  LineText.ALIGN_RIGHT),
+          align: LineText.ALIGN_LEFT,
+          linefeed: 0));
+    }
+
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '-------------------------------------------------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    // Add Subtotal, Tax, and Total
+    // You can calculate these values based on your business logic
+    double subtotal = 0;
+    for (var detail in detailList) {
+      subtotal += double.parse(detail.price!) * detail.itemcount!;
+    }
+    // double tax = subtotal * 0.05; // 5% tax example
+    double total = subtotal;
+
+    // list.add(LineText(
+    //     type: LineText.TYPE_TEXT,
+    //     content: 'Subtotal:                              $subtotal',
+    //     weight: 1,
+    //     align: LineText.ALIGN_LEFT,
+    //     linefeed: 1));
+    // list.add(LineText(
+    //     type: LineText.TYPE_TEXT,
+    //     content: 'Tax (%):                               5',
+    //     weight: 1,
+    //     align: LineText.ALIGN_LEFT,
+    //     linefeed: 1));
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: 'Total:                                      $total RM',
+        weight: 1,
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+
+    // Add Payment Method
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: 'Payment Method: Cash',
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '-------------------------------------------------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    // Add closing message
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content:
+            'Thank you for dining with us!\nFor feedback or inquiries, please contact [0109422163].',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    String terminalContent = '';
+    for (var line in list) {
+      terminalContent += ('${line.content!}\n');
+    }
+    if (kDebugMode) {
+      print(terminalContent);
+    }
+    Map<String, dynamic> config = {
+      'width': (paperSize == '80mm') ? 80 : 58,
+      'height': 0,
+    };
+    Get.to(ReceiptScreen(terminalContent: terminalContent));
+    //await bluetoothPrint.printReceipt(config, list);
+  }
+
+  Future<void> printReceipt(String paperSize) async {
+    BluetoothPrint bluetoothPrint = BluetoothPrint.instance;
+
+    List<LineText> list = [];
+
+    // Add restaurant information
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '----------------RESTOREN AL-ASMI (24 JAM) --------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content:
+            'Address: LOT 5 (DBKK NO.5-0) GROUND FLOOR,\nLORONG BUNGA RAJA 5,\nTAMAN BUNGA RAJAPHASE 2 \nJALAN LINTAS 88450 KOTA KINABALU',
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+    // Add more restaurant information lines...
+
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '-------------------------------------------------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    // Add TAX INVOICE / BILL section
+    // You can use the current date using DateTime.now() or replace it with your own date logic
+    DateTime currentDate = DateTime.now();
+    String formattedDate = currentDate.toString();
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: 'TAX INVOICE / BILL\nDate: $formattedDate',
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+    // Add Table and Server information...
+
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '-------------------------------------------------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    // Add Item table header
+    int columnWidth = 20; // Adjust this width as needed
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: _formatColumn('Item', columnWidth, LineText.ALIGN_LEFT) +
+            _formatColumn('Quantity', 10, LineText.ALIGN_RIGHT) +
+            _formatColumn('Unit Price', 12, LineText.ALIGN_RIGHT) +
+            _formatColumn('Total', 9, LineText.ALIGN_RIGHT),
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+
+    // Add item details dynamically
+    for (var detail in detailList) {
+      list.add(LineText(
+          type: LineText.TYPE_TEXT,
+          content: _formatColumn(
+                  detail.name!, columnWidth, LineText.ALIGN_LEFT) +
+              _formatColumn(
+                  detail.itemcount.toString(), 8, LineText.ALIGN_RIGHT) +
+              _formatColumn(detail.price!, 10, LineText.ALIGN_RIGHT) +
+              _formatColumn(
+                  '${(double.parse(detail.price!) * detail.itemcount!).toString()} Rm',
+                  14,
+                  LineText.ALIGN_RIGHT),
+          align: LineText.ALIGN_LEFT,
+          linefeed: 0));
+    }
+
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '-------------------------------------------------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    // Add Subtotal, Tax, and Total
+    // You can calculate these values based on your business logic
+    double subtotal = 0;
+    for (var detail in detailList) {
+      subtotal += double.parse(detail.price!) * detail.itemcount!;
+    }
+    // double tax = subtotal * 0.05; // 5% tax example
+    double total = subtotal;
+
+    // list.add(LineText(
+    //     type: LineText.TYPE_TEXT,
+    //     content: 'Subtotal:                              $subtotal',
+    //     weight: 1,
+    //     align: LineText.ALIGN_LEFT,
+    //     linefeed: 1));
+    // list.add(LineText(
+    //     type: LineText.TYPE_TEXT,
+    //     content: 'Tax (%):                               5',
+    //     weight: 1,
+    //     align: LineText.ALIGN_LEFT,
+    //     linefeed: 1));
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: 'Total:                                      $total RM',
+        weight: 1,
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+
+    // Add Payment Method
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: 'Payment Method: Cash',
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: '-------------------------------------------------------',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    // Add closing message
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content:
+            'Thank you for dining with us!\nFor feedback or inquiries, please contact [0109422163].',
+        weight: 1,
+        align: LineText.ALIGN_CENTER,
+        linefeed: 1));
+
+    String terminalContent = '';
+    for (var line in list) {
+      terminalContent += ('${line.content!}\n');
+    }
+    if (kDebugMode) {
+      print(terminalContent);
+    }
+    Map<String, dynamic> config = {
+      'width': (paperSize == '80mm') ? 80 : 58,
+      'height': 0,
+    };
+    // Get.to(ReceiptScreen(terminalContent: terminalContent));
+    await bluetoothPrint.printReceipt(config, list);
+  }
+
+  // Function to format text within a column
+  String _formatColumn(String text, int width, int alignment) {
+    // Ensure text is not longer than the specified width
+    if (text.length > width) {
+      text = text.substring(0, width);
+    }
+    final spaces = width - text.length;
+    if (alignment == LineText.ALIGN_RIGHT) {
+      return ' ' * spaces + text;
+    } else if (alignment == LineText.ALIGN_CENTER) {
+      final leftSpaces = spaces ~/ 2;
+      final rightSpaces = spaces - leftSpaces;
+      return ' ' * leftSpaces + text + ' ' * rightSpaces;
+    } else {
+      return text + ' ' * spaces;
+    }
+  }
+
+  // Function to format text within a column
 
   void addItem(forPosTicketDetail item) {
     int nameCount = detailList.where((e) => e.name == item.name).length;
@@ -63,7 +379,6 @@ class HomeController extends GetxController {
         print(e);
       }
     }
-
     posController.detailList.value = detailList;
 
     // Print the current state (for debugging)

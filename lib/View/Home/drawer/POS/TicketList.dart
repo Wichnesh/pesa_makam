@@ -16,6 +16,7 @@ class _TicketListState extends State<TicketList> {
   final PosController posController = Get.put(PosController());
   @override
   Widget build(BuildContext context) {
+    final Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ticket List'),
@@ -36,13 +37,11 @@ class _TicketListState extends State<TicketList> {
                   onTap: () async {
                     FocusScope.of(context).requestFocus(FocusNode());
                     DateTime? date = DateTime.now();
-
                     date = await showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1900),
                         lastDate: DateTime.now());
-
                     if (date != null) {
                       posController.fromdate = date;
                       posController.update();

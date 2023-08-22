@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:pesa_makanam_app/Controller/homeController.dart';
+import 'package:pesa_makanam_app/Model/BillModel.dart';
+import 'package:printing/printing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:pdf/widgets.dart' as pdfWidgets;
 import '../../Controller/PosController.dart';
 import '../../Model/Homemodel.dart';
 import '../../utils/colorUtils.dart';
@@ -28,12 +30,41 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.initState();
   }
 
+  Future<void> printBill() async {
+    final pdf = pdfWidgets.Document();
+    pdf.addPage(
+      pdfWidgets.Page(
+        build: (context) {
+          return pdfWidgets.Container(
+            padding: const pdfWidgets.EdgeInsets.all(16),
+            child: pdfWidgets.Column(
+              crossAxisAlignment: pdfWidgets.CrossAxisAlignment.start,
+              children: [
+                pdfWidgets.Text(
+                    '------------------- Restaurant Name -------------------'),
+                pdfWidgets.Text('Address: [Restaurant Address]'),
+                pdfWidgets.Text('Phone: [Restaurant Phone Number]'),
+                pdfWidgets.Text('Website: [Restaurant Website]'),
+                pdfWidgets.SizedBox(height: 16),
+                // ... Add more bill content here
+              ],
+            ),
+          );
+        },
+      ),
+    );
+
+    await Printing.layoutPdf(
+      onLayout: (format) => pdf.save(),
+    );
+  }
+
   Future<void> _initializePreferences() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
   final PosController posController = Get.put(PosController());
-
+  final HomeController homecontroller = Get.put(HomeController());
   final int _screen = 0;
   @override
   Widget build(BuildContext context) {
@@ -261,9 +292,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                               children: [
                                                                 Padding(
                                                                   padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              10),
+                                                                      const EdgeInsets
+                                                                          .all(10),
                                                                   child: Row(
                                                                     children: [
                                                                       Expanded(
@@ -308,13 +338,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      SizedBox(
+                                                                      const SizedBox(
                                                                         width:
                                                                             15,
                                                                       ),
                                                                       Expanded(
                                                                         child:
-                                                                            Container(
+                                                                            SizedBox(
                                                                           height:
                                                                               55,
                                                                           width:
@@ -335,12 +365,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                                               ),
                                                                             ),
                                                                             onPressed:
-                                                                                () {
-                                                                              // Handle the button click event
-                                                                              Get.back();
+                                                                                () async {
+                                                                              homecontroller.printSampleReceipt('80mm');
                                                                             },
                                                                             child:
-                                                                                Text('Close'),
+                                                                                const Text('Show Receipt'),
                                                                           ),
                                                                         ),
                                                                       ),
@@ -385,7 +414,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                                                 Container(
                                                                               height: 50,
                                                                               width: 165,
-                                                                              child: Center(
+                                                                              child: const Center(
                                                                                 child: Text(
                                                                                   "Submit",
                                                                                   style: TextStyle(color: Colors.white),
@@ -539,14 +568,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                                 },
                                                                 child:
                                                                     Container(
-                                                                  margin: EdgeInsets
-                                                                      .only(
-                                                                          bottom:
-                                                                              10,
-                                                                          left:
-                                                                              10,
-                                                                          right:
-                                                                              10),
+                                                                  margin: const EdgeInsets
+                                                                          .only(
+                                                                      bottom:
+                                                                          10,
+                                                                      left: 10,
+                                                                      right:
+                                                                          10),
                                                                   decoration:
                                                                       BoxDecoration(
                                                                     color: Colors
@@ -601,7 +629,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                                         controller
                                                                             .Detail[index]
                                                                             .name,
-                                                                        style: TextStyle(
+                                                                        style: const TextStyle(
                                                                             fontSize:
                                                                                 14),
                                                                         textAlign:

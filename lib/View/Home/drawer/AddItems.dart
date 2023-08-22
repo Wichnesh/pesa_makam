@@ -38,7 +38,7 @@ class _AddItemsState extends State<AddItems> {
                     return SingleChildScrollView(
                       child: Center(
                         child: Container(
-                          height: Screenheight * 1.5,
+                          height: Screenheight * 1.8,
                           padding: const EdgeInsets.all(10),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
