@@ -28,7 +28,7 @@ class _TicketListState extends State<TicketList> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Container(
                 height: 55,
                 width: double.infinity,
@@ -62,7 +62,7 @@ class _TicketListState extends State<TicketList> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Container(
                 height: 55,
                 width: double.infinity,
@@ -98,7 +98,7 @@ class _TicketListState extends State<TicketList> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Row(
                 children: [
                   Expanded(
@@ -146,7 +146,7 @@ class _TicketListState extends State<TicketList> {
                         child: Container(
                           height: 50,
                           width: 165,
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               "Submit",
                               style: TextStyle(color: Colors.white),
@@ -156,7 +156,7 @@ class _TicketListState extends State<TicketList> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   Expanded(
@@ -181,7 +181,7 @@ class _TicketListState extends State<TicketList> {
                           // Handle the button click event
                           Get.back();
                         },
-                        child: Text('Close'),
+                        child: const Text('Close'),
                       ),
                     ),
                   ),

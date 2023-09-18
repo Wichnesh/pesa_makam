@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pesa_makanam_app/utils/common_methods.dart';
@@ -67,11 +68,11 @@ class AddPurchaseController extends GetxController {
             context: Get.context!,
             builder: (context) {
               return AlertDialog(
-                title: Text('Incomplete Data'),
-                content: Text('Please fill in all the fields to submit.'),
+                title: const Text('Incomplete Data'),
+                content: const Text('Please fill in all the fields to submit.'),
                 actions: [
                   TextButton(
-                    child: Text('OK'),
+                    child: const Text('OK'),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -120,13 +121,15 @@ class AddPurchaseController extends GetxController {
         }
       }
     } catch (e) {
-      print('Error submitting data to Firestore: $e');
+      if (kDebugMode) {
+        print('Error submitting data to Firestore: $e');
+      }
       // Show error message
       Get.snackbar(
         'Error',
         'Failed to add purchase',
         snackPosition: SnackPosition.BOTTOM,
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
         backgroundColor: Colors.red,
       );
     }

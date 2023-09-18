@@ -2,12 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../../Controller/registerController.dart';
 import '../../utils/ImageUtils.dart';
-import '../../utils/colorUtils.dart';
-import '../../utils/constant.dart';
 import 'loginscreen.dart';
 
 class Registerscreen extends StatefulWidget {
@@ -72,7 +68,7 @@ class _RegisterscreenState extends State<Registerscreen>
             height: size.height,
             child: Container(
               alignment: Alignment.center,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,

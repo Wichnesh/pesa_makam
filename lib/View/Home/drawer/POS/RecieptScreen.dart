@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../Controller/homeController.dart';
+import '../../../../utils/colorUtils.dart';
 
 class ReceiptScreen extends StatelessWidget {
   final String? terminalContent;
@@ -12,6 +13,7 @@ class ReceiptScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primarycolor,
         title: const Text('Receipt Preview'),
       ),
       body: SingleChildScrollView(
@@ -37,7 +39,7 @@ class ReceiptScreen extends StatelessWidget {
                 builder: (controller) {
                   return ElevatedButton(
                       onPressed: () {
-                        controller.printReceipt('80mm');
+                        controller.printReceipt('80mm', context);
                       },
                       child: const Text('Print'));
                 },

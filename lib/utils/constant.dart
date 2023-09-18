@@ -12,6 +12,7 @@ const ROUTE_ATTENDANCE = slash + "Attendance";
 const ROUTE_PAYMENT = slash + "Payment";
 const ROUTE_POS = slash + "pos";
 const ROUTE_TICKETLIST = slash + "ticketlist";
+const ROUTE_ADJUSTMENT = slash + "adjustment";
 
 //pref data
 const String AUTH_CODE = 'AUTH_CODE';

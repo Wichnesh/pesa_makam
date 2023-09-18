@@ -38,3 +38,17 @@ class Bill {
     required this.items,
   });
 }
+
+class FilterBill {
+  String? id;
+  String? date;
+  String? totalAmount;
+  List<forPosTicketDetail>? items;
+
+  FilterBill({
+    this.id,
+    this.date,
+    this.totalAmount,
+    this.items,
+  });
+}

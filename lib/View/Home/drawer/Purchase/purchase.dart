@@ -18,7 +18,7 @@ class _PurchaseState extends State<Purchase> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primarycolor,
-        title: Text('Purchase'),
+        title: const Text('Purchase'),
         centerTitle: true,
       ),
       body: GetBuilder<PurchaseController>(
@@ -43,12 +43,12 @@ class _PurchaseState extends State<Purchase> {
                             children: [
                               Text(
                                 purchase.vendorName!,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 22),
                               ),
                               Text(
                                 purchase.payment!,
-                                style: TextStyle(fontSize: 18),
+                                style: const TextStyle(fontSize: 18),
                               )
                             ],
                           ),
@@ -56,8 +56,8 @@ class _PurchaseState extends State<Purchase> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                ' ₹ ${purchase.totalAmount}',
-                                style: TextStyle(
+                                '${purchase.totalAmount} RM',
+                                style: const TextStyle(
                                     color: primarycolor, fontSize: 20),
                               ),
                               Text(purchase.orderDate!)
@@ -76,7 +76,7 @@ class _PurchaseState extends State<Purchase> {
         onPressed: () {
           Get.toNamed(ROUTE_ADDPURCHASE);
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

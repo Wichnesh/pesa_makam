@@ -264,7 +264,7 @@ class _Pos_screenState extends State<Pos_screen> {
                               controller.totalamount.value = amount.toString();
                               return Text(
                                 'Total Amount : $amount RM',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 24),
                               );
                             }),
@@ -278,7 +278,7 @@ class _Pos_screenState extends State<Pos_screen> {
                                 return Column(
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(10),
                                       child: Row(
                                         children: [
                                           Expanded(
@@ -321,7 +321,7 @@ class _Pos_screenState extends State<Pos_screen> {
                                               ),
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 15,
                                           ),
                                           Expanded(
@@ -351,7 +351,7 @@ class _Pos_screenState extends State<Pos_screen> {
                                                   // Handle the button click event
                                                   Get.back();
                                                 },
-                                                child: Text('Close'),
+                                                child: const Text('Close'),
                                               ),
                                             ),
                                           ),
@@ -391,7 +391,7 @@ class _Pos_screenState extends State<Pos_screen> {
                                                 child: Container(
                                                   height: 50,
                                                   width: 165,
-                                                  child: Center(
+                                                  child: const Center(
                                                     child: Text(
                                                       "Submit",
                                                       style: TextStyle(

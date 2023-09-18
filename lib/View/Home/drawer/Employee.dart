@@ -37,7 +37,7 @@ class _EmployeeState extends State<Employee> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                           height: Screenheight * 0.1,
                           child: Image.asset("assets/images/logo.png")),
                       SizedBox(
@@ -78,7 +78,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.text,
@@ -105,7 +105,7 @@ class _EmployeeState extends State<Employee> {
                               width: Screenwidth * 0.04,
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.text,
@@ -179,7 +179,7 @@ class _EmployeeState extends State<Employee> {
                               width: Screenwidth * 0.04,
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: 55,
                                 width: 165,
                                 child: TextField(
@@ -246,7 +246,7 @@ class _EmployeeState extends State<Employee> {
                               width: Screenwidth * 0.04,
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: 55,
                                 width: 165,
                                 child: TextField(
@@ -283,7 +283,7 @@ class _EmployeeState extends State<Employee> {
                       ), //Age
                       Padding(
                         padding: const EdgeInsets.all(10.00),
-                        child: Container(
+                        child: SizedBox(
                           height: Screenheight * 0.068,
                           child: TextField(
                             keyboardType: TextInputType.text,
@@ -361,7 +361,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width / 1.34,
                               child: TextField(
                                 readOnly: true,
@@ -403,7 +403,7 @@ class _EmployeeState extends State<Employee> {
                       controller.addressproofName.value != ""
                           ? Padding(
                               padding: const EdgeInsets.all(5),
-                              child: Container(
+                              child: SizedBox(
                                   height: Screenheight * 0.1,
                                   width: Screenwidth * 0.3,
                                   child: Image.file(
@@ -415,7 +415,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.number,
@@ -441,7 +441,7 @@ class _EmployeeState extends State<Employee> {
                               width: Screenwidth * 0.04,
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.number,
@@ -471,7 +471,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.text,
@@ -497,7 +497,7 @@ class _EmployeeState extends State<Employee> {
                               width: Screenwidth * 0.04,
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.number,
@@ -528,7 +528,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.text,
@@ -555,14 +555,14 @@ class _EmployeeState extends State<Employee> {
                               width: Screenwidth * 0.04,
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: 55,
                                 width: 165,
                                 child: TextField(
                                   readOnly: true,
                                   onTap: () async {
                                     FocusScope.of(context)
-                                        .requestFocus(new FocusNode());
+                                        .requestFocus(FocusNode());
                                     DateTime? date = DateTime.now();
 
                                     date = await showDatePicker(
@@ -595,7 +595,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width / 1.34,
                               child: TextField(
                                 readOnly: true,
@@ -637,7 +637,7 @@ class _EmployeeState extends State<Employee> {
                       controller.passportName.value != ""
                           ? Padding(
                               padding: const EdgeInsets.all(5),
-                              child: Container(
+                              child: SizedBox(
                                   height: Screenheight * 0.1,
                                   width: Screenwidth * 0.3,
                                   child: Image.file(controller.passportimage!)),
@@ -645,7 +645,7 @@ class _EmployeeState extends State<Employee> {
                           : const SizedBox(),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                        child: SizedBox(
                           height: Screenheight * 0.068,
                           child: TextField(
                             keyboardType: TextInputType.text,
@@ -672,7 +672,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width / 1.34,
                               child: TextField(
                                 readOnly: true,
@@ -714,7 +714,7 @@ class _EmployeeState extends State<Employee> {
                       controller.governmentidName.value != ""
                           ? Padding(
                               padding: const EdgeInsets.all(5),
-                              child: Container(
+                              child: SizedBox(
                                   height: Screenheight * 0.1,
                                   width: Screenwidth * 0.3,
                                   child: Image.file(
@@ -726,7 +726,7 @@ class _EmployeeState extends State<Employee> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.text,
@@ -753,7 +753,7 @@ class _EmployeeState extends State<Employee> {
                               width: Screenwidth * 0.04,
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: Screenheight * 0.068,
                                 child: TextField(
                                   keyboardType: TextInputType.number,
@@ -811,10 +811,10 @@ class _EmployeeState extends State<Employee> {
                                   onPressed: () {
                                     controller.submit();
                                   },
-                                  child: Container(
+                                  child: const SizedBox(
                                     height: 50,
                                     width: 165,
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
                                         "Submit",
                                         style: TextStyle(color: Colors.white),
@@ -828,7 +828,7 @@ class _EmployeeState extends State<Employee> {
                               width: 15,
                             ),
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: 55,
                                 width: 175,
                                 child: ElevatedButton(
@@ -874,7 +874,7 @@ class _EmployeeState extends State<Employee> {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: 140,
           child: Center(
             child: Row(
@@ -929,7 +929,7 @@ class _EmployeeState extends State<Employee> {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: 140,
           child: Center(
             child: Row(
@@ -984,7 +984,7 @@ class _EmployeeState extends State<Employee> {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: 140,
           child: Center(
             child: Row(
@@ -1039,7 +1039,7 @@ class _EmployeeState extends State<Employee> {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: 140,
           child: Center(
             child: Row(

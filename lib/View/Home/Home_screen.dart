@@ -325,10 +325,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                                               controller.clear();
                                                                             },
                                                                             child:
-                                                                                Container(
+                                                                                const SizedBox(
                                                                               height: 50,
                                                                               width: 165,
-                                                                              child: const Center(
+                                                                              child: Center(
                                                                                 child: Text(
                                                                                   "Clear",
                                                                                   style: TextStyle(color: Colors.white),
@@ -834,6 +834,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                               },
                                             ),
                                             ListTile(
+                                              leading:
+                                                  const Icon(Icons.price_check),
+                                              title: const Text('Adjustment'),
+                                              onTap: () {
+                                                Get.toNamed(ROUTE_ADJUSTMENT);
+                                              },
+                                            ),
+                                            ListTile(
                                               leading: const Icon(Icons.person),
                                               title: const Text("Employee"),
                                               onTap: () {
@@ -1232,6 +1240,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       title: const Text("Purchase"),
                                       onTap: () {
                                         Get.toNamed(ROUTE_PURCHASE);
+                                      },
+                                    ),
+                                    ListTile(
+                                      leading: const Icon(Icons.price_check),
+                                      title: const Text('Adjustment'),
+                                      onTap: () {
+                                        Get.toNamed(ROUTE_ADJUSTMENT);
                                       },
                                     ),
                                     ListTile(

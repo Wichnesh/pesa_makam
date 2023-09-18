@@ -5,12 +5,14 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pesa_makanam_app/utils/constant.dart';
 
 import '../Eventcapture/event_logger_controller.dart';
 import '../Model/Homemodel.dart';
-import '../View/Home/drawer/Purchase/RecieptScreen.dart';
+import '../View/Home/drawer/POS/RecieptScreen.dart';
 import 'PosController.dart';
 
 class HomeController extends GetxController {
@@ -185,9 +187,34 @@ class HomeController extends GetxController {
     //await bluetoothPrint.printReceipt(config, list);
   }
 
-  Future<void> printReceipt(String paperSize) async {
+  Future<void> printReceipt(String paperSize, BuildContext context) async {
+    var posController = Get.find<PosController>();
+    posController.fromHomeSubmit();
     BluetoothPrint bluetoothPrint = BluetoothPrint.instance;
-
+    bool? isConnected = await bluetoothPrint.isConnected;
+    if (!isConnected!) {
+      // Show a dialog box to connect the printer
+      showDialog(
+        context:
+            context, // You need to have access to the context for showDialog
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Connect Bluetooth Printer'),
+            content: Text(
+                'Please connect a Bluetooth printer before printing the receipt.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context); // Close the dialog
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+      return; // Exit the function since the printer is not connected
+    }
     List<LineText> list = [];
 
     // Add restaurant information
@@ -327,8 +354,13 @@ class HomeController extends GetxController {
       'width': (paperSize == '80mm') ? 80 : 58,
       'height': 0,
     };
-    // Get.to(ReceiptScreen(terminalContent: terminalContent));
-    await bluetoothPrint.printReceipt(config, list);
+    try {
+      await bluetoothPrint.printReceipt(config, list);
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'Printing Error');
+    } finally {
+      Get.offAllNamed(ROUTE_HOME);
+    }
   }
 
   // Function to format text within a column

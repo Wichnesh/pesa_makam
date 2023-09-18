@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -18,7 +19,7 @@ class _AddPurchaseState extends State<AddPurchase> {
     final Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Purchase'),
+        title: const Text('Add Purchase'),
         backgroundColor: primarycolor,
         centerTitle: true,
       ),
@@ -27,22 +28,22 @@ class _AddPurchaseState extends State<AddPurchase> {
           return SingleChildScrollView(
             child: Center(
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 height: Screenheight * 0.9,
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                         height: Screenheight * 0.1,
                         child: Image.asset("assets/images/logo.png")),
                     SizedBox(height: Screenheight * 0.005),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         width: double.infinity,
                         child: TextField(
                           keyboardType: TextInputType.text,
-                          style: TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(
@@ -63,14 +64,15 @@ class _AddPurchaseState extends State<AddPurchase> {
                     SizedBox(height: Screenheight * 0.005),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         width: double.infinity,
                         child: TextField(
                           keyboardType: TextInputType.number,
-                          style: TextStyle(fontSize: 18),
-                          decoration: InputDecoration(
+                          style: const TextStyle(fontSize: 18),
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(),
+                            suffix: Text('RM'),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   color:
@@ -89,13 +91,13 @@ class _AddPurchaseState extends State<AddPurchase> {
                     SizedBox(height: Screenheight * 0.005),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         width: double.infinity,
                         child: TextField(
                           keyboardType: TextInputType.number,
-                          style: TextStyle(fontSize: 18),
-                          decoration: InputDecoration(
+                          style: const TextStyle(fontSize: 18),
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -116,15 +118,16 @@ class _AddPurchaseState extends State<AddPurchase> {
                     SizedBox(height: Screenheight * 0.005),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         width: double.infinity,
                         child: TextField(
                           controller: controller.TaxAmountText
                             ..text = controller.taxamount.value,
                           keyboardType: TextInputType.number,
-                          style: TextStyle(fontSize: 18),
-                          decoration: InputDecoration(
+                          style: const TextStyle(fontSize: 18),
+                          decoration: const InputDecoration(
+                            suffix: Text('RM'),
                             border: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -154,6 +157,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                           style: const TextStyle(fontSize: 18),
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
+                            suffix: Text('RM'),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   color:
@@ -170,7 +174,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -182,8 +186,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                         child: TextField(
                           readOnly: true,
                           onTap: () async {
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
+                            FocusScope.of(context).requestFocus(FocusNode());
                             DateTime? date = DateTime.now();
                             date = await showDatePicker(
                                 context: context,
@@ -192,7 +195,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                                 lastDate: DateTime.now());
                             controller.OrderselectedDate = date;
                             controller.orderdateText.value =
-                                DateFormat("yyyy-MM-dd").format(date!);
+                                DateFormat("dd-MM-yyyy").format(date!);
                             controller.update();
                           },
                           controller: controller.OrderDateText
@@ -212,7 +215,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                       ),
                     ),
                     CheckboxListTile(
-                      title: Text(
+                      title: const Text(
                         'Net Payment',
                         style: TextStyle(
                           color: primarycolor, // Use the primary color here
@@ -224,7 +227,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -236,8 +239,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                         child: TextField(
                           readOnly: true,
                           onTap: () async {
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
+                            FocusScope.of(context).requestFocus(FocusNode());
                             DateTime? date = DateTime.now();
                             date = await showDatePicker(
                                 context: context,
@@ -246,8 +248,10 @@ class _AddPurchaseState extends State<AddPurchase> {
                                 lastDate: DateTime.now());
                             controller.OrderselectedDate = date;
                             controller.pendingdateText.value =
-                                DateFormat("yyyy-MM-dd").format(date!);
-                            print(controller.pendingdateText.value);
+                                DateFormat("dd-MM-yyyy").format(date!);
+                            if (kDebugMode) {
+                              print(controller.pendingdateText.value);
+                            }
                             controller.update();
                           },
                           controller: controller.PendingDateText
@@ -267,7 +271,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Row(
                         children: [
                           Expanded(
@@ -293,7 +297,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                                 onPressed: () {
                                   controller.submitDataToFirestore();
                                 },
-                                child: Container(
+                                child: const SizedBox(
                                   height: 50,
                                   width: 165,
                                   child: Center(
@@ -306,11 +310,11 @@ class _AddPurchaseState extends State<AddPurchase> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
                           Expanded(
-                            child: Container(
+                            child: SizedBox(
                               height: 55,
                               width: 175,
                               child: ElevatedButton(
@@ -333,7 +337,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                                   // Handle the button click event
                                   Get.back();
                                 },
-                                child: Text('Close'),
+                                child: const Text('Close'),
                               ),
                             ),
                           ),
