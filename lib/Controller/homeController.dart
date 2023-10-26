@@ -476,19 +476,23 @@ class HomeController extends GetxController {
                 (doc) => (doc.data() as Map<String, dynamic>)['name'] as String)
             .toList();
 
-        categories.assignAll(fetchedCategories);
-        isloading.value = false; // Set loading flag to false
-
-        if (kDebugMode) {
-          print(categories[0]);
+        if (fetchedCategories.isEmpty) {
+          // Handle the case where no categories are fetched from Firestore
+          Fluttertoast.showToast(msg: "No categories available");
+          // You might want to set categories to a default value or handle this case based on your requirements
+          categories.assignAll(['No Category Available']);
+        } else {
+          // Update the categories list with the fetched data
+          categories.assignAll(fetchedCategories);
+          if (kDebugMode) {
+            print(categories[0]);
+          }
+          printCategoryDetails(categories[0]);
+          if (kDebugMode) {
+            print('Category list fetched from Firestore successfully!');
+          }
+          eventLoggerController.addLog('Home Controller : Category list fetched from Firestore successfully');
         }
-        printCategoryDetails(categories[0]);
-
-        if (kDebugMode) {
-          print('Category list fetched from Firestore successfully!');
-        }
-        eventLoggerController.addLog(
-            'Home Controller : Category list fetched from Firestore successfully');
       } catch (error) {
         // Get.snackbar("Error", "Error Occurred....!",
         //     colorText: Colors.white,

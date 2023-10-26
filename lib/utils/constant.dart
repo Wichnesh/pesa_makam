@@ -16,3 +16,4 @@ const ROUTE_ADJUSTMENT = slash + "adjustment";
 
 //pref data
 const String AUTH_CODE = 'AUTH_CODE';
+const String ROLE = 'ROLE';

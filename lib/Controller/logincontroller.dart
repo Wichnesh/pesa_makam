@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,9 +59,22 @@ class LoginController extends GetxController {
         email: emailController.text,
         password: passwordController.text,
       )
-          .then((value) {
+          .then((value) async {
         name.value = value.user!.displayName.toString();
         emailid.value = value.user!.email.toString();
+        DocumentReference userDocRef = FirebaseFirestore.instance.collection('Users').doc(emailid.value);
+        // Check if the user document exists in the 'Users' collection
+        var docSnapshot = await userDocRef.get();
+
+        if (docSnapshot.exists) {
+          // Explicitly cast the data to Map<String, dynamic>
+          var userData = docSnapshot.data() as Map<String, dynamic>;
+          var role = userData['Role']; // Assuming 'role' is the field in your document
+          print('User Role: $role');
+          _prefs.setString(ROLE,role);
+        } else {
+          print('User document does not exist.');
+        }
         _prefs.setBool('isLoggedIn', true);
         Get.offAllNamed(ROUTE_HOME);
         showToast("Login Successful");
