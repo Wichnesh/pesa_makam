@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/geolocator_android/intermediates/merged_res/release/color/common_google_signin_btn_tint.xml",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/2a29ced370b2062a257893a893d3db6c/transformed/jetified-play-services-base-17.0.0/res/color/common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/geolocator_android/intermediates/merged_res/release/color/common_google_signin_btn_text_light.xml",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/2a29ced370b2062a257893a893d3db6c/transformed/jetified-play-services-base-17.0.0/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/geolocator_android/intermediates/merged_res/release/color/common_google_signin_btn_text_dark.xml",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/2a29ced370b2062a257893a893d3db6c/transformed/jetified-play-services-base-17.0.0/res/color/common_google_signin_btn_text_dark.xml"
+    }
+]

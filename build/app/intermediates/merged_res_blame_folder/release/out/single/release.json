@@ -1,0 +1,550 @@
+[
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_icon_light_normal.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_icon_light_normal.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_ic_call_answer.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/ic_call_answer.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_browser_actions_context_menu_row.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/ffe2fe1a7eaadece3e8199c968c8d3c6/transformed/browser-1.4.0/res/layout/browser_actions_context_menu_row.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_ic_call_answer.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/ic_call_answer.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxxhdpi-v4_ic_call_answer_video.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxxhdpi-v4/ic_call_answer_video.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/xml_flutter_printing_file_paths.xml.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/printing/intermediates/packaged_res/release/xml/flutter_printing_file_paths.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/xml_filepaths.xml.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/open_file/intermediates/packaged_res/release/xml/filepaths.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-anydpi-v21_ic_call_answer_video_low.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-anydpi-v21/ic_call_answer_video_low.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_text_dark_normal.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_text_dark_normal.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_ic_call_answer_video_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/ic_call_answer_video_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout-v21_notification_action_tombstone.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_text_light_focused.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_text_light_focused.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_ic_call_decline.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxhdpi-v4/ic_call_decline.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_ic_call_decline_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/ic_call_decline_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_ic_call_answer_video.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/ic_call_answer_video.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_icon_disabled.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_icon_disabled.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_text_dark.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-anydpi-v21_ic_call_answer_low.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-anydpi-v21/ic_call_answer_low.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-hdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_media_cancel_action.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_notification_icon_background.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_ic_call_answer_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/ic_call_answer_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-ldpi-v4_ic_call_decline_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-ldpi-v4/ic_call_decline_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxxhdpi-v4_ic_call_answer_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxxhdpi-v4/ic_call_answer_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_part_chronometer.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_media_action.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_text_light_normal.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_text_light_normal.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_icon_dark_normal.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_icon_light.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/xml_flutter_image_picker_file_paths.xml.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/image_picker_android/intermediates/packaged_res/release/xml/flutter_image_picker_file_paths.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/color_common_google_signin_btn_text_light.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/color_common_google_signin_btn_tint.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/color/common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xxhdpi-v4/googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_ic_call_answer_video.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxhdpi-v4/ic_call_answer_video.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_media.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_ic_call_answer_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxhdpi-v4/ic_call_answer_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_googleg_disabled_color_18.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xhdpi-v4/googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout-v21_notification_template_icon_group.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-mdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_ic_call_decline_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxhdpi-v4/ic_call_decline_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_googleg_disabled_color_18.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-hdpi-v4/googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xhdpi-v4/common_full_open_on_phone.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_ic_call_decline_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/ic_call_decline_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxxhdpi-v4_ic_call_answer_video_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxxhdpi-v4/ic_call_answer_video_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-ldpi-v4_ic_call_answer_video_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-ldpi-v4/ic_call_answer_video_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_custom_dialog.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_ic_call_decline.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/ic_call_decline.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xxhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout-v21_notification_template_custom_big.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_text_dark_focused.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_text_dark_focused.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_big_media_narrow_custom.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_ic_call_answer_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/ic_call_answer_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-hdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxxhdpi-v4_ic_call_decline_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxxhdpi-v4/ic_call_decline_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_notification_bg.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_lines_media.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_template_lines_media.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/xml_image_share_filepaths.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/ffe2fe1a7eaadece3e8199c968c8d3c6/transformed/browser-1.4.0/res/xml/image_share_filepaths.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_part_time.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-ldpi-v4_ic_call_answer_video.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-ldpi-v4/ic_call_answer_video.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xxhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-ldpi-v4_ic_call_answer.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-ldpi-v4/ic_call_answer.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_ic_call_answer_video_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/ic_call_answer_video_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-ldpi-v4_ic_call_decline.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-ldpi-v4/ic_call_decline.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_ic_call_answer.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxhdpi-v4/ic_call_answer.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-anydpi-v21_ic_call_answer.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-anydpi-v21/ic_call_answer.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxxhdpi-v4_ic_call_decline.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxxhdpi-v4/ic_call_decline.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-anydpi-v21_ic_call_decline_low.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-anydpi-v21/ic_call_decline_low.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_notification_bg_low.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_ic_call_answer_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/ic_call_answer_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_big_media_narrow.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-v21_launch_background.xml.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/android/app/src/main/res/drawable-v21/launch_background.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_ic_call_decline.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/ic_call_decline.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxxhdpi-v4_ic_call_answer.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxxhdpi-v4/ic_call_answer.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-hdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/color_common_google_signin_btn_text_dark.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_toast_bg.xml.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/fluttertoast/intermediates/packaged_res/release/drawable/toast_bg.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_text_light.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_ic_call_answer_video_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/ic_call_answer_video_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_ic_call_answer_video.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/ic_call_answer_video.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_notification_tile_bg.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_ic_call_answer.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/ic_call_answer.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_googleg_disabled_color_18.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-mdpi-v4/googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xhdpi-v4/googleg_standard_color_18.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout-v21_notification_action.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_corner.xml.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/fluttertoast/intermediates/packaged_res/release/drawable/corner.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_icon_light_focused.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_icon_light_focused.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-mdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_text_disabled.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_text_disabled.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-anydpi-v21_ic_call_decline.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-anydpi-v21/ic_call_decline.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_ic_call_answer_video.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/ic_call_answer_video.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_big_media_custom.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_common_full_open_on_phone.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-hdpi-v4/common_full_open_on_phone.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_icon_dark_focused.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_icon_dark_focused.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-mdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_media_custom.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_ic_call_decline.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/ic_call_decline.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-ldpi-v4_ic_call_answer_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-ldpi-v4/ic_call_answer_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-hdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_googleg_standard_color_18.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-mdpi-v4/googleg_standard_color_18.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_ic_call_answer_video_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xxhdpi-v4/ic_call_answer_video_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-anydpi-v21_ic_call_answer_video.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-anydpi-v21/ic_call_answer_video.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xxhdpi-v4/googleg_standard_color_18.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_notification_template_big_media.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/32fb9a5c2ecfdfba4da405c2c0252fa2/transformed/media-1.0.0/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xhdpi-v4_ic_call_decline_low.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-xhdpi-v4/ic_call_decline_low.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/raw_firebase_common_keep.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/a83a1028903962d496f2694967806446/transformed/jetified-firebase-common-20.3.3/res/raw/firebase_common_keep.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_browser_actions_context_menu_page.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/ffe2fe1a7eaadece3e8199c968c8d3c6/transformed/browser-1.4.0/res/layout/browser_actions_context_menu_page.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/layout_toast_custom.xml.flat",
+        "source": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/fluttertoast/intermediates/packaged_res/release/layout/toast_custom.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-hdpi-v4_googleg_standard_color_18.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-hdpi-v4/googleg_standard_color_18.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable_common_google_signin_btn_icon_dark.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable/common_google_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-xxhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/61431ef3a14e5ed6e716f97b1912ac16/transformed/jetified-play-services-base-18.0.1/res/drawable-xxhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/vigneshselvaraj/Personnal Code repository/pesa_makam-Without_Register_Screen/build/app/intermediates/merged_res/release/drawable-v21_notification_action_background.xml.flat",
+        "source": "/Users/vigneshselvaraj/.gradle/caches/transforms-3/dcdbcbdca0ffccfbf749a7062e9b72c2/transformed/core-1.10.1/res/drawable-v21/notification_action_background.xml"
+    }
+]

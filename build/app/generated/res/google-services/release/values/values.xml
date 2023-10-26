@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">824088985472-t1dj70guktik4jabi2kn8l889b2jmv35.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">824088985472</string>
+    <string name="google_api_key" translatable="false">AIzaSyC7TQ2FUlQ24U3qdt4eaPfS7h2oAKJK-ac</string>
+    <string name="google_app_id" translatable="false">1:824088985472:android:27a77c2280cdc48e27cb65</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC7TQ2FUlQ24U3qdt4eaPfS7h2oAKJK-ac</string>
+    <string name="google_storage_bucket" translatable="false">pesamakanam-adfd9.appspot.com</string>
+    <string name="project_id" translatable="false">pesamakanam-adfd9</string>
+</resources>
