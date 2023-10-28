@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:pesa_makanam_app/Controller/AdminAccessController.dart';
+import 'package:pesa_makanam_app/View/Home/drawer/AdminAccess.dart';
 import 'package:pesa_makanam_app/View/Login/loginscreen.dart';
+import 'package:pesa_makanam_app/binding/AdminAccessbinding.dart';
 import '../View/Home/drawer/Adjustment.dart';
 import '../View/Home/drawer/Attendance.dart';
 import '../View/Home/Home_screen.dart';
@@ -70,6 +73,10 @@ class AppPages {
     GetPage(
         name: ROUTE_ADJUSTMENT,
         page: () => const Adjustment_Screen(),
-        binding: AdjustmentBinding())
+        binding: AdjustmentBinding()),
+    GetPage(
+        name: ROUTE_ADMINACCESS,
+        page: () => const AdminAccessScreen(),
+        binding: AdminAccessBinding())
   ];
 }

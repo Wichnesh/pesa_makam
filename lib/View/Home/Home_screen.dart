@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _initializePreferences();
     super.initState();
   }
+
   Future<void> _initializePreferences() async {
     _prefs = await SharedPreferences.getInstance();
   }
@@ -143,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                                             const EdgeInsets.all(1.0),
                                                                         child: SizedBox(
                                                                             height: screenHeight * 0.5,
-                                                                            width: screenWidth/2.5,
+                                                                            width: screenWidth / 2.5,
                                                                             child: SingleChildScrollView(
                                                                               scrollDirection: Axis.horizontal,
                                                                               child: SingleChildScrollView(
@@ -795,29 +796,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                 Get.toNamed(ROUTE_POS);
                                               },
                                             ),
-                                            ListTile(
+                                            controller.adminAccess.value ? ListTile(
                                               leading: const Icon(
                                                   Icons.shopping_cart),
                                               title: const Text("Purchase"),
                                               onTap: () {
                                                 Get.toNamed(ROUTE_PURCHASE);
                                               },
-                                            ),
-                                            ListTile(
+                                            ) : Container(),
+                                            controller.adminAccess.value ? ListTile(
                                               leading:
                                                   const Icon(Icons.price_check),
                                               title: const Text('Adjustment'),
                                               onTap: () {
                                                 //Get.toNamed(ROUTE_ADJUSTMENT);
                                               },
-                                            ),
-                                            ListTile(
+                                            ) : Container(),
+                                            controller.adminAccess.value ? ListTile(
                                               leading: const Icon(Icons.person),
                                               title: const Text("Employee"),
                                               onTap: () {
                                                 Get.toNamed(ROUTE_EMPLOYEE);
                                               },
-                                            ),
+                                            ) : Container(),
                                             ListTile(
                                               leading: const Icon(
                                                   Icons.bookmark_add_outlined),
@@ -826,12 +827,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                 Get.toNamed(ROUTE_ATTENDANCE);
                                               },
                                             ),
-                                            ListTile(
+                                            controller.adminAccess.value ?  ListTile(
                                               leading:
                                                   const Icon(Icons.payment),
                                               title: const Text("Payment"),
                                               onTap: () {
                                                 Get.toNamed(ROUTE_PAYMENT);
+                                              },
+                                            ) : Container(),
+                                            ListTile(
+                                              leading: const Icon(Icons
+                                                  .admin_panel_settings_outlined),
+                                              title: const Text("Admin Access"),
+                                              onTap: () {
+                                                Get.toNamed(ROUTE_ADMINACCESS);
                                               },
                                             ),
                                             ListTile(
@@ -1205,27 +1214,27 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         Get.toNamed(ROUTE_POS);
                                       },
                                     ),
-                                    ListTile(
+                                  controller.adminAccess.value ?  ListTile(
                                       leading: const Icon(Icons.shopping_cart),
                                       title: const Text("Purchase"),
                                       onTap: () {
                                         Get.toNamed(ROUTE_PURCHASE);
                                       },
-                                    ),
-                                    ListTile(
+                                    ) : Container(),
+                                    controller.adminAccess.value ?  ListTile(
                                       leading: const Icon(Icons.price_check),
                                       title: const Text('Adjustment'),
                                       onTap: () {
                                         //Get.toNamed(ROUTE_ADJUSTMENT);
                                       },
-                                    ),
-                                    ListTile(
+                                    ) : Container(),
+                                    controller.adminAccess.value ?  ListTile(
                                       leading: const Icon(Icons.person),
                                       title: const Text("Employee"),
                                       onTap: () {
                                         Get.toNamed(ROUTE_EMPLOYEE);
                                       },
-                                    ),
+                                    ) : Container(),
                                     ListTile(
                                       leading: const Icon(
                                           Icons.bookmark_add_outlined),
@@ -1234,11 +1243,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         Get.toNamed(ROUTE_ATTENDANCE);
                                       },
                                     ),
-                                    ListTile(
+                                    controller.adminAccess.value ?  ListTile(
                                       leading: const Icon(Icons.payment),
                                       title: const Text("Payment"),
                                       onTap: () {
                                         Get.toNamed(ROUTE_PAYMENT);
+                                      },
+                                    ) : Container(),
+                                    ListTile(
+                                      leading: const Icon(
+                                          Icons.admin_panel_settings_outlined),
+                                      title: const Text("Admin Access"),
+                                      onTap: () {
+                                        Get.toNamed(ROUTE_ADMINACCESS);
                                       },
                                     ),
                                     ListTile(

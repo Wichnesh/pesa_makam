@@ -33,7 +33,9 @@ class AppLifecycleObserver extends WidgetsBindingObserver {
         break;
       case AppLifecycleState.resumed:
         // The app is resumed from the background
-        print('App resumed from background.');
+        if (kDebugMode) {
+          print('App resumed from background.');
+        }
         break;
       default:
         break;

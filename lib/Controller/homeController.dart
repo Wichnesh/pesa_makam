@@ -19,6 +19,7 @@ class HomeController extends GetxController {
   final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
   Rx<User?> currentUser = Rx<User?>(null);
+  var adminAccess = false.obs;
   var isloading = false.obs;
   List<String> categories = <String>[].obs;
   List<CategoryDetail> Detail = [];
@@ -38,7 +39,51 @@ class HomeController extends GetxController {
     // TODO: implement onInit
     getCurrentUser();
     fetchCategoriesFromFirestore();
+    checkUserRole();
     super.onInit();
+  }
+
+  Future<void> checkUserRole() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentReference userDocRef =
+      FirebaseFirestore.instance.collection('Users').doc(user.email);
+
+      try {
+        DocumentSnapshot userDoc = await userDocRef.get();
+        if (userDoc.exists) {
+          CollectionReference rolesCollectionRef =
+          userDoc.reference.collection('roles');
+
+          QuerySnapshot rolesQuerySnapshot = await rolesCollectionRef.get();
+          if (rolesQuerySnapshot.docs.isNotEmpty) {
+            // Loop through all the documents in the roles subcollection
+            rolesQuerySnapshot.docs.forEach((rolesDoc) {
+              // Assuming 'role' is the field containing the user's role in each document
+              String role = rolesDoc.get('role');
+              if(role == 'Admin'){
+                adminAccess.value = rolesDoc.get('Admin access');
+                print(adminAccess.value);
+                print('User role: $role');
+              }
+            });
+          } else {
+            // Handle case where roles subcollection is empty
+            print('No roles found for the user.');
+          }
+        } else {
+          // Handle case where user document does not exist
+          print('User document does not exist.');
+        }
+        update();
+      } catch (e) {
+        // Handle errors
+        print('Error: $e');
+      }
+    } else {
+      // Handle case where user is not authenticated
+      Fluttertoast.showToast(msg: "Error");
+    }
   }
 
   Future<void> printSampleReceipt(String paperSize) async {
@@ -471,9 +516,17 @@ class HomeController extends GetxController {
         QuerySnapshot querySnapshot = await categoryCollection.get();
 
         // Update the categories list with the fetched data
+        // List<String> fetchedCategories = querySnapshot.docs
+        //     .map(
+        //         (doc) => (doc.data() as Map<String, dynamic>)['name'] as String)
+        //     .toList();
+        // Filter out documents with null or missing names
+
         List<String> fetchedCategories = querySnapshot.docs
-            .map(
-                (doc) => (doc.data() as Map<String, dynamic>)['name'] as String)
+            .map((doc) =>
+        (doc.data() as Map<String, dynamic>)['name'] as String?)
+            .where((name) => name != null && name.isNotEmpty)
+            .cast<String>() // Cast to String to remove nullable type
             .toList();
 
         if (fetchedCategories.isEmpty) {
@@ -494,10 +547,6 @@ class HomeController extends GetxController {
           eventLoggerController.addLog('Home Controller : Category list fetched from Firestore successfully');
         }
       } catch (error) {
-        // Get.snackbar("Error", "Error Occurred....!",
-        //     colorText: Colors.white,
-        //     backgroundColor: Colors.red,
-        //     snackPosition: SnackPosition.TOP);
         Fluttertoast.showToast(msg: "No Data Available");
         if (kDebugMode) {
           print('Error fetching category list from Firestore: $error');
