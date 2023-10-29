@@ -20,10 +20,10 @@ class _CategoriesState extends State<Categories> {
         return GetBuilder<CategoriesController>(
           builder: ((controller) {
             return AlertDialog(
-              title: Text('Add Category'),
+              title: const Text('Add Category'),
               content: TextField(
                 controller: controller.categoryNameController,
-                decoration: InputDecoration(hintText: 'Category Name'),
+                decoration: const InputDecoration(hintText: 'Category Name'),
               ),
               actions: <Widget>[
                 TextButton(
@@ -31,7 +31,7 @@ class _CategoriesState extends State<Categories> {
                     // Close the dialog
                     Navigator.of(context).pop();
                   },
-                  child: Text('Cancel'),
+                  child: const Text('Cancel'),
                 ),
                 TextButton(
                   onPressed: () {
@@ -39,10 +39,8 @@ class _CategoriesState extends State<Categories> {
                     String categoryName =
                         controller.categoryNameController.text.trim();
                     if (categoryName.isNotEmpty) {
-                      controller.addCategories(
-                          [categoryName]); //Pass the category as a list
                       controller
-                          .saveCategoriesToFirestore(controller.categories);
+                          .saveCategoriesToFirestore(categoryName);
                       // Close the dialog
                       setState(() {
                         controller.categoryNameController.text = "";
@@ -50,7 +48,7 @@ class _CategoriesState extends State<Categories> {
                       Navigator.of(context).pop();
                     }
                   },
-                  child: Text('Submit'),
+                  child: const Text('Submit'),
                 ),
               ],
             );
@@ -67,15 +65,15 @@ class _CategoriesState extends State<Categories> {
         return GetBuilder<CategoriesController>(
           builder: ((controller) {
             return AlertDialog(
-              title: Text('Delete Category'),
-              content: Text('Are you sure you want to delete this category?'),
+              title: const Text('Delete Category'),
+              content: const Text('Are you sure you want to delete this category?'),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
                     // Close the dialog
                     Navigator.of(context).pop();
                   },
-                  child: Text('Cancel'),
+                  child: const Text('Cancel'),
                 ),
                 TextButton(
                   onPressed: () {
@@ -84,7 +82,7 @@ class _CategoriesState extends State<Categories> {
                     // Close the dialog
                     Navigator.of(context).pop();
                   },
-                  child: Text('Delete'),
+                  child: const Text('Delete'),
                 ),
               ],
             );
@@ -99,16 +97,16 @@ class _CategoriesState extends State<Categories> {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categories'),
+        title: const Text('Categories'),
         backgroundColor: primarycolor,
       ),
       body: GetBuilder<CategoriesController>(
         builder: (controller) => controller.isloading.value
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : controller.categories.isEmpty
-                ? Center(
+                ? const Center(
                     child: Text('No Category available'),
                   )
                 : ListView.builder(
@@ -121,14 +119,13 @@ class _CategoriesState extends State<Categories> {
                           child: ListTile(
                             title: Text(
                               controller.categories[index],
-                              style: TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                             ),
                             trailing: IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: const Icon(Icons.delete),
                               onPressed: () {
                                 // Delete the category
-                                controller.deleteCategory(
-                                    controller.categories[index]);
+                                _showDeleteCategoryDialog(controller.categories[index]);
                               },
                             ),
                           ),
@@ -142,7 +139,7 @@ class _CategoriesState extends State<Categories> {
         onPressed: () {
           _showAddCategoryDialog();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

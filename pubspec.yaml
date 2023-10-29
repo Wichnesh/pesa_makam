@@ -64,6 +64,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   bluetooth_print: ^4.3.0
   pinput: ^3.0.1
+  cached_network_image: ^3.2.3
 
 
 

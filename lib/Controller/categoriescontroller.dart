@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pesa_makanam_app/utils/common_methods.dart';
 
@@ -14,23 +15,25 @@ class CategoriesController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
+    print('CategoriesController initialized');
     fetchCategoriesFromFirestore();
     super.onInit();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    print('CategoriesController disposed');
     super.dispose();
   }
 
   void addCategories(List<String> newCategories) {
     categories.addAll(newCategories);
     update();
+    print('Categories added: $newCategories');
   }
 
   Future<void> fetchCategoriesFromFirestore() async {
+    print('Fetching categories from Firestore...');
     String? userEmail = FirebaseAuth.instance.currentUser?.email;
     isloading.value = true;
     update();
@@ -39,11 +42,11 @@ class CategoriesController extends GetxController {
       try {
         // Get the Firestore reference to the user's collection
         DocumentReference userDocRef =
-            FirebaseFirestore.instance.collection('Users').doc(userEmail);
+        FirebaseFirestore.instance.collection('Users').doc(userEmail);
 
         // Get the category collection reference
         CollectionReference categoryCollection =
-            userDocRef.collection('categories');
+        userDocRef.collection('categories');
 
         // Fetch the category documents from Firestore
         QuerySnapshot querySnapshot = await categoryCollection.get();
@@ -73,41 +76,72 @@ class CategoriesController extends GetxController {
   }
 
   Future<void> deleteCategory(String categoryName) async {
+    print('Deleting category: $categoryName');
     try {
-      print('delete category started');
       String? userEmail = FirebaseAuth.instance.currentUser?.email;
 
       if (userEmail != null) {
         // Get the Firestore reference to the user's collection
         DocumentReference userDocRef =
-            FirebaseFirestore.instance.collection('Users').doc(userEmail);
+        FirebaseFirestore.instance.collection('Users').doc(userEmail);
 
         // Get the category collection reference
         CollectionReference categoryCollection =
-            userDocRef.collection('categories');
+        userDocRef.collection('categories');
 
         // Query the category document to delete
         QuerySnapshot querySnapshot = await categoryCollection
             .where('name', isEqualTo: categoryName)
             .get();
 
-        // Delete the category document
+
+        // Delete the category document and its sub-collection
         if (querySnapshot.docs.isNotEmpty) {
-          await querySnapshot.docs.first.reference.delete();
+          var documentId = querySnapshot.docs.first.id; // Get the documentID
+
+          // Delete the sub-collection inside the category document
+          CollectionReference subCollectionReference =
+          categoryCollection.doc(documentId).collection('categorydetail');
+          QuerySnapshot subCollectionSnapshot = await subCollectionReference
+              .get();
+          if (subCollectionSnapshot.docs.isNotEmpty) {
+            // Delete documents inside sub-collection
+            for (QueryDocumentSnapshot subDocument in subCollectionSnapshot
+                .docs) {
+              await subDocument.reference.delete();
+            }
+          }
+          // Delete the category document
+          await categoryCollection.doc(documentId).delete();
+
+          // Fetch updated categories from Firestore
           fetchCategoriesFromFirestore();
           HomeController homeController = Get.find<HomeController>();
           homeController.fetchCategoriesFromFirestore();
+
+          // Delete the category document
+          // if (querySnapshot.docs.isNotEmpty) {
+          //   var documentId = querySnapshot.docs.first.id; // Get the documentID
+          //   await categoryCollection.doc(documentId).delete(); // Delete the document by documentID
+          //   fetchCategoriesFromFirestore();
+          //   HomeController homeController = Get.find<HomeController>();
+          //   homeController.fetchCategoriesFromFirestore();
+          // } else {
+          //   showToast('Category not found');
+          //   fetchCategoriesFromFirestore();
+          // }
         } else {
-          showToast('Category not found');
-          fetchCategoriesFromFirestore();
-        }
+            showToast('Category not found');
+            fetchCategoriesFromFirestore();
+          }
       }
     } catch (error) {
       print('Error deleting category from Firestore: $error');
     }
   }
 
-  Future<void> saveCategoriesToFirestore(List<String> categoryList) async {
+  Future<void> saveCategoriesToFirestore(String category) async {
+    print('Saving categories to Firestore...');
     isloading.value = true;
     update();
     String? userEmail = FirebaseAuth.instance.currentUser?.email;
@@ -118,7 +152,7 @@ class CategoriesController extends GetxController {
 
         // Get the Firestore reference to the user's collection
         DocumentReference userDocRef =
-            FirebaseFirestore.instance.collection('Users').doc(userEmail);
+        FirebaseFirestore.instance.collection('Users').doc(userEmail);
 
         // Create the category collection if it doesn't exist
         DocumentSnapshot userSnapshot = await userDocRef.get();
@@ -128,22 +162,34 @@ class CategoriesController extends GetxController {
 
         // Get the category collection reference
         CollectionReference categoryCollection =
-            userDocRef.collection('categories');
+        userDocRef.collection('categories');
 
         // Clear the existing categories in the collection
-        await categoryCollection.get().then((snapshot) {
-          for (DocumentSnapshot doc in snapshot.docs) {
-            doc.reference.delete();
-          }
-        });
+        // await categoryCollection.get().then((snapshot) {
+        //   for (DocumentSnapshot doc in snapshot.docs) {
+        //     doc.reference.delete();
+        //   }
+        // });
 
-        // Save the new category list to the Firestore collection
-        for (String category in categoryList) {
+        // Check if the category already exists in the collection
+
+        QuerySnapshot duplicateCategories = await categoryCollection
+            .where('name', isEqualTo: category)
+            .get();
+
+        // If there are no duplicate categories, save the new category
+        if (duplicateCategories.docs.isEmpty) {
           await categoryCollection.add({'name': category});
+          Fluttertoast.showToast(msg: 'Category saved to Firestore successfully!');
+        } else {
+          Fluttertoast.showToast(msg: 'Category already exists!');
         }
+
         isloading.value = false;
-        print('Category list saved to Firestore successfully!');
+        Fluttertoast.showToast(msg: 'Category list saved to Firestore successfully!');
+        fetchCategoriesFromFirestore();
         HomeController homeController = Get.find<HomeController>();
+        homeController.Detail.clear();
         homeController.fetchCategoriesFromFirestore();
       } catch (error) {
         print('Error saving category list to Firestore: $error');
@@ -151,4 +197,5 @@ class CategoriesController extends GetxController {
       update();
     }
   }
+
 }

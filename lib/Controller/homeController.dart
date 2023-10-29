@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pesa_makanam_app/utils/common_methods.dart';
 import 'package:pesa_makanam_app/utils/constant.dart';
 
 import '../Eventcapture/event_logger_controller.dart';
@@ -471,6 +472,57 @@ class HomeController extends GetxController {
     print('Total Amount: $totalAmount');
   }
 
+  Future<void> deleteSubCollectionItem(String categoryName, String itemName) async {
+    if (kDebugMode) {
+      print('Deleting item: $itemName from category: $categoryName');
+    }
+    try {
+      String? userEmail = FirebaseAuth.instance.currentUser?.email;
+
+      if (userEmail != null) {
+        // Get the Firestore reference to the user's collection
+        CollectionReference categoryCollection =
+        FirebaseFirestore.instance.collection('Users').doc(userEmail).collection('categories');
+
+        // Query the category document to find the category by name
+        QuerySnapshot categorySnapshot = await categoryCollection
+            .where('name', isEqualTo: categoryName)
+            .get();
+
+        // Check if the category exists
+        if (categorySnapshot.docs.isNotEmpty) {
+          // Get the first document in the category query result
+          DocumentSnapshot categoryDocument = categorySnapshot.docs.first;
+
+          // Get the sub-collection reference
+          CollectionReference subCollectionReference =
+          categoryDocument.reference.collection('categorydetail');
+
+          // Query the sub-collection documents to delete
+          QuerySnapshot querySnapshot = await subCollectionReference
+              .where('name', isEqualTo: itemName)
+              .get();
+
+          // Delete the sub-collection item documents
+          if (querySnapshot.docs.isNotEmpty) {
+            for (QueryDocumentSnapshot subDocument in querySnapshot.docs) {
+              await subDocument.reference.delete();
+            }
+            showToast('Item deleted successfully');
+            fetchCategoriesFromFirestore();
+          } else {
+            showToast('Item not found in the sub-collection');
+          }
+        } else {
+          print('Category not found');
+        }
+      }
+    } catch (error) {
+      print('Error deleting item from sub-collection: $error');
+    }
+  }
+
+
   Future<void> getCurrentUser() async {
     if (kDebugMode) {
       print('fetching user data');
@@ -498,6 +550,7 @@ class HomeController extends GetxController {
 
   Future<void> fetchCategoriesFromFirestore() async {
     print('Category fetching started successfully');
+    Detail.clear();
     String? userEmail = FirebaseAuth.instance.currentUser?.email;
     isloading.value = true;
     update();

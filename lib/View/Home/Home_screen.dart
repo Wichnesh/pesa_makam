@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   final PosController posController = Get.put(PosController());
   final HomeController homecontroller = Get.put(HomeController());
   final int _screen = 0;
+  int? selectedTab = 0;
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -512,6 +513,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                             child:
                                                                 FadeInAnimation(
                                                               child: InkWell(
+                                                                onLongPress:controller.adminAccess.value ? (){
+                                                                  debugPrint("Print Delete  current item name = ${controller.Detail[index].name}, current tab ${controller.categories[selectedTab!]}");
+                                                                  showDialog(
+                                                                    context: context,
+                                                                    builder: (BuildContext context) {
+                                                                      return DialogBox(
+                                                                        title: "Delete",
+                                                                        content: controller.Detail[index].name,
+                                                                        context: context,
+                                                                        function: () {
+                                                                          controller.deleteSubCollectionItem(controller.categories[selectedTab!],controller.Detail[index].name);
+                                                                          Navigator.of(context).pop(); // Close the dialog after the function is executed
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                } : (){
+                                                                  debugPrint("Don't have access");
+                                                                },
                                                                 onTap: () {
                                                                   controller.addItem(forPosTicketDetail(
                                                                       description: controller
@@ -721,6 +741,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         }
                                         controller.printCategoryDetails(
                                             controller.categories[val]);
+                                        selectedTab = val;
                                         setState(() {});
                                       },
                                       isScrollable:
@@ -772,22 +793,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                           fontSize: 24),
                                                     ),
                                             ),
-                                            ListTile(
+                                            controller.adminAccess.value ?  ListTile(
                                               leading:
                                                   const Icon(Icons.category),
                                               title: const Text("Categories"),
                                               onTap: () {
                                                 Get.toNamed(ROUTE_CATEGORIES);
                                               },
-                                            ),
-                                            ListTile(
+                                            ) : Container(),
+                                            controller.adminAccess.value ?  ListTile(
                                               leading:
                                                   const Icon(Icons.add_box),
                                               title: const Text("Add Items"),
                                               onTap: () {
                                                 Get.toNamed(ROUTE_ADDITEMS);
                                               },
-                                            ),
+                                            ) : Container(),
                                             ListTile(
                                               leading: const Icon(
                                                   Icons.point_of_sale_sharp),
@@ -957,6 +978,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                         .fastLinearToSlowEaseIn,
                                                     child: FadeInAnimation(
                                                       child: InkWell(
+                                                        onLongPress: controller.adminAccess.value ? (){
+                                                          debugPrint("Print Delete  current item name = ${controller.Detail[index].name}, current tab ${controller.categories[selectedTab!]}");
+                                                          showDialog(
+                                                            context: context,
+                                                            builder: (BuildContext context) {
+                                                              return DialogBox(
+                                                                title: "Delete",
+                                                                content: controller.Detail[index].name,
+                                                                context: context,
+                                                                function: () {
+                                                                  controller.deleteSubCollectionItem(controller.categories[selectedTab!],controller.Detail[index].name);
+                                                                  Navigator.of(context).pop(); // Close the dialog after the function is executed
+                                                                },
+                                                              );
+                                                            },
+                                                          );
+                                                        } : (){
+                                                          debugPrint("Don't have access");
+                                                        },
                                                         onTap: () {
                                                           controller.addItem(forPosTicketDetail(
                                                               description:
@@ -1148,6 +1188,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 }
                                 controller.printCategoryDetails(
                                     controller.categories[val]);
+                                selectedTab = val;
                                 setState(() {});
                               },
                               isScrollable: controller.categories.length > 4,
@@ -1192,20 +1233,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                   const TextStyle(fontSize: 24),
                                             ),
                                     ),
-                                    ListTile(
+                                    controller.adminAccess.value ? ListTile(
                                       leading: const Icon(Icons.category),
                                       title: const Text("Categories"),
                                       onTap: () {
                                         Get.toNamed(ROUTE_CATEGORIES);
                                       },
-                                    ),
-                                    ListTile(
+                                    ) : Container(),
+                                    controller.adminAccess.value ? ListTile(
                                       leading: const Icon(Icons.add_box),
                                       title: const Text("Add Items"),
                                       onTap: () {
                                         Get.toNamed(ROUTE_ADDITEMS);
                                       },
-                                    ),
+                                    ) : Container(),
                                     ListTile(
                                       leading:
                                           const Icon(Icons.point_of_sale_sharp),
