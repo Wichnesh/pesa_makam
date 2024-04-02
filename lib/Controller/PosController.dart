@@ -461,7 +461,7 @@ class PosController extends GetxController {
     }
   }
 
-  Future<void> fetchSavedBillDatabydate() async {
+  Future<void> fetchSavedBillDataByDate() async {
     filterBills.clear();
     showdata.value = false;
     update();
@@ -472,11 +472,13 @@ class PosController extends GetxController {
     DateTime fromDate = DateFormat('dd-MM-yyyy').parse(fromDateStr);
     DateTime toDate = DateFormat('dd-MM-yyyy').parse(toDateStr);
 
-    // Subtract one day from fromDate
-    fromDate = fromDate.subtract(const Duration(days: 1));
+    // Subtract one day from fromDate (without affecting time)
+    DateTime fromDateStart = DateTime(fromDate.year, fromDate.month, fromDate.day);
+    DateTime fromDateEnd = fromDateStart.subtract(const Duration(days: 1));
 
-    // Add one day to toDate
-    toDate = toDate.add(const Duration(days: 1));
+    // Add one day to toDate (without affecting time)
+    DateTime toDateStart = DateTime(toDate.year, toDate.month, toDate.day);
+    DateTime toDateEnd = toDateStart.add(const Duration(days: 1));
 
     try {
       final currentUser = FirebaseAuth.instance.currentUser;
@@ -496,21 +498,24 @@ class PosController extends GetxController {
             final dateString = billData['date'];
             final dateParts = dateString.split('-');
 
-            final year = int.parse(dateParts[2]);
-            final month = int.parse(dateParts[1]);
             final day = int.parse(dateParts[0]);
+            final month = int.parse(dateParts[1]);
+            final year = int.parse(dateParts[2]);
+            final hour = int.parse(dateParts[3]);
+            final minute = int.parse(dateParts[4]);
+            final second = int.parse(dateParts[5]);
 
-            final date = DateTime(year, month, day);
-            final formattedDate = DateFormat('dd-MM-yyyy').format(date);
+            final date = DateTime(year, month, day, hour, minute, second);
 
-            if (date.isAfter(fromDate) && date.isBefore(toDate)) {
+            if (date.isAfter(fromDateStart) && date.isBefore(toDateEnd)) {
+              final formattedDate = DateFormat('dd-MM-yyyy HH:mm:ss').format(date);
               final totalAmount = billData['totalAmount'];
               final items = (billData['items'] as List<dynamic>)
                   .map((item) => forPosTicketDetail(
-                        name: item['name'],
-                        itemcount: item['itemcount'],
-                        price: item['price'],
-                      ))
+                name: item['name'],
+                itemcount: item['itemcount'],
+                price: item['price'],
+              ))
                   .toList();
 
               final bill = Bill(
@@ -537,7 +542,7 @@ class PosController extends GetxController {
           double totalAmountOfAllBills = 0.0;
 
           for (var bill in filterBills) {
-            double billTotalAmount = double.parse(bill.totalAmount);
+            double billTotalAmount = double.parse(bill.totalAmount!);
             totalAmountOfAllBills += billTotalAmount;
           }
           if (kDebugMode) {
@@ -554,4 +559,5 @@ class PosController extends GetxController {
       print('Error fetching saved bill data: $e');
     }
   }
+
 }

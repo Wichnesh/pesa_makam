@@ -14,6 +14,7 @@ const ROUTE_POS = "${slash}pos";
 const ROUTE_TICKETLIST = "${slash}ticketList";
 const ROUTE_ADJUSTMENT = "${slash}adjustment";
 const ROUTE_ADMINACCESS = "${slash}adminAccess";
+const ROUTE_TICKETDETAIL = "${slash}ticketDetail";
 //pref data
 const String AUTH_CODE = 'AUTH_CODE';
 const String ROLE = 'ROLE';

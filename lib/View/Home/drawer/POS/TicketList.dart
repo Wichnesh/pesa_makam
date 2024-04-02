@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:pesa_makanam_app/utils/GlobalConst.dart';
+import 'package:pesa_makanam_app/utils/constant.dart';
 
 import '../../../../Controller/PosController.dart';
 import '../../../../utils/colorUtils.dart';
@@ -14,6 +17,15 @@ class TicketList extends StatefulWidget {
 
 class _TicketListState extends State<TicketList> {
   final PosController posController = Get.put(PosController());
+
+  String dateFormat(String date){
+    DateTime parsedDate = DateFormat('dd-MM-yyyy HH:mm:ss').parse(date);
+
+    String convertedDate = DateFormat('dd-MM-yyyy-HH-mm-ss').format(parsedDate);
+
+    print(convertedDate);
+    return convertedDate;
+  }
   @override
   Widget build(BuildContext context) {
     final Screenheight = MediaQuery.of(context).size.height;
@@ -139,8 +151,7 @@ class _TicketListState extends State<TicketList> {
                               ),
                             );
                           } else {
-                            posController.fetchSavedBillDatabydate();
-                            setState(() {});
+                            posController.fetchSavedBillDataByDate();
                           }
                         },
                         child: const SizedBox(
@@ -198,14 +209,21 @@ class _TicketListState extends State<TicketList> {
                         final bill = posController.filterBills[index];
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            elevation: 5,
-                            child: ListTile(
-                              title: Text(
-                                  'Date: ${bill.date.split('-').sublist(0, 3).join('-')}'),
-                              subtitle:
-                                  Text('Total Amount: ${bill.totalAmount} RM'),
-                              // Display items here
+                          child: InkWell(
+                            onTap: (){
+                              String date = dateFormat(posController.filterBills[index].date);
+                              GlobalConstant.uniqueDate = date;
+                              Get.toNamed(ROUTE_TICKETDETAIL);
+                            },
+                            child: Card(
+                              elevation: 5,
+                              child: ListTile(
+                                title: Text(
+                                    'Date: ${bill.date.split('-').sublist(0, 3).join('-')}'),
+                                subtitle:
+                                       Text('Total Amount: ${bill.totalAmount} RM'),
+                                // Display items here
+                              ),
                             ),
                           ),
                         );

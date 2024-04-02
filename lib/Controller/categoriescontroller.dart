@@ -184,7 +184,6 @@ class CategoriesController extends GetxController {
         } else {
           Fluttertoast.showToast(msg: 'Category already exists!');
         }
-
         isloading.value = false;
         Fluttertoast.showToast(msg: 'Category list saved to Firestore successfully!');
         fetchCategoriesFromFirestore();

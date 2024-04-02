@@ -4,12 +4,14 @@ import 'package:pesa_makanam_app/Controller/AdminAccessController.dart';
 import 'package:pesa_makanam_app/View/Home/drawer/AdminAccess.dart';
 import 'package:pesa_makanam_app/View/Login/loginscreen.dart';
 import 'package:pesa_makanam_app/binding/AdminAccessbinding.dart';
+import '../Controller/TicketDetailController.dart';
 import '../View/Home/drawer/Adjustment.dart';
 import '../View/Home/drawer/Attendance.dart';
 import '../View/Home/Home_screen.dart';
 import '../View/Home/drawer/AddItems.dart';
 import '../View/Home/drawer/Employee.dart';
 import '../View/Home/drawer/POS/TicketList.dart';
+import '../View/Home/drawer/POS/Ticket_Detail.dart';
 import '../View/Home/drawer/POS/pos.dart';
 import '../View/Home/drawer/Payment.dart';
 import '../View/Home/drawer/Purchase/AddPurchase.dart';
@@ -77,6 +79,10 @@ class AppPages {
     GetPage(
         name: ROUTE_ADMINACCESS,
         page: () => const AdminAccessScreen(),
-        binding: AdminAccessBinding())
+        binding: AdminAccessBinding()),
+    GetPage(
+      name: ROUTE_TICKETDETAIL,
+      page: ()=> TicketDetail(),
+    )
   ];
 }

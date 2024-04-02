@@ -29,7 +29,7 @@ class forPosTicketDetail {
 
 class Bill {
   final String date;
-  final String totalAmount;
+  String? totalAmount;
   final List<forPosTicketDetail> items;
 
   Bill({

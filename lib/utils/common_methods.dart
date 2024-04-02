@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'ImageUtils.dart';
+import 'colorUtils.dart';
 
 void showToast(String message) {
   Fluttertoast.showToast(
@@ -130,6 +131,43 @@ class PNetworkImage extends StatelessWidget {
       fit: fit,
       width: width,
       height: height,
+    );
+  }
+}
+
+class CustomElevatedButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String label;
+  final Color? optionalButtonColor; // New optional parameter for button color
+
+  const CustomElevatedButton({
+    Key? key,
+    required this.onPressed,
+    required this.label,
+    this.optionalButtonColor, // Optional color parameter with default value null
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                return optionalButtonColor ?? Colors.green;
+              }
+              return optionalButtonColor ?? primarycolor;
+            },
+          ),
+         ),
+        onPressed: onPressed,
+        child: Text(
+          label,
+          style: const TextStyle(color: white, fontSize: 14),
+        ),
+      ),
     );
   }
 }
