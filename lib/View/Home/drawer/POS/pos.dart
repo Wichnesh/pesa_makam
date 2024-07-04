@@ -63,8 +63,6 @@ class _Pos_screenState extends State<Pos_screen> {
         builder: (controller) {
           final detailList = controller.detailList;
           final totalAmount = controller.calculateTotalAmount();
-          final isDetailListEmpty = detailList.isEmpty;
-
           return controller.isloading.value
               ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
