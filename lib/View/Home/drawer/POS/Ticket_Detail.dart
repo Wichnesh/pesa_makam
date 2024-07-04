@@ -74,7 +74,6 @@ class _TicketDetailState extends State<TicketDetail> {
                       )),
 
                       DataCell(Text(item.price ?? '')),
-
                       DataCell(Text(_calculateTotal(item))),
                     ]);
                   }).toList(),

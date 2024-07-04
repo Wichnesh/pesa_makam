@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pesa_makanam_app/Controller/homeController.dart';
 import 'package:pesa_makanam_app/Model/BillModel.dart';
@@ -97,26 +98,50 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 ],
                                 backgroundColor: primarycolor,
                               ),
-                              body: GetBuilder<PosController>(
-                                init: PosController(),
-                                builder: ((controller) =>
-                                    controller.isloading.value
-                                        ? const Center(
+                              body: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Center(
+                                      child: Obx(() => posController.tableIds.isEmpty ? Container() : DropdownButton<String>(
+                                        value:posController.selectedTable.value,
+                                        onChanged: (String? newValue) {
+                                          if (kDebugMode) {
+                                            print('Selected Table Document ID: $newValue');
+                                            posController.selectedTable.value = newValue!;
+                                            if(newValue == "Select the Table"){
+                                              posController.detailList.clear();
+                                              posController.totalamount.value = "0";
+                                              Fluttertoast.showToast(msg: "Select the Table");
+                                            }else{
+                                              posController.fetchTable();
+                                            }
+
+                                          }
+                                        },
+                                        items: posController.tableIds
+                                            .map<DropdownMenuItem<String>>((String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      )),
+                                    ),
+                                    GetBuilder<PosController>(
+                                      init: PosController(),
+                                      builder: ((controller) =>
+                                          Obx(() => controller.isloading.value
+                                              ? const Center(
                                             child: CircularProgressIndicator(),
                                           )
-                                        : controller.detailList.isEmpty
-                                            ? const Center(
-                                                child:
-                                                    Text('No Data Available'),
-                                              )
-                                            : SingleChildScrollView(
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Column(
-                                                    children: [
-                                                      const Card(
-                                                          child: ListTile(
+                                              :SingleChildScrollView(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(
+                                                  10.0),
+                                              child: Column(
+                                                children: [
+                                                  const Card(
+                                                      child: ListTile(
                                                         title: Text(
                                                           'Dine in',
                                                           style: TextStyle(
@@ -125,287 +150,48 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                         trailing: Icon(Icons
                                                             .arrow_drop_down_sharp),
                                                       )),
-                                                      GetBuilder<PosController>(
-                                                        init: PosController(),
-                                                        builder: (controller) =>
-                                                            controller.isloading
-                                                                    .value
-                                                                ? const Center(
-                                                                    child:
-                                                                        CircularProgressIndicator(),
-                                                                  )
-                                                                : SingleChildScrollView(
-                                                                    child:
-                                                                        SingleChildScrollView(
-                                                                      scrollDirection:
-                                                                          Axis.horizontal,
-                                                                      child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(1.0),
-                                                                        child: SizedBox(
-                                                                            height: screenHeight * 0.5,
-                                                                            width: screenWidth / 2.5,
-                                                                            child: SingleChildScrollView(
-                                                                              scrollDirection: Axis.horizontal,
-                                                                              child: SingleChildScrollView(
-                                                                                scrollDirection: Axis.vertical,
-                                                                                child: DataTable(
-                                                                                  headingRowHeight: 70.0,
-                                                                                  columnSpacing: 70.0,
-                                                                                  columns: const [
-                                                                                    DataColumn(
-                                                                                      label: Text('Item Name', style: TextStyle(color: Colors.black)),
-                                                                                    ),
-                                                                                    DataColumn(
-                                                                                      label: Text('Per Item', style: TextStyle(color: Colors.black)),
-                                                                                    ),
-                                                                                    DataColumn(
-                                                                                      label: Text('Item Quantity', style: TextStyle(color: Colors.black)),
-                                                                                    ),
-                                                                                    DataColumn(
-                                                                                      label: Text('Total Value', style: TextStyle(color: Colors.black)),
-                                                                                    ),
-                                                                                  ],
-                                                                                  rows: controller.detailList
-                                                                                      .map(
-                                                                                        (item) => DataRow(
-                                                                                          cells: [
-                                                                                            DataCell(
-                                                                                              Text(
-                                                                                                item.name!,
-                                                                                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                                                                              ),
-                                                                                            ),
-                                                                                            DataCell(
-                                                                                              Text(
-                                                                                                '${item.price!} RM',
-                                                                                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
-                                                                                              ),
-                                                                                            ),
-                                                                                            DataCell(
-                                                                                              SizedBox(
-                                                                                                child: Card(
-                                                                                                  elevation: 5,
-                                                                                                  child: Row(
-                                                                                                    children: [
-                                                                                                      InkWell(
-                                                                                                        onTap: () {
-                                                                                                          controller.decreaseItemCount(item);
-                                                                                                          setState(() {});
-                                                                                                        },
-                                                                                                        child: const Icon(
-                                                                                                          Icons.remove,
-                                                                                                          color: Colors.red,
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                      SizedBox(width: screenWidth * 0.01),
-                                                                                                      Text(item.itemcount!.toString()),
-                                                                                                      SizedBox(width: screenWidth * 0.01),
-                                                                                                      InkWell(
-                                                                                                        onTap: () {
-                                                                                                          controller.increaseItemCount(item);
-                                                                                                          setState(() {});
-                                                                                                        },
-                                                                                                        child: const Icon(
-                                                                                                          Icons.add,
-                                                                                                          color: Colors.green,
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ),
-                                                                                            ),
-                                                                                            DataCell(
-                                                                                              Text(
-                                                                                                '${controller.calculateTotalValue(item).toString()} RM',
-                                                                                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                                                                                              ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      )
-                                                                                      .toList(),
-                                                                                ),
-                                                                              ),
-                                                                            )),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                      ),
-                                                      GetBuilder<PosController>(
-                                                        init: PosController(),
-                                                        builder: ((controller) {
-                                                          double amount = controller
-                                                              .calculateTotalAmount();
-                                                          controller.totalamount
-                                                                  .value =
-                                                              amount.toString();
-                                                          return Text(
-                                                            'Total Amount : $amount RM',
-                                                            style: const TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 24),
-                                                          );
-                                                        }),
-                                                      ),
-                                                      SizedBox(
-                                                        height:
-                                                            screenHeight * 0.05,
-                                                      ),
-                                                      GetBuilder<PosController>(
-                                                          init: PosController(),
-                                                          builder:
-                                                              ((controller) {
-                                                            return Column(
-                                                              children: [
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(10),
-                                                                  child: Row(
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Container(
-                                                                          height:
-                                                                              55,
-                                                                          width:
-                                                                              175,
-                                                                          color:
-                                                                              primarycolor,
-                                                                          child:
-                                                                              ElevatedButton(
-                                                                            style:
-                                                                                ButtonStyle(
-                                                                              backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                                                                                (Set<MaterialState> states) {
-                                                                                  if (states.contains(MaterialState.pressed)) {
-                                                                                    // Change the button color when pressed
-                                                                                    return Colors.green;
-                                                                                  }
-                                                                                  // Return the default button color
-                                                                                  return primarycolor;
-                                                                                },
-                                                                              ),
-                                                                            ),
-                                                                            onPressed:
-                                                                                () {
-                                                                              controller.clear();
-                                                                            },
-                                                                            child:
-                                                                                const SizedBox(
-                                                                              height: 50,
-                                                                              width: 165,
-                                                                              child: Center(
-                                                                                child: Text(
-                                                                                  "Clear",
-                                                                                  style: TextStyle(color: Colors.white),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      const SizedBox(
-                                                                        width:
-                                                                            15,
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            SizedBox(
-                                                                          height:
-                                                                              55,
-                                                                          width:
-                                                                              175,
-                                                                          child:
-                                                                              ElevatedButton(
-                                                                            style:
-                                                                                ButtonStyle(
-                                                                              backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                                                                                (Set<MaterialState> states) {
-                                                                                  if (states.contains(MaterialState.pressed)) {
-                                                                                    // Change the button color when pressed
-                                                                                    return Colors.green;
-                                                                                  }
-                                                                                  // Return the default button color
-                                                                                  return Colors.red; // or any other color you want
-                                                                                },
-                                                                              ),
-                                                                            ),
-                                                                            onPressed:
-                                                                                () async {
-                                                                              homecontroller.printSampleReceipt('80mm');
-                                                                            },
-                                                                            child:
-                                                                                const Text('Show Receipt'),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(10),
-                                                                  child: Row(
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Container(
-                                                                          height:
-                                                                              55,
-                                                                          width:
-                                                                              175,
-                                                                          color:
-                                                                              primarycolor,
-                                                                          child:
-                                                                              ElevatedButton(
-                                                                            style:
-                                                                                ButtonStyle(
-                                                                              backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                                                                                (Set<MaterialState> states) {
-                                                                                  if (states.contains(MaterialState.pressed)) {
-                                                                                    // Change the button color when pressed
-                                                                                    return Colors.green;
-                                                                                  }
-                                                                                  // Return the default button color
-                                                                                  return primarycolor;
-                                                                                },
-                                                                              ),
-                                                                            ),
-                                                                            onPressed:
-                                                                                () {
-                                                                              controller.Submit();
-                                                                            },
-                                                                            child:
-                                                                                Container(
-                                                                              height: 50,
-                                                                              width: 165,
-                                                                              child: const Center(
-                                                                                child: Text(
-                                                                                  "Submit",
-                                                                                  style: TextStyle(color: Colors.white),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          }))
-                                                    ],
+
+                                                  GetBuilder<PosController>(
+                                                    init: PosController(),
+                                                    builder: (controller) =>
+                                                    controller.isloading
+                                                        .value
+                                                        ? const Center(
+                                                      child:
+                                                      CircularProgressIndicator(),
+                                                    )
+                                                        : _buildDataTable(controller.detailList),
                                                   ),
-                                                ),
-                                              )),
+                                                  GetBuilder<PosController>(
+                                                    init: PosController(),
+                                                    builder: ((controller) {
+                                                      double amount = controller
+                                                          .calculateTotalAmount();
+                                                      controller.totalamount
+                                                          .value =
+                                                          amount.toString();
+                                                      return Obx(() => Text(
+                                                        'Total Amount : ${controller.totalamount.value} RM',
+                                                        style: const TextStyle(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold,
+                                                            fontSize: 24),
+                                                      ));
+                                                    }),
+                                                  ),
+                                                  SizedBox(
+                                                    height:
+                                                    screenHeight * 0.05,
+                                                  ),
+                                                  _buildActionButtons(controller, homecontroller)
+                                                ],
+                                              ),
+                                            ),
+                                          )))
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -513,25 +299,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                             child:
                                                                 FadeInAnimation(
                                                               child: InkWell(
-                                                                onLongPress:controller.adminAccess.value ? (){
-                                                                  debugPrint("Print Delete  current item name = ${controller.Detail[index].name}, current tab ${controller.categories[selectedTab!]}");
-                                                                  showDialog(
-                                                                    context: context,
-                                                                    builder: (BuildContext context) {
-                                                                      return DialogBox(
-                                                                        title: "Delete",
-                                                                        content: controller.Detail[index].name,
-                                                                        context: context,
-                                                                        function: () {
-                                                                          controller.deleteSubCollectionItem(controller.categories[selectedTab!],controller.Detail[index].name);
-                                                                          Navigator.of(context).pop(); // Close the dialog after the function is executed
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  );
-                                                                } : (){
-                                                                  debugPrint("Don't have access");
-                                                                },
+                                                                onLongPress:
+                                                                    controller
+                                                                            .adminAccess
+                                                                            .value
+                                                                        ? () {
+                                                                            debugPrint("Print Delete  current item name = ${controller.Detail[index].name}, current tab ${controller.categories[selectedTab!]}");
+                                                                            showDialog(
+                                                                              context: context,
+                                                                              builder: (BuildContext context) {
+                                                                                return DialogBox(
+                                                                                  title: "Delete",
+                                                                                  content: controller.Detail[index].name,
+                                                                                  context: context,
+                                                                                  function: () {
+                                                                                    controller.deleteSubCollectionItem(controller.categories[selectedTab!], controller.Detail[index].name);
+                                                                                    Navigator.of(context).pop(); // Close the dialog after the function is executed
+                                                                                  },
+                                                                                );
+                                                                              },
+                                                                            );
+                                                                          }
+                                                                        : () {
+                                                                            debugPrint("Don't have access");
+                                                                          },
                                                                 onTap: () {
                                                                   controller.addItem(forPosTicketDetail(
                                                                       description: controller
@@ -793,22 +584,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                           fontSize: 24),
                                                     ),
                                             ),
-                                            controller.adminAccess.value ?  ListTile(
-                                              leading:
-                                                  const Icon(Icons.category),
-                                              title: const Text("Categories"),
-                                              onTap: () {
-                                                Get.toNamed(ROUTE_CATEGORIES);
-                                              },
-                                            ) : Container(),
-                                            controller.adminAccess.value ?  ListTile(
-                                              leading:
-                                                  const Icon(Icons.add_box),
-                                              title: const Text("Add Items"),
-                                              onTap: () {
-                                                Get.toNamed(ROUTE_ADDITEMS);
-                                              },
-                                            ) : Container(),
+                                            controller.adminAccess.value
+                                                ? ListTile(
+                                                    leading: const Icon(
+                                                        Icons.category),
+                                                    title: const Text(
+                                                        "Categories"),
+                                                    onTap: () {
+                                                      Get.toNamed(
+                                                          ROUTE_CATEGORIES);
+                                                    },
+                                                  )
+                                                : Container(),
+                                            controller.adminAccess.value
+                                                ? ListTile(
+                                                    leading: const Icon(
+                                                        Icons.add_box),
+                                                    title:
+                                                        const Text("Add Items"),
+                                                    onTap: () {
+                                                      Get.toNamed(
+                                                          ROUTE_ADDITEMS);
+                                                    },
+                                                  )
+                                                : Container(),
                                             ListTile(
                                               leading: const Icon(
                                                   Icons.point_of_sale_sharp),
@@ -817,29 +616,41 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                 Get.toNamed(ROUTE_POS);
                                               },
                                             ),
-                                            controller.adminAccess.value ? ListTile(
-                                              leading: const Icon(
-                                                  Icons.shopping_cart),
-                                              title: const Text("Purchase"),
-                                              onTap: () {
-                                                Get.toNamed(ROUTE_PURCHASE);
-                                              },
-                                            ) : Container(),
-                                            controller.adminAccess.value ? ListTile(
-                                              leading:
-                                                  const Icon(Icons.price_check),
-                                              title: const Text('Adjustment'),
-                                              onTap: () {
-                                                //Get.toNamed(ROUTE_ADJUSTMENT);
-                                              },
-                                            ) : Container(),
-                                            controller.adminAccess.value ? ListTile(
-                                              leading: const Icon(Icons.person),
-                                              title: const Text("Employee"),
-                                              onTap: () {
-                                                Get.toNamed(ROUTE_EMPLOYEE);
-                                              },
-                                            ) : Container(),
+                                            controller.adminAccess.value
+                                                ? ListTile(
+                                                    leading: const Icon(
+                                                        Icons.shopping_cart),
+                                                    title:
+                                                        const Text("Purchase"),
+                                                    onTap: () {
+                                                      Get.toNamed(
+                                                          ROUTE_PURCHASE);
+                                                    },
+                                                  )
+                                                : Container(),
+                                            controller.adminAccess.value
+                                                ? ListTile(
+                                                    leading: const Icon(
+                                                        Icons.price_check),
+                                                    title: const Text(
+                                                        'Adjustment'),
+                                                    onTap: () {
+                                                      //Get.toNamed(ROUTE_ADJUSTMENT);
+                                                    },
+                                                  )
+                                                : Container(),
+                                            controller.adminAccess.value
+                                                ? ListTile(
+                                                    leading: const Icon(
+                                                        Icons.person),
+                                                    title:
+                                                        const Text("Employee"),
+                                                    onTap: () {
+                                                      Get.toNamed(
+                                                          ROUTE_EMPLOYEE);
+                                                    },
+                                                  )
+                                                : Container(),
                                             ListTile(
                                               leading: const Icon(
                                                   Icons.bookmark_add_outlined),
@@ -848,14 +659,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                 Get.toNamed(ROUTE_ATTENDANCE);
                                               },
                                             ),
-                                            controller.adminAccess.value ?  ListTile(
-                                              leading:
-                                                  const Icon(Icons.payment),
-                                              title: const Text("Payment"),
-                                              onTap: () {
-                                                Get.toNamed(ROUTE_PAYMENT);
-                                              },
-                                            ) : Container(),
+                                            controller.adminAccess.value
+                                                ? ListTile(
+                                                    leading: const Icon(
+                                                        Icons.payment),
+                                                    title:
+                                                        const Text("Payment"),
+                                                    onTap: () {
+                                                      Get.toNamed(
+                                                          ROUTE_PAYMENT);
+                                                    },
+                                                  )
+                                                : Container(),
                                             ListTile(
                                               leading: const Icon(Icons
                                                   .admin_panel_settings_outlined),
@@ -978,25 +793,41 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                         .fastLinearToSlowEaseIn,
                                                     child: FadeInAnimation(
                                                       child: InkWell(
-                                                        onLongPress: controller.adminAccess.value ? (){
-                                                          debugPrint("Print Delete  current item name = ${controller.Detail[index].name}, current tab ${controller.categories[selectedTab!]}");
-                                                          showDialog(
-                                                            context: context,
-                                                            builder: (BuildContext context) {
-                                                              return DialogBox(
-                                                                title: "Delete",
-                                                                content: controller.Detail[index].name,
-                                                                context: context,
-                                                                function: () {
-                                                                  controller.deleteSubCollectionItem(controller.categories[selectedTab!],controller.Detail[index].name);
-                                                                  Navigator.of(context).pop(); // Close the dialog after the function is executed
-                                                                },
-                                                              );
-                                                            },
-                                                          );
-                                                        } : (){
-                                                          debugPrint("Don't have access");
-                                                        },
+                                                        onLongPress:
+                                                            controller
+                                                                    .adminAccess
+                                                                    .value
+                                                                ? () {
+                                                                    debugPrint(
+                                                                        "Print Delete  current item name = ${controller.Detail[index].name}, current tab ${controller.categories[selectedTab!]}");
+                                                                    showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (BuildContext
+                                                                              context) {
+                                                                        return DialogBox(
+                                                                          title:
+                                                                              "Delete",
+                                                                          content: controller
+                                                                              .Detail[index]
+                                                                              .name,
+                                                                          context:
+                                                                              context,
+                                                                          function:
+                                                                              () {
+                                                                            controller.deleteSubCollectionItem(controller.categories[selectedTab!],
+                                                                                controller.Detail[index].name);
+                                                                            Navigator.of(context).pop(); // Close the dialog after the function is executed
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                  }
+                                                                : () {
+                                                                    debugPrint(
+                                                                        "Don't have access");
+                                                                  },
                                                         onTap: () {
                                                           controller.addItem(forPosTicketDetail(
                                                               description:
@@ -1233,20 +1064,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                   const TextStyle(fontSize: 24),
                                             ),
                                     ),
-                                    controller.adminAccess.value ? ListTile(
-                                      leading: const Icon(Icons.category),
-                                      title: const Text("Categories"),
-                                      onTap: () {
-                                        Get.toNamed(ROUTE_CATEGORIES);
-                                      },
-                                    ) : Container(),
-                                    controller.adminAccess.value ? ListTile(
-                                      leading: const Icon(Icons.add_box),
-                                      title: const Text("Add Items"),
-                                      onTap: () {
-                                        Get.toNamed(ROUTE_ADDITEMS);
-                                      },
-                                    ) : Container(),
+                                    controller.adminAccess.value
+                                        ? ListTile(
+                                            leading: const Icon(Icons.category),
+                                            title: const Text("Categories"),
+                                            onTap: () {
+                                              Get.toNamed(ROUTE_CATEGORIES);
+                                            },
+                                          )
+                                        : Container(),
+                                    controller.adminAccess.value
+                                        ? ListTile(
+                                            leading: const Icon(Icons.add_box),
+                                            title: const Text("Add Items"),
+                                            onTap: () {
+                                              Get.toNamed(ROUTE_ADDITEMS);
+                                            },
+                                          )
+                                        : Container(),
                                     ListTile(
                                       leading:
                                           const Icon(Icons.point_of_sale_sharp),
@@ -1255,27 +1090,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         Get.toNamed(ROUTE_POS);
                                       },
                                     ),
-                                  controller.adminAccess.value ?  ListTile(
-                                      leading: const Icon(Icons.shopping_cart),
-                                      title: const Text("Purchase"),
-                                      onTap: () {
-                                        Get.toNamed(ROUTE_PURCHASE);
-                                      },
-                                    ) : Container(),
-                                    controller.adminAccess.value ?  ListTile(
-                                      leading: const Icon(Icons.price_check),
-                                      title: const Text('Adjustment'),
-                                      onTap: () {
-                                        //Get.toNamed(ROUTE_ADJUSTMENT);
-                                      },
-                                    ) : Container(),
-                                    controller.adminAccess.value ?  ListTile(
-                                      leading: const Icon(Icons.person),
-                                      title: const Text("Employee"),
-                                      onTap: () {
-                                        Get.toNamed(ROUTE_EMPLOYEE);
-                                      },
-                                    ) : Container(),
+                                    controller.adminAccess.value
+                                        ? ListTile(
+                                            leading:
+                                                const Icon(Icons.shopping_cart),
+                                            title: const Text("Purchase"),
+                                            onTap: () {
+                                              Get.toNamed(ROUTE_PURCHASE);
+                                            },
+                                          )
+                                        : Container(),
+                                    controller.adminAccess.value
+                                        ? ListTile(
+                                            leading:
+                                                const Icon(Icons.price_check),
+                                            title: const Text('Adjustment'),
+                                            onTap: () {
+                                              //Get.toNamed(ROUTE_ADJUSTMENT);
+                                            },
+                                          )
+                                        : Container(),
+                                    controller.adminAccess.value
+                                        ? ListTile(
+                                            leading: const Icon(Icons.person),
+                                            title: const Text("Employee"),
+                                            onTap: () {
+                                              Get.toNamed(ROUTE_EMPLOYEE);
+                                            },
+                                          )
+                                        : Container(),
                                     ListTile(
                                       leading: const Icon(
                                           Icons.bookmark_add_outlined),
@@ -1284,13 +1127,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         Get.toNamed(ROUTE_ATTENDANCE);
                                       },
                                     ),
-                                    controller.adminAccess.value ?  ListTile(
-                                      leading: const Icon(Icons.payment),
-                                      title: const Text("Payment"),
-                                      onTap: () {
-                                        Get.toNamed(ROUTE_PAYMENT);
-                                      },
-                                    ) : Container(),
+                                    controller.adminAccess.value
+                                        ? ListTile(
+                                            leading: const Icon(Icons.payment),
+                                            title: const Text("Payment"),
+                                            onTap: () {
+                                              Get.toNamed(ROUTE_PAYMENT);
+                                            },
+                                          )
+                                        : Container(),
                                     ListTile(
                                       leading: const Icon(
                                           Icons.admin_panel_settings_outlined),
@@ -1324,5 +1169,247 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   }
                 }),
               ));
+  }
+
+  Widget _buildDataTable(RxList<forPosTicketDetail> detailList) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Obx(() => SizedBox(
+      height: screenHeight * 0.5,
+      width: screenWidth / 2.5,
+      child: SingleChildScrollView(
+        child: DataTable(
+          headingRowHeight: 70.0,
+          columnSpacing: 70.0,
+          columns: const [
+            DataColumn(label: Text('Item Name')),
+            DataColumn(label: Text('Per Item')),
+            DataColumn(label: Text('Item Quantity')),
+            DataColumn(label: Text('Total Value')),
+          ],
+          rows: detailList.map((item) {
+            final controller = Get.find<PosController>();
+            return DataRow(
+              cells: [
+                DataCell(Text(
+                  item.name!,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+                DataCell(Text(
+                  '${item.price!} RM',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w100,
+                  ),
+                )),
+                DataCell(
+                  SizedBox(
+                    child: Card(
+                      elevation: 5,
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: () => controller.decreaseItemCount(item),
+                            child: const Icon(
+                              Icons.remove,
+                              color: Colors.red,
+                            ),
+                          ),
+                          SizedBox(width: screenWidth * 0.01),
+                          Text(item.itemcount!.toString()),
+                          SizedBox(width: screenWidth * 0.01),
+                          InkWell(
+                            onTap: () => controller.increaseItemCount(item),
+                            child: const Icon(
+                              Icons.add,
+                              color: Colors.green,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                DataCell(Text(
+                  '${controller.calculateTotalValue(item).toString()} RM',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+              ],
+            );
+          }).toList(),
+        ),
+      ),
+    ));
+  }
+
+  Widget _buildActionButtons(PosController controller,HomeController homeController) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 55,
+                  width: 175,
+                  child: ElevatedButton(
+                    onPressed:(){
+                      if(controller.selectedTable.value == "Select the Table"){
+                        Fluttertoast.showToast(msg: "Select The Table");
+                      }else{
+                        controller.clearTableData();
+                      }
+
+                    } ,
+                    style: ElevatedButton.styleFrom(
+                      primary: primarycolor,
+                    ),
+                    child: const Text(
+                      "Clear",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 15),
+              Expanded(
+                child: SizedBox(
+                  height: 55,
+                  width: 175,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return SampleReceiptDialog();
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    child: const Text('Show Receipt'),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 15),
+              Expanded(
+                child: SizedBox(
+                  height: 55,
+                  width: 175,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if(controller.selectedTable.value == "Select the Table"){
+                        Fluttertoast.showToast(msg: "Select The Table");
+                      }else{
+                        controller.submitWithoutTime();
+                      }
+
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: primarycolor,
+                    ),
+                    child: const Text('Update'),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: SizedBox(
+            height: 55,
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: (){
+                if(controller.selectedTable.value == "Select the Table"){
+                  Fluttertoast.showToast(msg: "Select The Table");
+                }else{
+                  controller.Submit();
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                primary: primarycolor,
+              ),
+              child: const Text(
+                "Complete the Bill",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+class SampleReceiptDialog extends StatefulWidget {
+   SampleReceiptDialog({super.key});
+
+  @override
+  State<SampleReceiptDialog> createState() => _SampleReceiptDialogState();
+}
+
+class _SampleReceiptDialogState extends State<SampleReceiptDialog> {
+   final controller = Get.find<PosController>();
+   final homeController = Get.find<HomeController>();
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Enter Details'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextFormField(
+            controller: controller.cash,
+            decoration: const InputDecoration(
+                labelText: 'Cash',
+                suffix: Text("RM")
+            ),
+            onChanged: (val){
+              controller.checkBalance();
+              setState(() {
+
+              });
+            },
+          ),
+          const SizedBox(height: 10),
+          Obx(() => Text("Balance : ${controller.balanceAmount.value} RM"))
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop(); // Close the dialog
+          },
+          child: const Text('Close'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            double cashAmount = double.parse(controller.cash.text);
+            double totalAmount = double.parse(controller.totalamount.value);
+            print(cashAmount);
+            print(totalAmount);
+            if (cashAmount >= totalAmount) {
+              homeController.printSampleReceipt("80", controller.cash.text, controller.balanceAmount.value);
+            } else {
+              Fluttertoast.showToast(msg: "Bill Amount is Not Matching");
+            }
+
+
+          },
+          child: const Text('Submit'),
+        ),
+      ],
+    );
   }
 }

@@ -30,6 +30,8 @@ class forPosTicketDetail {
 class Bill {
   final String date;
   String? totalAmount;
+  String? cash;
+  String? balance;
   final List<forPosTicketDetail> items;
 
   Bill({

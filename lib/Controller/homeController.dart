@@ -87,7 +87,7 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> printSampleReceipt(String paperSize) async {
+  Future<void> printSampleReceipt(String paperSize,String cash,String balance) async {
     BluetoothPrint bluetoothPrint = BluetoothPrint.instance;
 
     List<LineText> list = [];
@@ -114,7 +114,6 @@ class HomeController extends GetxController {
         align: LineText.ALIGN_CENTER,
         linefeed: 1));
 
-    // Add TAX INVOICE / BILL section
     // You can use the current date using DateTime.now() or replace it with your own date logic
     DateTime currentDate = DateTime.now();
     String formattedDate = currentDate.toString();
@@ -194,6 +193,18 @@ class HomeController extends GetxController {
         weight: 1,
         align: LineText.ALIGN_LEFT,
         linefeed: 1));
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: 'Cash:                                       $cash RM',
+        weight: 1,
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
+    list.add(LineText(
+        type: LineText.TYPE_TEXT,
+        content: 'balance:                                    $balance RM',
+        weight: 1,
+        align: LineText.ALIGN_LEFT,
+        linefeed: 1));
 
     // Add Payment Method
     list.add(LineText(
@@ -235,7 +246,7 @@ class HomeController extends GetxController {
 
   Future<void> printReceipt(String paperSize, BuildContext context) async {
     var posController = Get.find<PosController>();
-    posController.fromHomeSubmit();
+    posController.Submit();
     BluetoothPrint bluetoothPrint = BluetoothPrint.instance;
     bool? isConnected = await bluetoothPrint.isConnected;
     if (!isConnected!) {
@@ -245,7 +256,7 @@ class HomeController extends GetxController {
             context, // You need to have access to the context for showDialog
         builder: (context) {
           return AlertDialog(
-            title: Text('Connect Bluetooth Printer'),
+            title: const Text('Connect Bluetooth Printer'),
             content: const Text(
                 'Please connect a Bluetooth printer before printing the receipt.'),
             actions: <Widget>[

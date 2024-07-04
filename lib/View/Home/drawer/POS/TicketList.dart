@@ -202,6 +202,7 @@ class _TicketListState extends State<TicketList> {
             GetBuilder<PosController>(
               builder: ((controller) {
                 if (posController.showdata.value) {
+
                   return Expanded(
                     child: ListView.builder(
                       itemCount: posController.filterBills.length,
@@ -236,6 +237,36 @@ class _TicketListState extends State<TicketList> {
               }),
             )
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Obx(() => Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            RichText(
+              text: TextSpan(
+                text: 'Total: ',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: "${posController.grandTotal.value.toString()} RM",
+                    style: const TextStyle(
+                      color: Colors.green, // Change the color as needed
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
         ),
       ),
     );

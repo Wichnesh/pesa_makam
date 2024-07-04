@@ -17,39 +17,53 @@ class PosController extends GetxController {
   TextEditingController fromdatetext = TextEditingController();
   TextEditingController todatetext = TextEditingController();
   RxList<forPosTicketDetail> detailList = RxList<forPosTicketDetail>();
+  final RxList<String> tableIds = RxList<String>();
   var totalamount = "".obs;
+  TextEditingController cash = TextEditingController();
+  var balanceAmount = "".obs;
+  var grandTotal = "".obs;
+  var selectedTable = "".obs;
   final List<Bill> savedBills = [];
   final List<Bill> filterBills = [];
   DateTime? fromdate;
   DateTime? todate;
 
-  double calculateTotalValue(forPosTicketDetail item) {
-    return double.parse(item.price!) * item.itemcount!;
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    selectedTable.value = "Select the Table";
+    fetchTableDocumentIds();
   }
 
-  double calculateTotalAmount() {
-    double totalAmount = 0;
-    for (var item in detailList) {
-      totalAmount += calculateTotalValue(item);
-    }
-    return totalAmount;
-  }
+  double calculateTotalValue(forPosTicketDetail item) =>
+      double.parse(item.price!) * item.itemcount!;
+
+  double calculateTotalAmount() =>
+      detailList.fold(0.0, (total, item) => total + calculateTotalValue(item));
+
 
   void increaseItemCount(forPosTicketDetail item) {
-    if (item.itemcount != null) {
-      if (item.itemcount! < 999) {
-        item.itemcount = item.itemcount! + 1;
-      }
+    if (item.itemcount != null && item.itemcount! < 999) {
+      item.itemcount = item.itemcount! + 1;
     }
+    update();
+  }
+
+  void checkBalance(){
+    double totalBill = calculateTotalAmount();
+    double balance = double.parse(cash.text) - totalBill;
+    totalamount.value = totalBill.toStringAsFixed(2);
+    balanceAmount.value = balance.toStringAsFixed(2);
   }
 
   void decreaseItemCount(forPosTicketDetail item) {
-    if (item.itemcount != null) {
-      if (item.itemcount! > 0) {
-        item.itemcount = item.itemcount! - 1;
-      }
+    if (item.itemcount != null && item.itemcount! > 0) {
+      item.itemcount = item.itemcount! - 1;
     }
+    update();
   }
+
 
   void updateTotalValue(forPosTicketDetail item) {
     final totalValue = double.parse(item.price!) * item.itemcount!;
@@ -119,6 +133,8 @@ class PosController extends GetxController {
             final billData = {
               'date': formattedDate,
               'totalAmount': totalamount.value,
+              "cash" : cash.text,
+              "balance": balanceAmount.value,
               'items': itemsWithItemCountMoreThanZero
                   .map((item) => {
                         'name': item.name,
@@ -134,6 +150,7 @@ class PosController extends GetxController {
                     formattedDate) // Use the formatted date and time as the document ID
                 .set(billData);
             detailList.clear();
+
             var homeController = Get.find<HomeController>();
             homeController.detailList.clear();
             update();
@@ -194,6 +211,8 @@ class PosController extends GetxController {
             final billData = {
               'date': formattedDate,
               'totalAmount': totalamount.value,
+              "cash" : cash.text,
+              "balance": balanceAmount.value,
               'items': itemsWithItemCountMoreThanZero
                   .map((item) => {
                         'name': item.name,
@@ -208,6 +227,7 @@ class PosController extends GetxController {
                 .doc(
                     formattedDate) // Use the formatted date and time as the document ID
                 .set(billData);
+            clearTableData();
             detailList.clear();
             var homeController = Get.find<HomeController>();
             homeController.detailList.clear();
@@ -548,6 +568,7 @@ class PosController extends GetxController {
           if (kDebugMode) {
             print('Total Amount of All Bills: $totalAmountOfAllBills');
           }
+          grandTotal.value = totalAmountOfAllBills.toStringAsFixed(2);
         } else {
           Fluttertoast.showToast(msg: 'No saved bill data found.');
           if (kDebugMode) {
@@ -557,6 +578,227 @@ class PosController extends GetxController {
       }
     } catch (e) {
       print('Error fetching saved bill data: $e');
+    }
+  }
+
+
+  void fetchTableDocumentIds() async {
+    // Get the current user
+    final currentUser = FirebaseAuth.instance.currentUser;
+
+    // Check if the user is authenticated
+    if (currentUser != null) {
+      // Get the email of the current user
+      final userEmail = currentUser.email;
+
+      // Reference to the 'tables' collection for the current user
+      final billCollectionRef = FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userEmail)
+          .collection('tables');
+
+      try {
+        // Check if the 'tables' collection exists
+        final tablesCollection = await billCollectionRef.parent?.get();
+        if (!tablesCollection!.exists) {
+          // If the collection doesn't exist, create it
+          await billCollectionRef.parent?.set({});
+        }
+
+        // Get the documents from the 'tables' collection
+        final QuerySnapshot snapshot = await billCollectionRef.get();
+
+        // Iterate through each document and add its ID to the RxList
+        snapshot.docs.forEach((doc) {
+          final tableId = doc.id;
+          tableIds.add(tableId);
+          print('Table Document ID: $tableId');
+        });
+
+        // Create new documents from Table1 to Table15 if they don't exist
+        for (int i = 1; i <= 15; i++) {
+          final tableDocId = 'Table $i'; // Modify this line
+          final tableDocRef = billCollectionRef.doc(tableDocId);
+          final tableDocSnapshot = await tableDocRef.get();
+          if (!tableDocSnapshot.exists) {
+            await tableDocRef.set({'some_field': 'some_value'});
+            tableIds.add(tableDocId); // Add to RxList
+            print('New document created with ID: $tableDocId');
+          } else {
+            print('Document with ID $tableDocId already exists');
+          }
+        }
+        update();
+      } catch (error) {
+        // Handle any errors that may occur
+        print('Error fetching tables: $error');
+      }
+    } else {
+      // User is not authenticated
+      print('User is not authenticated.');
+    }
+  }
+
+  void submitWithoutTime() async {
+    double totalBill = calculateTotalAmount();
+    totalamount.value = totalBill.toStringAsFixed(2);
+    isloading.value = true;
+    update();
+    try {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        final userEmail = currentUser.email;
+
+        // Check if there are items with non-zero counts
+        final itemsWithItemCountMoreThanZero = detailList.where((item) => item.itemcount! > 0).toList();
+
+        if (itemsWithItemCountMoreThanZero.isNotEmpty) {
+          for (var item in itemsWithItemCountMoreThanZero) {
+            if (kDebugMode) {
+              print(
+                  "Item name: ${item.name}, Item count: ${item.itemcount},Item price : ${item.price}");
+              print('Total Amount :${totalamount.value}');
+            }
+          }
+          final userSnapshot = await FirebaseFirestore.instance
+              .collection('Users')
+              .where('email', isEqualTo: userEmail)
+              .limit(1)
+              .get();
+
+          // Get the selected table ID
+          final selectedTableId = selectedTable.value;
+
+          // Check if the selected table ID is not null
+          if (selectedTableId != null) {
+            // Reference to the 'tables' collection
+            final tableDocRef = FirebaseFirestore.instance.collection('Users').doc(userEmail).collection('tables').doc(selectedTableId);
+
+            // Create a new Firestore document under the selected table
+            final billData = {
+              'totalAmount': totalamount.value,
+              'items': itemsWithItemCountMoreThanZero
+                  .map((item) => {
+                'name': item.name,
+                'itemcount': item.itemcount,
+                'price': item.price,
+              })
+                  .toList(),
+            };
+            await tableDocRef.set(billData);
+            detailList.clear();
+            var homeController = Get.find<HomeController>();
+            homeController.detailList.clear();
+            update();
+            selectedTable.value = "Select the Table";
+            showToast('Ticket updated Successfully');
+            Get.back();
+          } else {
+            // Handle the case where no table is selected
+            if (kDebugMode) {
+              print("No table selected");
+            }
+          }
+        } else {
+          if (kDebugMode) {
+            print("No items with itemcount more than 0 found");
+          }
+        }
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+    isloading.value = false;
+    update();
+  }
+
+  void fetchTable() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      final userEmail = currentUser.email;
+      final selectedTableId = selectedTable.value; // Assuming selectedTable is a Rx variable containing the table ID
+
+      await fetchTableDataAndAddToDetailList();
+    }
+  }
+
+  Future<void> fetchTableDataAndAddToDetailList() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    try {
+      final userEmail = currentUser!.email;
+      // Reference to the document in the 'tables' collection
+      final tableDocRef = FirebaseFirestore.instance.collection('Users').doc(userEmail).collection('tables').doc(selectedTable.value);
+
+      // Fetch the document snapshot
+      final tableDocSnapshot = await tableDocRef.get();
+
+      if (tableDocSnapshot.exists) {
+        final tableData = tableDocSnapshot.data();
+        detailList.clear();
+        // Extract 'items' field from the document data
+        final List<dynamic>? items = tableData?['items'];
+
+        if (items != null) {
+          // Clear existing data in detailList
+          detailList.clear();
+
+          // Iterate over the items and add them to detailList
+          for (var itemData in items) {
+            final String? name = itemData['name'];
+            final int? itemCount = itemData['itemcount'];
+            final String? price = itemData['price'];
+
+            // Create a new instance of forPosTicketDetail and add it to detailList
+            detailList.add(forPosTicketDetail(
+              name: name,
+              itemcount: itemCount,
+              price: price,
+            ));
+          }
+          update();
+        }
+      }else{
+        print("object");
+      }
+    } catch (e) {
+      // Handle errors
+      print(e);
+    }
+  }
+
+  Future<void> clearTableData() async {
+
+    final currentUser = FirebaseAuth.instance.currentUser;
+    try {
+      final userEmail = currentUser!.email;
+      // Reference to the document in the 'tables' collection
+      final tableDocRef = FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userEmail)
+          .collection('tables')
+          .doc(selectedTable.value);
+
+      // Get the document snapshot to access its data
+      final tableDocSnapshot = await tableDocRef.get();
+
+      // Check if the document exists
+      if (tableDocSnapshot.exists) {
+        // Get the data fields of the document
+        final data = tableDocSnapshot.data();
+
+        // Clear all fields of the document
+        data?.forEach((key, value) {
+          tableDocRef.update({key: FieldValue.delete()});
+        });
+        fetchTableDataAndAddToDetailList();
+        Fluttertoast.showToast(msg: 'Table data cleared successfully');
+      } else {
+        print('Document does not exist');
+      }
+    } catch (e) {
+      print('Failed to clear table data: $e');
     }
   }
 
