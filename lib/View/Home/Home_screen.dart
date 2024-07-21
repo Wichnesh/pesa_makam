@@ -105,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       child: Obx(() => posController.tableIds.isEmpty ? Container() : DropdownButton<String>(
                                         value:posController.selectedTable.value,
                                         onChanged: (String? newValue) {
-                                          if (kDebugMode) {
                                             print('Selected Table Document ID: $newValue');
                                             posController.selectedTable.value = newValue!;
                                             if(newValue == "Select the Table"){
@@ -115,8 +114,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             }else{
                                               posController.fetchTable();
                                             }
-
-                                          }
                                         },
                                         items: posController.tableIds
                                             .map<DropdownMenuItem<String>>((String value) {
