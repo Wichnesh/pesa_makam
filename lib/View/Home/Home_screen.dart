@@ -628,17 +628,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                     },
                                                   )
                                                 : Container(),
-                                            controller.adminAccess.value
-                                                ? ListTile(
-                                                    leading: const Icon(
-                                                        Icons.price_check),
-                                                    title: const Text(
-                                                        'Adjustment'),
-                                                    onTap: () {
-                                                      //Get.toNamed(ROUTE_ADJUSTMENT);
-                                                    },
-                                                  )
-                                                : Container(),
+                                            // controller.adminAccess.value
+                                            //     ? ListTile(
+                                            //         leading: const Icon(
+                                            //             Icons.price_check),
+                                            //         title: const Text(
+                                            //             'Adjustment'),
+                                            //         onTap: () {
+                                            //           //Get.toNamed(ROUTE_ADJUSTMENT);
+                                            //         },
+                                            //       )
+                                            //     : Container(),
                                             controller.adminAccess.value
                                                 ? ListTile(
                                                     leading: const Icon(
@@ -1100,16 +1100,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             },
                                           )
                                         : Container(),
-                                    controller.adminAccess.value
-                                        ? ListTile(
-                                            leading:
-                                                const Icon(Icons.price_check),
-                                            title: const Text('Adjustment'),
-                                            onTap: () {
-                                              //Get.toNamed(ROUTE_ADJUSTMENT);
-                                            },
-                                          )
-                                        : Container(),
+                                    // controller.adminAccess.value
+                                    //     ? ListTile(
+                                    //         leading:
+                                    //             const Icon(Icons.price_check),
+                                    //         title: const Text('Adjustment'),
+                                    //         onTap: () {
+                                    //           //Get.toNamed(ROUTE_ADJUSTMENT);
+                                    //         },
+                                    //       )
+                                    //     : Container(),
                                     controller.adminAccess.value
                                         ? ListTile(
                                             leading: const Icon(Icons.person),
