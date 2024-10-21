@@ -1285,7 +1285,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return SampleReceiptDialog();
+                          return SampleReceiptDialog(print: true);
                         },
                       );
                     },
@@ -1330,7 +1330,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 if(controller.selectedTable.value == "Select the Table"){
                   Fluttertoast.showToast(msg: "Select The Table");
                 }else{
-                  controller.Submit();
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SampleReceiptDialog();
+                    },
+                  );
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -1350,8 +1355,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
 
 class SampleReceiptDialog extends StatefulWidget {
-   SampleReceiptDialog({super.key});
-
+   SampleReceiptDialog({super.key, this.print = false});
+   bool print;
   @override
   State<SampleReceiptDialog> createState() => _SampleReceiptDialogState();
 }
@@ -1397,12 +1402,14 @@ class _SampleReceiptDialogState extends State<SampleReceiptDialog> {
             print(cashAmount);
             print(totalAmount);
             if (cashAmount >= totalAmount) {
-              homeController.printSampleReceipt("80", controller.cash.text, controller.balanceAmount.value);
+              if(widget.print){
+                homeController.printSampleReceipt("80", controller.cash.text, controller.balanceAmount.value);
+              }else{
+                controller.Submit();
+              }
             } else {
               Fluttertoast.showToast(msg: "Bill Amount is Not Matching");
             }
-
-
           },
           child: const Text('Submit'),
         ),
@@ -1410,3 +1417,6 @@ class _SampleReceiptDialogState extends State<SampleReceiptDialog> {
     );
   }
 }
+
+
+

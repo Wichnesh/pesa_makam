@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import '../../Controller/logincontroller.dart';
 import '../../utils/ImageUtils.dart';
 import '../../utils/constant.dart';
@@ -119,7 +118,7 @@ class _loginscreenState extends State<loginscreen>
                                 const SizedBox(),
                                 component1(
                                   Icons.email_outlined,
-                                  'Email...',
+                                  'Email',
                                   false,
                                   true,
                                   _logincontroller.emailController,
@@ -269,7 +268,7 @@ class _loginscreenState extends State<loginscreen>
                                 const SizedBox(),
                                 component1(
                                   Icons.email_outlined,
-                                  'Email...',
+                                  'Email',
                                   false,
                                   true,
                                   _logincontroller.emailController,

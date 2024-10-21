@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pesa_makanam_app/Model/Homemodel.dart';
 import 'package:pesa_makanam_app/utils/colorUtils.dart';
@@ -83,9 +84,13 @@ class _Pos_screenState extends State<Pos_screen> {
                     child: Obx(() => DropdownButton<String>(
                       value: posController.tableIds.isEmpty ? null : posController.selectedTable.value,
                       onChanged: (String? newValue) {
-                        if (kDebugMode) {
-                          print('Selected Table Document ID: $newValue');
-                          posController.selectedTable.value = newValue!;
+                        print('Selected Table Document ID: $newValue');
+                        posController.selectedTable.value = newValue!;
+                        if(newValue == "Select the Table"){
+                          posController.detailList.clear();
+                          posController.totalamount.value = "0";
+                          Fluttertoast.showToast(msg: "Select the Table");
+                        }else{
                           posController.fetchTable();
                         }
                       },
