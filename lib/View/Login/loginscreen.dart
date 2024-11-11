@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../Controller/logincontroller.dart';
 import '../../utils/ImageUtils.dart';
-import '../../utils/constant.dart';
 
 class loginscreen extends StatefulWidget {
   const loginscreen({Key? key}) : super(key: key);
@@ -340,7 +339,7 @@ class _loginscreenState extends State<loginscreen> with SingleTickerProviderStat
                                 //       ),
                                 //     ),
                                 //   ],
-                                // ),//Register page
+                                // ), //Register page
                               ],
                             ),
                           ),
