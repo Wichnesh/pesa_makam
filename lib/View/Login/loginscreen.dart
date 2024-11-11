@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
 import '../../Controller/logincontroller.dart';
 import '../../utils/ImageUtils.dart';
 import '../../utils/constant.dart';
@@ -13,8 +14,7 @@ class loginscreen extends StatefulWidget {
   State<loginscreen> createState() => _loginscreenState();
 }
 
-class _loginscreenState extends State<loginscreen>
-    with SingleTickerProviderStateMixin {
+class _loginscreenState extends State<loginscreen> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacity;
   late Animation<double> _transform;
@@ -52,8 +52,7 @@ class _loginscreenState extends State<loginscreen>
 
   @override
   Widget build(BuildContext context) {
-    bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -84,12 +83,9 @@ class _loginscreenState extends State<loginscreen>
                     ),
                     child: Obx(
                       () => Opacity(
-                        opacity:
-                            _logincontroller.isPasswordEmpty.value ? 0.8 : 1.0,
+                        opacity: _logincontroller.isPasswordEmpty.value ? 0.8 : 1.0,
                         child: Transform.scale(
-                          scale: _logincontroller.isPasswordEmpty.value
-                              ? 0.98
-                              : 1.0,
+                          scale: _logincontroller.isPasswordEmpty.value ? 0.98 : 1.0,
                           child: Container(
                             width: size.width * .9,
                             height: size.height * .9,
@@ -166,14 +162,11 @@ class _loginscreenState extends State<loginscreen>
                                         ),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            if (_logincontroller
-                                                .emailController.text.isEmpty) {
-                                              Get.snackbar(
-                                                  "Error", "Please enter email",
+                                            if (_logincontroller.emailController.text.isEmpty) {
+                                              Get.snackbar("Error", "Please enter email",
                                                   colorText: Colors.white,
                                                   backgroundColor: Colors.red,
-                                                  snackPosition:
-                                                      SnackPosition.TOP);
+                                                  snackPosition: SnackPosition.TOP);
                                             } else {
                                               _onForgotPasswordTapped();
                                             }
@@ -203,7 +196,7 @@ class _loginscreenState extends State<loginscreen>
                                 //       ),
                                 //     ),
                                 //   ],
-                                // ),//Register page
+                                // ), //Register page
                               ],
                             ),
                           ),
@@ -234,12 +227,9 @@ class _loginscreenState extends State<loginscreen>
                     ),
                     child: Obx(
                       () => Opacity(
-                        opacity:
-                            _logincontroller.isPasswordEmpty.value ? 0.8 : 1.0,
+                        opacity: _logincontroller.isPasswordEmpty.value ? 0.8 : 1.0,
                         child: Transform.scale(
-                          scale: _logincontroller.isPasswordEmpty.value
-                              ? 0.98
-                              : 1.0,
+                          scale: _logincontroller.isPasswordEmpty.value ? 0.98 : 1.0,
                           child: Container(
                             width: size.width * .9,
                             height: size.width * 1.2,
@@ -316,14 +306,11 @@ class _loginscreenState extends State<loginscreen>
                                         ),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            if (_logincontroller
-                                                .emailController.text.isEmpty) {
-                                              Get.snackbar(
-                                                  "Error", "Please enter email",
+                                            if (_logincontroller.emailController.text.isEmpty) {
+                                              Get.snackbar("Error", "Please enter email",
                                                   colorText: Colors.white,
                                                   backgroundColor: Colors.red,
-                                                  snackPosition:
-                                                      SnackPosition.TOP);
+                                                  snackPosition: SnackPosition.TOP);
                                             } else {
                                               _onForgotPasswordTapped();
                                             }
@@ -375,8 +362,7 @@ class _loginscreenState extends State<loginscreen>
     _logincontroller.sendPasswordResetLink();
   }
 
-  Widget component1(IconData icon, String hintText, bool isPassword,
-      bool isEmail, TextEditingController controller,
+  Widget component1(IconData icon, String hintText, bool isPassword, bool isEmail, TextEditingController controller,
       [Color? errorColor]) {
     Size size = MediaQuery.of(Get.context!).size;
     return Container(
@@ -401,8 +387,7 @@ class _loginscreenState extends State<loginscreen>
           border: InputBorder.none,
           hintMaxLines: 1,
           hintText: hintText,
-          hintStyle:
-              TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
+          hintStyle: TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
           errorText: errorColor != null ? 'Password cannot be empty' : null,
           errorStyle: TextStyle(color: errorColor),
         ),
@@ -431,7 +416,6 @@ class _loginscreenState extends State<loginscreen>
       ),
     );
   }
-
 }
 
 class MyBehavior extends ScrollBehavior {
