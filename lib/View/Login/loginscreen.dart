@@ -106,7 +106,7 @@ class _loginscreenState extends State<loginscreen> with SingleTickerProviderStat
                                   height: size.height * .2,
                                   width: size.width * .3,
                                   child: Image.asset(
-                                    logo,
+                                    devaLogo,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -250,7 +250,7 @@ class _loginscreenState extends State<loginscreen> with SingleTickerProviderStat
                                   height: size.height * .15,
                                   width: size.width * .4,
                                   child: Image.asset(
-                                    logo,
+                                    devaLogo,
                                     fit: BoxFit.fill,
                                   ),
                                 ),

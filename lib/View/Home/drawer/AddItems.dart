@@ -1,10 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pesa_makanam_app/Controller/homeController.dart';
 
 import '../../../Controller/AddItemController.dart';
+import '../../../utils/ImageUtils.dart';
 import '../../../utils/colorUtils.dart';
 
 class AddItems extends StatefulWidget {
@@ -17,8 +16,7 @@ class AddItems extends StatefulWidget {
 class _AddItemsState extends State<AddItems> {
   @override
   Widget build(BuildContext context) {
-    bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
     final Screenheight = MediaQuery.of(context).size.height;
     return GetBuilder<AddItemsController>(
       init: AddItemsController(),
@@ -43,11 +41,9 @@ class _AddItemsState extends State<AddItems> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              SizedBox(height: Screenheight/15),
-                              SizedBox(
-                                  height: Screenheight /6,
-                                  child: Image.asset("assets/images/logo.png")),
-                              SizedBox(height: Screenheight/20),
+                              SizedBox(height: Screenheight / 15),
+                              SizedBox(height: Screenheight / 6, child: Image.asset(devaLogo)),
+                              SizedBox(height: Screenheight / 20),
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: SizedBox(
@@ -59,13 +55,10 @@ class _AddItemsState extends State<AddItems> {
                                     decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                primarycolor), // Set the desired border color
+                                        borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                       ),
                                       labelText: 'Name *',
-                                      labelStyle: TextStyle(
-                                          fontSize: 14, color: primarycolor),
+                                      labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                     ),
                                     onChanged: (val) {
                                       controller.name.value = val;
@@ -85,13 +78,10 @@ class _AddItemsState extends State<AddItems> {
                                     decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                primarycolor), // Set the desired border color
+                                        borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                       ),
                                       labelText: 'Description',
-                                      labelStyle: TextStyle(
-                                          fontSize: 14, color: primarycolor),
+                                      labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                     ),
                                     onChanged: (val) {
                                       controller.description.value = val;
@@ -110,17 +100,13 @@ class _AddItemsState extends State<AddItems> {
                                     style: const TextStyle(fontSize: 18),
                                     decoration: const InputDecoration(
                                       suffixText: 'RM',
-                                      suffixStyle: TextStyle(
-                                          fontSize: 18, color: primarycolor),
+                                      suffixStyle: TextStyle(fontSize: 18, color: primarycolor),
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                primarycolor), // Set the desired border color
+                                        borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                       ),
                                       labelText: 'Price *',
-                                      labelStyle: TextStyle(
-                                          fontSize: 14, color: primarycolor),
+                                      labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                     ),
                                     onChanged: (val) {
                                       controller.price.value = val;
@@ -142,13 +128,10 @@ class _AddItemsState extends State<AddItems> {
                                     iconSize: 25,
                                     decoration: const InputDecoration(
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                primarycolor), // Set the desired border color
+                                        borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                       ),
                                       labelText: "Category *",
-                                      labelStyle: TextStyle(
-                                          fontSize: 14, color: primarycolor),
+                                      labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                       border: OutlineInputBorder(),
                                     ),
                                     items: controller.categories.map(
@@ -163,8 +146,7 @@ class _AddItemsState extends State<AddItems> {
                                     ).toList(),
                                     onChanged: (val) {
                                       controller.updateSelectedcategory(val);
-                                      print(
-                                          "val:    ${controller.selectedcategory.value}");
+                                      print("val:    ${controller.selectedcategory.value}");
                                     },
                                   ),
                                 ),
@@ -172,29 +154,22 @@ class _AddItemsState extends State<AddItems> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.34,
+                                      width: MediaQuery.of(context).size.width / 1.34,
                                       child: TextField(
                                         readOnly: true,
                                         // enabled: false,
-                                        controller: controller.fileNameText
-                                          ..text = controller.fileName.value,
+                                        controller: controller.fileNameText..text = controller.fileName.value,
                                         style: const TextStyle(fontSize: 14),
                                         // controller: controller.textController10,
                                         decoration: const InputDecoration(
                                           focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color:
-                                                    primarycolor), // Set the desired border color
+                                            borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                           ),
                                           labelText: "Photo Capture *",
-                                          labelStyle: TextStyle(
-                                              fontSize: 14,
-                                              color: primarycolor),
+                                          labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                         ),
                                       ),
                                     ),
@@ -203,19 +178,13 @@ class _AddItemsState extends State<AddItems> {
                                         bottomSheet(context, controller);
                                       },
                                       child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                8,
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                7.0,
+                                        height: MediaQuery.of(context).size.height / 8,
+                                        width: MediaQuery.of(context).size.width / 7.0,
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                          borderRadius: BorderRadius.circular(10),
                                           border: Border.all(),
                                         ),
-                                        child: const Icon(Icons.file_upload,
-                                            color: primarycolor),
+                                        child: const Icon(Icons.file_upload, color: primarycolor),
                                       ),
                                     )
                                   ],
@@ -224,10 +193,7 @@ class _AddItemsState extends State<AddItems> {
                               controller.fileName.value != ""
                                   ? Padding(
                                       padding: const EdgeInsets.all(5),
-                                      child: SizedBox(
-                                          height: 100,
-                                          width: 100,
-                                          child: Image.file(controller.image!)),
+                                      child: SizedBox(height: 100, width: 100, child: Image.file(controller.image!)),
                                     )
                                   : const SizedBox(),
                               Padding(
@@ -241,12 +207,9 @@ class _AddItemsState extends State<AddItems> {
                                         color: primarycolor,
                                         child: ElevatedButton(
                                           style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty
-                                                    .resolveWith<Color>(
+                                            backgroundColor: MaterialStateProperty.resolveWith<Color>(
                                               (Set<MaterialState> states) {
-                                                if (states.contains(
-                                                    MaterialState.pressed)) {
+                                                if (states.contains(MaterialState.pressed)) {
                                                   // Change the button color when pressed
                                                   return Colors.green;
                                                 }
@@ -264,8 +227,7 @@ class _AddItemsState extends State<AddItems> {
                                             child: Center(
                                               child: Text(
                                                 "Submit",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style: TextStyle(color: Colors.white),
                                               ),
                                             ),
                                           ),
@@ -281,18 +243,14 @@ class _AddItemsState extends State<AddItems> {
                                         width: 175,
                                         child: ElevatedButton(
                                           style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty
-                                                    .resolveWith<Color>(
+                                            backgroundColor: MaterialStateProperty.resolveWith<Color>(
                                               (Set<MaterialState> states) {
-                                                if (states.contains(
-                                                    MaterialState.pressed)) {
+                                                if (states.contains(MaterialState.pressed)) {
                                                   // Change the button color when pressed
                                                   return Colors.green;
                                                 }
                                                 // Return the default button color
-                                                return Colors
-                                                    .red; // or any other color you want
+                                                return Colors.red; // or any other color you want
                                               },
                                             ),
                                           ),
@@ -321,9 +279,7 @@ class _AddItemsState extends State<AddItems> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                  height: Screenheight * 0.1,
-                                  child: Image.asset("assets/images/logo.png")),
+                              SizedBox(height: Screenheight * 0.1, child: Image.asset(devaLogo)),
                               SizedBox(height: Screenheight * 0.01),
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
@@ -336,13 +292,10 @@ class _AddItemsState extends State<AddItems> {
                                     decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                primarycolor), // Set the desired border color
+                                        borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                       ),
                                       labelText: 'Name',
-                                      labelStyle: TextStyle(
-                                          fontSize: 14, color: primarycolor),
+                                      labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                     ),
                                     onChanged: (val) {
                                       controller.name.value = val;
@@ -362,13 +315,10 @@ class _AddItemsState extends State<AddItems> {
                                     decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                primarycolor), // Set the desired border color
+                                        borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                       ),
                                       labelText: 'Description',
-                                      labelStyle: TextStyle(
-                                          fontSize: 14, color: primarycolor),
+                                      labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                     ),
                                     onChanged: (val) {
                                       controller.description.value = val;
@@ -387,17 +337,13 @@ class _AddItemsState extends State<AddItems> {
                                     style: const TextStyle(fontSize: 18),
                                     decoration: const InputDecoration(
                                       suffixText: 'RM',
-                                      suffixStyle: TextStyle(
-                                          fontSize: 18, color: primarycolor),
+                                      suffixStyle: TextStyle(fontSize: 18, color: primarycolor),
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                primarycolor), // Set the desired border color
+                                        borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                       ),
                                       labelText: 'Price',
-                                      labelStyle: TextStyle(
-                                          fontSize: 14, color: primarycolor),
+                                      labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                     ),
                                     onChanged: (val) {
                                       controller.price.value = val;
@@ -419,13 +365,10 @@ class _AddItemsState extends State<AddItems> {
                                     iconSize: 25,
                                     decoration: const InputDecoration(
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                primarycolor), // Set the desired border color
+                                        borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                       ),
                                       labelText: "Category *",
-                                      labelStyle: TextStyle(
-                                          fontSize: 14, color: primarycolor),
+                                      labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                       border: OutlineInputBorder(),
                                     ),
                                     items: controller.categories.map(
@@ -440,8 +383,7 @@ class _AddItemsState extends State<AddItems> {
                                     ).toList(),
                                     onChanged: (val) {
                                       controller.updateSelectedcategory(val);
-                                      print(
-                                          "val:    ${controller.selectedcategory.value}");
+                                      print("val:    ${controller.selectedcategory.value}");
                                     },
                                   ),
                                 ),
@@ -449,29 +391,22 @@ class _AddItemsState extends State<AddItems> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.34,
+                                      width: MediaQuery.of(context).size.width / 1.34,
                                       child: TextField(
                                         readOnly: true,
                                         // enabled: false,
-                                        controller: controller.fileNameText
-                                          ..text = controller.fileName.value,
+                                        controller: controller.fileNameText..text = controller.fileName.value,
                                         style: const TextStyle(fontSize: 14),
                                         // controller: controller.textController10,
                                         decoration: const InputDecoration(
                                           focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color:
-                                                    primarycolor), // Set the desired border color
+                                            borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                           ),
                                           labelText: "Photo Capture *",
-                                          labelStyle: TextStyle(
-                                              fontSize: 14,
-                                              color: primarycolor),
+                                          labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                         ),
                                       ),
                                     ),
@@ -480,19 +415,13 @@ class _AddItemsState extends State<AddItems> {
                                         bottomSheet(context, controller);
                                       },
                                       child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                16,
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                7.0,
+                                        height: MediaQuery.of(context).size.height / 16,
+                                        width: MediaQuery.of(context).size.width / 7.0,
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                          borderRadius: BorderRadius.circular(10),
                                           border: Border.all(),
                                         ),
-                                        child: const Icon(Icons.file_upload,
-                                            color: primarycolor),
+                                        child: const Icon(Icons.file_upload, color: primarycolor),
                                       ),
                                     )
                                   ],
@@ -501,10 +430,7 @@ class _AddItemsState extends State<AddItems> {
                               controller.fileName.value != ""
                                   ? Padding(
                                       padding: const EdgeInsets.all(5),
-                                      child: SizedBox(
-                                          height: 100,
-                                          width: 100,
-                                          child: Image.file(controller.image!)),
+                                      child: SizedBox(height: 100, width: 100, child: Image.file(controller.image!)),
                                     )
                                   : const SizedBox(),
                               Padding(
@@ -518,12 +444,9 @@ class _AddItemsState extends State<AddItems> {
                                         color: primarycolor,
                                         child: ElevatedButton(
                                           style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty
-                                                    .resolveWith<Color>(
+                                            backgroundColor: MaterialStateProperty.resolveWith<Color>(
                                               (Set<MaterialState> states) {
-                                                if (states.contains(
-                                                    MaterialState.pressed)) {
+                                                if (states.contains(MaterialState.pressed)) {
                                                   // Change the button color when pressed
                                                   return Colors.green;
                                                 }
@@ -541,8 +464,7 @@ class _AddItemsState extends State<AddItems> {
                                             child: Center(
                                               child: Text(
                                                 "Submit",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style: TextStyle(color: Colors.white),
                                               ),
                                             ),
                                           ),
@@ -558,18 +480,14 @@ class _AddItemsState extends State<AddItems> {
                                         width: 175,
                                         child: ElevatedButton(
                                           style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty
-                                                    .resolveWith<Color>(
+                                            backgroundColor: MaterialStateProperty.resolveWith<Color>(
                                               (Set<MaterialState> states) {
-                                                if (states.contains(
-                                                    MaterialState.pressed)) {
+                                                if (states.contains(MaterialState.pressed)) {
                                                   // Change the button color when pressed
                                                   return Colors.green;
                                                 }
                                                 // Return the default button color
-                                                return Colors
-                                                    .red; // or any other color you want
+                                                return Colors.red; // or any other color you want
                                               },
                                             ),
                                           ),
@@ -595,8 +513,7 @@ class _AddItemsState extends State<AddItems> {
     );
   }
 
-  Future<void> bottomSheet(
-      BuildContext context, AddItemsController controller) {
+  Future<void> bottomSheet(BuildContext context, AddItemsController controller) {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -609,15 +526,13 @@ class _AddItemsState extends State<AddItems> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
                         controller.getImage(ImageSource.gallery);
                       },
-                      child: const Icon(Icons.insert_photo_outlined,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.insert_photo_outlined, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
@@ -626,8 +541,7 @@ class _AddItemsState extends State<AddItems> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
@@ -635,8 +549,7 @@ class _AddItemsState extends State<AddItems> {
                           ImageSource.camera,
                         );
                       },
-                      child: const Icon(Icons.camera_alt,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.camera_alt, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },

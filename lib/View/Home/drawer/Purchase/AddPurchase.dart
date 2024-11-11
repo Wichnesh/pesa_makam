@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pesa_makanam_app/Controller/AddPurchaseController.dart';
 
+import '../../../../utils/ImageUtils.dart';
 import '../../../../utils/colorUtils.dart';
 
 class AddPurchase extends StatefulWidget {
@@ -32,9 +33,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                 height: Screenheight * 0.9,
                 child: Column(
                   children: [
-                    SizedBox(
-                        height: Screenheight * 0.1,
-                        child: Image.asset("assets/images/logo.png")),
+                    SizedBox(height: Screenheight * 0.1, child: Image.asset(devaLogo)),
                     SizedBox(height: Screenheight * 0.005),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -47,13 +46,10 @@ class _AddPurchaseState extends State<AddPurchase> {
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      primarycolor), // Set the desired border color
+                              borderSide: BorderSide(color: primarycolor), // Set the desired border color
                             ),
                             labelText: 'Vendor Name',
-                            labelStyle:
-                                TextStyle(fontSize: 14, color: primarycolor),
+                            labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                           ),
                           onChanged: (val) {
                             controller.vendorname.value = val;
@@ -74,13 +70,10 @@ class _AddPurchaseState extends State<AddPurchase> {
                             border: OutlineInputBorder(),
                             suffix: Text('RM'),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      primarycolor), // Set the desired border color
+                              borderSide: BorderSide(color: primarycolor), // Set the desired border color
                             ),
                             labelText: 'Amount',
-                            labelStyle:
-                                TextStyle(fontSize: 14, color: primarycolor),
+                            labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                           ),
                           onChanged: (val) {
                             controller.Amount.value = val;
@@ -100,13 +93,10 @@ class _AddPurchaseState extends State<AddPurchase> {
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      primarycolor), // Set the desired border color
+                              borderSide: BorderSide(color: primarycolor), // Set the desired border color
                             ),
                             labelText: 'Tax percentage',
-                            labelStyle:
-                                TextStyle(fontSize: 14, color: primarycolor),
+                            labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                           ),
                           onChanged: (val) {
                             controller.taxpercentage.value = val;
@@ -122,21 +112,17 @@ class _AddPurchaseState extends State<AddPurchase> {
                         height: 50,
                         width: double.infinity,
                         child: TextField(
-                          controller: controller.TaxAmountText
-                            ..text = controller.taxamount.value,
+                          controller: controller.TaxAmountText..text = controller.taxamount.value,
                           keyboardType: TextInputType.number,
                           style: const TextStyle(fontSize: 18),
                           decoration: const InputDecoration(
                             suffix: Text('RM'),
                             border: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      primarycolor), // Set the desired border color
+                              borderSide: BorderSide(color: primarycolor), // Set the desired border color
                             ),
                             labelText: 'Tax Amount',
-                            labelStyle:
-                                TextStyle(fontSize: 14, color: primarycolor),
+                            labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                           ),
                           onChanged: (val) {
                             controller.Amount.value = val;
@@ -151,21 +137,17 @@ class _AddPurchaseState extends State<AddPurchase> {
                         height: 50,
                         width: double.infinity,
                         child: TextField(
-                          controller: controller.TotalAmountText
-                            ..text = controller.Totalamount.value,
+                          controller: controller.TotalAmountText..text = controller.Totalamount.value,
                           keyboardType: TextInputType.number,
                           style: const TextStyle(fontSize: 18),
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             suffix: Text('RM'),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      primarycolor), // Set the desired border color
+                              borderSide: BorderSide(color: primarycolor), // Set the desired border color
                             ),
                             labelText: 'Total Amount',
-                            labelStyle:
-                                TextStyle(fontSize: 14, color: primarycolor),
+                            labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                           ),
                           onChanged: (val) {
                             controller.Amount.value = val;
@@ -194,22 +176,17 @@ class _AddPurchaseState extends State<AddPurchase> {
                                 firstDate: DateTime(1900),
                                 lastDate: DateTime.now());
                             controller.OrderselectedDate = date;
-                            controller.orderdateText.value =
-                                DateFormat("dd-MM-yyyy").format(date!);
+                            controller.orderdateText.value = DateFormat("dd-MM-yyyy").format(date!);
                             controller.update();
                           },
-                          controller: controller.OrderDateText
-                            ..text = controller.orderdateText.value,
+                          controller: controller.OrderDateText..text = controller.orderdateText.value,
                           style: const TextStyle(fontSize: 18),
                           decoration: const InputDecoration(
                             suffixIcon: Icon(Icons.calendar_today),
                             labelText: "Order Date*",
-                            labelStyle:
-                                TextStyle(fontSize: 14, color: primarycolor),
-                            border:
-                                InputBorder.none, // Remove the default border
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 12.0, horizontal: 16.0),
+                            labelStyle: TextStyle(fontSize: 14, color: primarycolor),
+                            border: InputBorder.none, // Remove the default border
+                            contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
                           ),
                         ),
                       ),
@@ -250,25 +227,20 @@ class _AddPurchaseState extends State<AddPurchase> {
                                 firstDate: firstAllowedDate,
                                 lastDate: lastAllowedDate);
                             controller.PendingselectedDate = date;
-                            controller.pendingdateText.value =
-                                DateFormat("dd-MM-yyyy").format(date!);
+                            controller.pendingdateText.value = DateFormat("dd-MM-yyyy").format(date!);
                             if (kDebugMode) {
                               print(controller.pendingdateText.value);
                             }
                             controller.update();
                           },
-                          controller: controller.PendingDateText
-                            ..text = controller.pendingdateText.value,
+                          controller: controller.PendingDateText..text = controller.pendingdateText.value,
                           style: const TextStyle(fontSize: 18),
                           decoration: const InputDecoration(
                             suffixIcon: Icon(Icons.calendar_today),
                             labelText: "Pending Date*",
-                            labelStyle:
-                                TextStyle(fontSize: 14, color: primarycolor),
-                            border:
-                                InputBorder.none, // Remove the default border
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 12.0, horizontal: 16.0),
+                            labelStyle: TextStyle(fontSize: 14, color: primarycolor),
+                            border: InputBorder.none, // Remove the default border
+                            contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
                           ),
                         ),
                       ),
@@ -284,11 +256,9 @@ class _AddPurchaseState extends State<AddPurchase> {
                               color: primarycolor,
                               child: ElevatedButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color>(
+                                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.pressed)) {
+                                      if (states.contains(MaterialState.pressed)) {
                                         // Change the button color when pressed
                                         return Colors.green;
                                       }
@@ -322,17 +292,14 @@ class _AddPurchaseState extends State<AddPurchase> {
                               width: 175,
                               child: ElevatedButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.resolveWith<Color>(
+                                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
                                     (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.pressed)) {
+                                      if (states.contains(MaterialState.pressed)) {
                                         // Change the button color when pressed
                                         return Colors.green;
                                       }
                                       // Return the default button color
-                                      return Colors
-                                          .red; // or any other color you want
+                                      return Colors.red; // or any other color you want
                                     },
                                   ),
                                 ),

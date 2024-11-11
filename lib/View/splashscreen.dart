@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/ImageUtils.dart';
 import '../utils/colorUtils.dart';
 import '../utils/constant.dart';
-import '../utils/pref_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,8 +16,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
   Animation? _logoAnimation;
   AnimationController? _logoAnimationController;
   SharedPreferences? _prefs;
@@ -30,10 +28,9 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    _logoAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    _logoAnimation = Tween(begin: 0.0, end: 200.0).animate(CurvedAnimation(
-        curve: Curves.bounceOut, parent: _logoAnimationController!));
+    _logoAnimationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    _logoAnimation = Tween(begin: 0.0, end: 200.0)
+        .animate(CurvedAnimation(curve: Curves.bounceOut, parent: _logoAnimationController!));
 
     _logoAnimationController!.addStatusListener((AnimationStatus status) {});
     _logoAnimationController!.forward();
@@ -88,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(color: logocolor),
+        decoration: const BoxDecoration(color: devaPrimaryColor),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -115,19 +112,13 @@ class _SplashScreenState extends State<SplashScreen>
       builder: (context, child) {
         return Container(
           padding: EdgeInsets.only(left: 30, right: 20, bottom: 5),
-          width: MediaQuery.of(context).orientation == Orientation.portrait
-              ? portraitWidth
-              : landscapeWidth,
-          height: MediaQuery.of(context).orientation == Orientation.portrait
-              ? portraitHeight
-              : landscapeHeight,
+          width: MediaQuery.of(context).orientation == Orientation.portrait ? portraitWidth : landscapeWidth,
+          height: MediaQuery.of(context).orientation == Orientation.portrait ? portraitHeight : landscapeHeight,
           child: Center(
             child: Image.asset(
-              splashBg,
+              devaSplashBg,
               width: double.infinity,
-              height: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? portraitHeight
-                  : landscapeHeight,
+              height: MediaQuery.of(context).orientation == Orientation.portrait ? portraitHeight : landscapeHeight,
               fit: BoxFit.fill,
             ),
           ),

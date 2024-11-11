@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
 import '../../Controller/registerController.dart';
 import '../../utils/ImageUtils.dart';
 import 'loginscreen.dart';
@@ -13,10 +14,8 @@ class Registerscreen extends StatefulWidget {
   State<Registerscreen> createState() => _RegisterscreenState();
 }
 
-class _RegisterscreenState extends State<Registerscreen>
-    with SingleTickerProviderStateMixin {
-  final RegisterController _registerController =
-      Get.put(RegisterController()); // Initialize the controller
+class _RegisterscreenState extends State<Registerscreen> with SingleTickerProviderStateMixin {
+  final RegisterController _registerController = Get.put(RegisterController()); // Initialize the controller
   late AnimationController _controller;
   late Animation<double> _opacity;
   late Animation<double> _transform;
@@ -103,7 +102,7 @@ class _RegisterscreenState extends State<Registerscreen>
                             height: size.height * .15,
                             width: size.width * .4,
                             child: Image.asset(
-                              logo,
+                              devaLogo,
                               fit: BoxFit.fill,
                             )),
                         SizedBox(),
@@ -113,8 +112,7 @@ class _RegisterscreenState extends State<Registerscreen>
                           'Email...',
                         ),
                         password(Icons.lock_outline, 'Password...', true),
-                        repassword(
-                            Icons.lock_outline, 're-enter Password...', true),
+                        repassword(Icons.lock_outline, 're-enter Password...', true),
                         UserTypeDropdown(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -191,11 +189,9 @@ class _RegisterscreenState extends State<Registerscreen>
             border: InputBorder.none,
             hintMaxLines: 1,
             hintText: hintText,
-            hintStyle:
-                TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
-            errorText: _registerController.emailErrorText.value.isNotEmpty
-                ? _registerController.emailErrorText.value
-                : null,
+            hintStyle: TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
+            errorText:
+                _registerController.emailErrorText.value.isNotEmpty ? _registerController.emailErrorText.value : null,
           ),
         ),
       ),
@@ -229,11 +225,9 @@ class _RegisterscreenState extends State<Registerscreen>
             border: InputBorder.none,
             hintMaxLines: 1,
             hintText: hintText,
-            hintStyle:
-                TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
-            errorText: _registerController.nameErrorText.value.isNotEmpty
-                ? _registerController.nameErrorText.value
-                : null,
+            hintStyle: TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
+            errorText:
+                _registerController.nameErrorText.value.isNotEmpty ? _registerController.nameErrorText.value : null,
           ),
         ),
       ),
@@ -290,8 +284,7 @@ class _RegisterscreenState extends State<Registerscreen>
             border: InputBorder.none,
             hintMaxLines: 1,
             hintText: hintText,
-            hintStyle:
-                TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
+            hintStyle: TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
             errorText: _registerController.passwordErrorText.value.isNotEmpty
                 ? _registerController.passwordErrorText.value
                 : null,
@@ -329,8 +322,7 @@ class _RegisterscreenState extends State<Registerscreen>
             border: InputBorder.none,
             hintMaxLines: 1,
             hintText: hintText,
-            hintStyle:
-                TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
+            hintStyle: TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
             errorText: _registerController.rePasswordErrorText.value.isNotEmpty
                 ? _registerController.rePasswordErrorText.value
                 : null,
@@ -361,8 +353,7 @@ class _RegisterscreenState extends State<Registerscreen>
               _registerController.userType.value = value!;
               _registerController.validateUserType();
             },
-            items: _registerController.roles
-                .map<DropdownMenuItem<String>>((String value) {
+            items: _registerController.roles.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),
@@ -371,8 +362,7 @@ class _RegisterscreenState extends State<Registerscreen>
             style: TextStyle(color: Colors.black.withOpacity(.8)),
             hint: Text(
               'Select a role',
-              style:
-                  TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
+              style: TextStyle(fontSize: 14, color: Colors.black.withOpacity(.5)),
             ),
           ),
         ),

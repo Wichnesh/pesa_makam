@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:pesa_makanam_app/Controller/EmployeeController.dart';
 import 'package:pesa_makanam_app/utils/colorUtils.dart';
-import 'package:get/get.dart';
+
+import '../../../utils/ImageUtils.dart';
 
 class Employee extends StatefulWidget {
   const Employee({Key? key}) : super(key: key);
@@ -37,27 +39,20 @@ class _EmployeeState extends State<Employee> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
-                          height: Screenheight * 0.1,
-                          child: Image.asset("assets/images/logo.png")),
+                      SizedBox(height: Screenheight * 0.1, child: Image.asset(devaLogo)),
                       SizedBox(
                         height: Screenheight * 0.01,
                       ),
                       CircleAvatar(
                         radius: 60,
                         backgroundColor: Colors.transparent,
-                        backgroundImage: controller.image.value != null
-                            ? FileImage(controller.image.value!)
-                            : null,
-                        child: controller.image.value == null
-                            ? const Icon(Icons.image, size: 100)
-                            : null,
+                        backgroundImage: controller.image.value != null ? FileImage(controller.image.value!) : null,
+                        child: controller.image.value == null ? const Icon(Icons.image, size: 100) : null,
                       ),
                       const SizedBox(height: 10),
                       ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.resolveWith<Color>(
+                          backgroundColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
                                 // Change the button color when pressed
@@ -68,8 +63,7 @@ class _EmployeeState extends State<Employee> {
                             },
                           ),
                         ),
-                        onPressed: () =>
-                            bottomSheet(context,controller),
+                        onPressed: () => bottomSheet(context, controller),
                         child: const Text('Select Image'),
                       ),
                       SizedBox(height: Screenheight * 0.01),
@@ -86,13 +80,10 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Name *',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.name.value = val;
@@ -113,13 +104,10 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Employee Id *',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.employeeId.value = val;
@@ -148,13 +136,10 @@ class _EmployeeState extends State<Employee> {
                                   iconSize: 25,
                                   decoration: const InputDecoration(
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: "Sex *",
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                     border: OutlineInputBorder(),
                                   ),
                                   items: controller.sex.map(
@@ -169,8 +154,7 @@ class _EmployeeState extends State<Employee> {
                                   ).toList(),
                                   onChanged: (val) {
                                     controller.updateSex(val);
-                                    print(
-                                        "val:    ${controller.selectedSex.value}");
+                                    print("val:    ${controller.selectedSex.value}");
                                   },
                                 ),
                               ),
@@ -185,8 +169,7 @@ class _EmployeeState extends State<Employee> {
                                 child: TextField(
                                   readOnly: true,
                                   onTap: () async {
-                                    FocusScope.of(context)
-                                        .requestFocus(FocusNode());
+                                    FocusScope.of(context).requestFocus(FocusNode());
                                     DateTime? date = DateTime.now();
 
                                     date = await showDatePicker(
@@ -195,18 +178,15 @@ class _EmployeeState extends State<Employee> {
                                         firstDate: DateTime(1900),
                                         lastDate: DateTime.now());
                                     controller.DOB = date;
-                                    controller.DOBText.value =
-                                        DateFormat("yyyy-MM-dd").format(date!);
+                                    controller.DOBText.value = DateFormat("yyyy-MM-dd").format(date!);
                                     controller.update();
                                   },
-                                  controller: controller.DOBTextField
-                                    ..text = controller.DOBText.value,
+                                  controller: controller.DOBTextField..text = controller.DOBText.value,
                                   style: const TextStyle(fontSize: 18),
                                   decoration: const InputDecoration(
                                     suffixIcon: Icon(Icons.calendar_today),
                                     labelText: "Date of Birth *",
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                 ),
                               ),
@@ -227,13 +207,10 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Age *',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.age.value = val;
@@ -252,8 +229,7 @@ class _EmployeeState extends State<Employee> {
                                 child: TextField(
                                   readOnly: true,
                                   onTap: () async {
-                                    FocusScope.of(context)
-                                        .requestFocus(new FocusNode());
+                                    FocusScope.of(context).requestFocus(new FocusNode());
                                     DateTime? date = DateTime.now();
 
                                     date = await showDatePicker(
@@ -262,18 +238,15 @@ class _EmployeeState extends State<Employee> {
                                         firstDate: DateTime(1900),
                                         lastDate: DateTime.now());
                                     controller.DOJ = date;
-                                    controller.DOJText.value =
-                                        DateFormat("yyyy-MM-dd").format(date!);
+                                    controller.DOJText.value = DateFormat("yyyy-MM-dd").format(date!);
                                     controller.update();
                                   },
-                                  controller: controller.DOJTextField
-                                    ..text = controller.DOJText.value,
+                                  controller: controller.DOJTextField..text = controller.DOJText.value,
                                   style: const TextStyle(fontSize: 18),
                                   decoration: const InputDecoration(
                                     suffixIcon: Icon(Icons.calendar_today),
                                     labelText: "Date of Joining*",
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                 ),
                               ),
@@ -291,13 +264,10 @@ class _EmployeeState extends State<Employee> {
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color:
-                                        primarycolor), // Set the desired border color
+                                borderSide: BorderSide(color: primarycolor), // Set the desired border color
                               ),
                               labelText: 'Nationality *',
-                              labelStyle:
-                                  TextStyle(fontSize: 14, color: primarycolor),
+                              labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                             ),
                             onChanged: (val) {
                               controller.nationality.value = val;
@@ -307,7 +277,7 @@ class _EmployeeState extends State<Employee> {
                         ),
                       ), //Nationality
                       Padding(
-                        padding: const EdgeInsets.all(10.00),
+                          padding: const EdgeInsets.all(10.00),
                           child: SizedBox(
                             height: Screenheight / 10,
                             child: TextField(
@@ -315,13 +285,10 @@ class _EmployeeState extends State<Employee> {
                               textCapitalization: TextCapitalization.sentences,
                               decoration: const InputDecoration(
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:
-                                        primarycolor), // Set the desired border color
+                                    borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                   ),
                                   labelText: 'Address *',
-                                  labelStyle: TextStyle(
-                                      fontSize: 14, color: primarycolor),
+                                  labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   hintText: 'enter......',
                                   border: OutlineInputBorder()),
                               onChanged: (val) {
@@ -340,19 +307,15 @@ class _EmployeeState extends State<Employee> {
                               child: TextField(
                                 readOnly: true,
                                 // enabled: false,
-                                controller: controller.addressNameText
-                                  ..text = controller.addressproofName.value,
+                                controller: controller.addressNameText..text = controller.addressproofName.value,
                                 style: const TextStyle(fontSize: 14),
                                 // controller: controller.textController10,
                                 decoration: const InputDecoration(
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:
-                                            primarycolor), // Set the desired border color
+                                    borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                   ),
                                   labelText: "Address proof Attachment",
-                                  labelStyle: TextStyle(
-                                      fontSize: 14, color: primarycolor),
+                                  labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                 ),
                               ),
                             ),
@@ -367,8 +330,7 @@ class _EmployeeState extends State<Employee> {
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(),
                                 ),
-                                child: const Icon(Icons.file_upload,
-                                    color: primarycolor),
+                                child: const Icon(Icons.file_upload, color: primarycolor),
                               ),
                             )
                           ],
@@ -380,8 +342,7 @@ class _EmployeeState extends State<Employee> {
                               child: SizedBox(
                                   height: Screenheight * 0.1,
                                   width: Screenwidth * 0.3,
-                                  child: Image.file(
-                                      controller.addressproofimage!)),
+                                  child: Image.file(controller.addressproofimage!)),
                             )
                           : const SizedBox(),
                       Padding(
@@ -397,13 +358,10 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Phone number',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.phonenumber.value = val;
@@ -423,13 +381,10 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Alternate Phone number',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.alternatephonenumber.value = val;
@@ -453,13 +408,10 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Emergency contact name',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.emergencycontactname.value = val;
@@ -479,17 +431,13 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Emergency contact Phone number',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
-                                    controller.emergencycontactnumber.value =
-                                        val;
+                                    controller.emergencycontactnumber.value = val;
                                   },
                                 ),
                               ),
@@ -510,13 +458,10 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Passport No',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.passportno.value = val;
@@ -535,8 +480,7 @@ class _EmployeeState extends State<Employee> {
                                 child: TextField(
                                   readOnly: true,
                                   onTap: () async {
-                                    FocusScope.of(context)
-                                        .requestFocus(FocusNode());
+                                    FocusScope.of(context).requestFocus(FocusNode());
                                     DateTime? date = DateTime.now();
 
                                     date = await showDatePicker(
@@ -545,18 +489,15 @@ class _EmployeeState extends State<Employee> {
                                         firstDate: DateTime(1900),
                                         lastDate: DateTime.now());
                                     controller.Expiry = date;
-                                    controller.expiryText.value =
-                                        DateFormat("yyyy-MM-dd").format(date!);
+                                    controller.expiryText.value = DateFormat("yyyy-MM-dd").format(date!);
                                     controller.update();
                                   },
-                                  controller: controller.expiryTextField
-                                    ..text = controller.expiryText.value,
+                                  controller: controller.expiryTextField..text = controller.expiryText.value,
                                   style: const TextStyle(fontSize: 18),
                                   decoration: const InputDecoration(
                                     suffixIcon: Icon(Icons.calendar_today),
                                     labelText: "Expiry Date",
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                 ),
                               ),
@@ -574,19 +515,15 @@ class _EmployeeState extends State<Employee> {
                               child: TextField(
                                 readOnly: true,
                                 // enabled: false,
-                                controller: controller.passportNameText
-                                  ..text = controller.passportName.value,
+                                controller: controller.passportNameText..text = controller.passportName.value,
                                 style: const TextStyle(fontSize: 14),
                                 // controller: controller.textController10,
                                 decoration: const InputDecoration(
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:
-                                            primarycolor), // Set the desired border color
+                                    borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                   ),
                                   labelText: "Passport Attachment",
-                                  labelStyle: TextStyle(
-                                      fontSize: 14, color: primarycolor),
+                                  labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                 ),
                               ),
                             ),
@@ -601,8 +538,7 @@ class _EmployeeState extends State<Employee> {
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(),
                                 ),
-                                child: const Icon(Icons.file_upload,
-                                    color: primarycolor),
+                                child: const Icon(Icons.file_upload, color: primarycolor),
                               ),
                             )
                           ],
@@ -630,13 +566,10 @@ class _EmployeeState extends State<Employee> {
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              primarycolor), // Set the desired border color
+                                      borderSide: BorderSide(color: primarycolor), // Set the desired border color
                                     ),
                                     labelText: 'Role *',
-                                    labelStyle: TextStyle(
-                                        fontSize: 14, color: primarycolor),
+                                    labelStyle: TextStyle(fontSize: 14, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.roles.value = val;
@@ -667,8 +600,7 @@ class _EmployeeState extends State<Employee> {
                                       color: primarycolor,
                                     ),
                                     suffixText: 'RM',
-                                    suffixStyle: TextStyle(
-                                        fontSize: 18, color: primarycolor),
+                                    suffixStyle: TextStyle(fontSize: 18, color: primarycolor),
                                   ),
                                   onChanged: (val) {
                                     controller.perdaywages.value = val;
@@ -691,11 +623,9 @@ class _EmployeeState extends State<Employee> {
                                 color: primarycolor,
                                 child: ElevatedButton(
                                   style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
+                                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                        if (states
-                                            .contains(MaterialState.pressed)) {
+                                        if (states.contains(MaterialState.pressed)) {
                                           // Change the button color when pressed
                                           return Colors.green;
                                         }
@@ -729,17 +659,14 @@ class _EmployeeState extends State<Employee> {
                                 width: 175,
                                 child: ElevatedButton(
                                   style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
+                                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
                                       (Set<MaterialState> states) {
-                                        if (states
-                                            .contains(MaterialState.pressed)) {
+                                        if (states.contains(MaterialState.pressed)) {
                                           // Change the button color when pressed
                                           return Colors.green;
                                         }
                                         // Return the default button color
-                                        return Colors
-                                            .red; // or any other color you want
+                                        return Colors.red; // or any other color you want
                                       },
                                     ),
                                   ),
@@ -765,8 +692,7 @@ class _EmployeeState extends State<Employee> {
     );
   }
 
-  Future<void> bottomSheet(
-      BuildContext context, EmployeeController controller) {
+  Future<void> bottomSheet(BuildContext context, EmployeeController controller) {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -779,15 +705,13 @@ class _EmployeeState extends State<Employee> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
                         controller.getImage(ImageSource.gallery);
                       },
-                      child: const Icon(Icons.insert_photo_outlined,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.insert_photo_outlined, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
@@ -796,8 +720,7 @@ class _EmployeeState extends State<Employee> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
@@ -805,8 +728,7 @@ class _EmployeeState extends State<Employee> {
                           ImageSource.camera,
                         );
                       },
-                      child: const Icon(Icons.camera_alt,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.camera_alt, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
@@ -820,8 +742,7 @@ class _EmployeeState extends State<Employee> {
     );
   }
 
-  Future<void> passportbottomSheet(
-      BuildContext context, EmployeeController controller) {
+  Future<void> passportbottomSheet(BuildContext context, EmployeeController controller) {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -834,15 +755,13 @@ class _EmployeeState extends State<Employee> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
                         controller.passportImage(ImageSource.gallery);
                       },
-                      child: const Icon(Icons.insert_photo_outlined,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.insert_photo_outlined, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
@@ -851,8 +770,7 @@ class _EmployeeState extends State<Employee> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
@@ -860,8 +778,7 @@ class _EmployeeState extends State<Employee> {
                           ImageSource.camera,
                         );
                       },
-                      child: const Icon(Icons.camera_alt,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.camera_alt, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
@@ -875,8 +792,7 @@ class _EmployeeState extends State<Employee> {
     );
   }
 
-  Future<void> governmentidbottomSheet(
-      BuildContext context, EmployeeController controller) {
+  Future<void> governmentidbottomSheet(BuildContext context, EmployeeController controller) {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -889,15 +805,13 @@ class _EmployeeState extends State<Employee> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
                         controller.GovernmentIdImage(ImageSource.gallery);
                       },
-                      child: const Icon(Icons.insert_photo_outlined,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.insert_photo_outlined, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
@@ -906,8 +820,7 @@ class _EmployeeState extends State<Employee> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
@@ -915,8 +828,7 @@ class _EmployeeState extends State<Employee> {
                           ImageSource.camera,
                         );
                       },
-                      child: const Icon(Icons.camera_alt,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.camera_alt, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
@@ -930,8 +842,7 @@ class _EmployeeState extends State<Employee> {
     );
   }
 
-  Future<void> AddressproofbottomSheet(
-      BuildContext context, EmployeeController controller) {
+  Future<void> AddressproofbottomSheet(BuildContext context, EmployeeController controller) {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -944,15 +855,13 @@ class _EmployeeState extends State<Employee> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
                         controller.AddressproofImage(ImageSource.gallery);
                       },
-                      child: const Icon(Icons.insert_photo_outlined,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.insert_photo_outlined, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
@@ -961,8 +870,7 @@ class _EmployeeState extends State<Employee> {
                 Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
-                        color: primarycolor, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(color: primarycolor, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: () {
                         Get.back();
@@ -970,8 +878,7 @@ class _EmployeeState extends State<Employee> {
                           ImageSource.camera,
                         );
                       },
-                      child: const Icon(Icons.camera_alt,
-                          size: 40, color: Colors.white),
+                      child: const Icon(Icons.camera_alt, size: 40, color: Colors.white),
                     )
                     // onPressed: () {
                     // },
